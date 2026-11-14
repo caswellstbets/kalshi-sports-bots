@@ -21,36 +21,45 @@ class BotConfig:
     min_games: int = 3
     espn_groups: list[str] | None = None
     situational: Callable[[dict], tuple[float, float, list[str]]] | None = None
-    # --- blending ---
-    book_weight: float = 0.10      # the sportsbook line is a small input; the bot's own model is the rest
+    # --- stats model ---
     form_weight: float = 0.35      # share of the model that comes from recent form rather than the full season
     form_half_life_days: float = 14.0
     total_scale: float = 1.0       # how much of the model's above/below-average total to believe (from back-testing)
     total_bias: float = 0.0
     trade_types: tuple = ("ml", "spread", "total")
     min_rated_games: int = 5       # both teams need this many games behind their rating
-    flag_gap_margin: float = 7.0   # model vs sportsbook gap that gets called out for the AI review (no veto)
-    ai_margin_cap: float = 3.5
-    ai_total_cap: float = 4.5
+    # --- AI forecast and market check (v2) ---
+    strategy_version: str = "v2.0"
+    deep_reads_per_day: int = 8    # games per day that get a full AI forecast: biggest stats-vs-market gaps
+    forecast_lead_minutes: float = 40.0  # no deep read for a game starting sooner than this
+    control_reads_per_day: int = 2 # plus this many chosen at random, so the AI is graded on unselected games too
+    # Trust: how far the bet probability moves from the market price toward the AI forecast (log-odds).
+    # GUESS, deliberately cautious. The AI has no track record yet, and the stats back-test cannot
+    # stand in for one. Frozen for the evaluation window; see README "Rules set in advance".
+    trust: dict = field(default_factory=lambda: {"ml": 0.35, "spread": 0.35, "total": 0.25})
+    trust_ceiling: float = 0.70
+    thin_data_games: int = 6       # either team with fewer rated games than this ...
+    thin_data_factor: float = 0.7  # ... multiplies trust by this (GUESS)
+    shrink_factor: float = 0.5     # a market check that ends in "shrink" halves trust (GUESS)
+    check_gap_margin: float = 3.0  # AI vs market gap that needs a written market check
+    check_gap_total: float = 4.0
+    soft_reason_cap: float = 3.0   # most a forecast may differ from the stats on soft judgment alone
+    hard_reason_gap: float = 7.0   # beyond this, at least one hard fact or stat-based reason is required
     # --- paper trading ---
     window_hours: float = 24.0     # only trade this close to the start
     lockout_minutes: float = 5.0   # ... and never this close, or after
     bankroll: float = 1000.0
     unit_pct: float = 0.01
-    kelly_fraction: float = 0.125  # an eighth of the Kelly stake: sized to the edge, discounted for model error
-    min_units_trade: float = 0.5
-    max_units_trade: float = 3.0
-    confidence_stake: dict = field(default_factory=lambda: {"low": 0.7, "medium": 1.0, "high": 1.2})
-    max_units_game: float = 5.0
-    min_edge: dict = field(default_factory=lambda: {"ml": 0.06, "spread": 0.06, "total": 0.06})
-    max_trades_per_day: int = 5    # only the strongest opinions of the day get a pick
-    max_edge: float = 0.16         # bigger than this is more likely bad data than a real opinion
+    kelly_fraction: float = 0.125  # an eighth of Kelly on the market-checked probability; no minimum stake
+    max_units_trade: float = 2.0
+    max_units_game: float = 2.0    # one position per game, so this equals the per-trade cap
+    min_edge_trade: float = 0.03   # edge after the market check and exact fees, below which there is no bet (GUESS)
+    max_trades_per_day: int = 5
     # only trade near the main line, where the forecast is most reliable; no long shots
     price_band: dict = field(default_factory=lambda: {"ml": (0.15, 0.85), "spread": (0.35, 0.65), "total": (0.35, 0.65)})
-    notes_fresh_hours: float = 12.0  # how long an AI review of a game stays valid
     max_spread: float = 0.08
     min_ask_size: float = 10
-    pull_margin: float = 0.01      # pull a pick when the market bids this much above the bot's fair value
+    pull_margin: float = 0.04      # sell only when the net bid beats the value of holding by this much
 
     @property
     def unit(self) -> float:

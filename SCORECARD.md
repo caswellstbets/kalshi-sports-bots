@@ -1,6 +1,6 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 11:08 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 11:30 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
 Test started Sat Nov 14 12:19 AM ET. Runs so far: 3.
 
@@ -8,8 +8,8 @@ Test started Sat Nov 14 12:19 AM ET. Runs so far: 3.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | NBA | 1 | 1 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
-| College football | 8 | 8 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
-| **All three** | 9 | 9 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
+| College football | 9 | 9 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
+| **All three** | 10 | 10 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 
 How to read this: profit over a handful of bets is mostly luck. Closing-price edge (did the price move toward the bot's side after it bought) and calibration (were its percentages right) are the fairer early tests.
 
@@ -50,14 +50,15 @@ Too early to say. Not enough finished games yet.
 
 | Paper trades | Open | Won | Lost | Pulled | Staked | Profit | Units | Return on stake |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 8 | 8 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
+| 9 | 9 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
 
-Average edge claimed at entry: +7.9 points after fees.
+Average edge claimed at entry: +7.3 points after fees.
 
-Calibration: no graded markets yet (662 being tracked).
+Calibration: no graded markets yet (665 being tracked).
 
 | Placed | Game | Pick | Price | Size | Bot | Edge | Confidence | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sat Nov 14 11:30 AM ET | SJSU @ AFA | SJSU +13.5 | 48c | 15 (0.75u) | 52.8% | +3.0 | Low | open |  |  |
 | Sat Nov 14 12:31 AM ET | WAKE @ SMU | WAKE to win | 49c | 28 (1.42u) | 59.0% | +8.2 | Medium | open |  |  |
 | Sat Nov 14 12:31 AM ET | WAKE @ SMU | WAKE -4.5 | 36c | 36 (1.35u) | 47.5% | +9.9 | Medium | open |  |  |
 | Sat Nov 14 12:31 AM ET | TENN @ TA&M | TENN -3.5 | 39c | 36 (1.46u) | 50.8% | +10.1 | Medium | open |  |  |

@@ -134,7 +134,8 @@ def _compact(g: dict) -> dict:
     }
 
 
-def season_results(sport: str, cache_path: str, *, season_start: str, groups: list[str] | None = None) -> list[dict]:
+def season_results(sport: str, cache_path: str, *, season_start: str, groups: list[str] | None = None,
+                   save: bool = True) -> list[dict]:
     """Every completed regular-season game so far. Days (NBA) or weeks (football)
     that are fully in the past are cached on disk so each run only fetches what is new."""
     cache = read_json(cache_path, {})
@@ -175,7 +176,8 @@ def season_results(sport: str, cache_path: str, *, season_start: str, groups: li
             cache[key] = ent
         for g in ent["games"]:
             out[g["id"]] = g
-    write_json(cache_path, cache)
+    if save:
+        write_json(cache_path, cache)
     return list(out.values())
 
 

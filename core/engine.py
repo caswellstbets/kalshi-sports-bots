@@ -5,12 +5,14 @@ Nothing in here can place a real order. "Trade" always means a line written to
 data/<bot>/trades.jsonl."""
 from __future__ import annotations
 
+import hashlib
 import math
 import os
+import subprocess
 import uuid
 from datetime import timedelta
 
-from . import ai, espn, kalshi, match, pricing, ratings
+from . import espn, forecast as fstore, kalshi, match, pricing, ratings
 from .config import BotConfig
 from .util import (ET, append_jsonl, iso, norm_inv, now_utc, parse_iso, r4, read_json,
                    read_jsonl, write_json)
@@ -24,10 +26,13 @@ def paths(cfg: BotConfig, root: str) -> dict:
         "settlements": os.path.join(d, "settlements.jsonl"),  # append-only: how each entry ended
         "open_preds": os.path.join(d, "open_predictions.json"),
         "graded": os.path.join(d, "graded_predictions.jsonl"),
-        "ai_cache": os.path.join(d, "ai_cache.json"),
+        "forecasts": os.path.join(d, "forecasts.jsonl"),     # append-only: every AI forecast and market check
+        "game_track": os.path.join(d, "game_track.json"),     # latest pre-game numbers per game, all stages
+        "game_grades": os.path.join(d, "game_grades.jsonl"),  # append-only: each stage graded against the final score
+        "reveal": os.path.join(d, "reveal_sheets.json"),      # games waiting for the market check
         "results_cache": os.path.join(d, "results_cache.json"),
         "run_log": os.path.join(d, "run_log.jsonl"),
-        "sheets": os.path.join(d, "review_sheets.json"),      # games waiting for an AI review
+        "sheets": os.path.join(d, "blind_sheets.json"),       # games waiting for a blind AI forecast (no prices inside)
     }
 
 
@@ -82,94 +87,87 @@ def kalshi_anchors(kg: dict, home_code: str, cfg: BotConfig) -> tuple[float | No
     return margin, total
 
 
-def blend(anchor: float | None, model: float | None, w_anchor: float) -> float | None:
-    if anchor is None:
-        return model
-    if model is None:
-        return anchor
-    return w_anchor * anchor + (1 - w_anchor) * model
 
-
-def forecast(cfg: BotConfig, g: dict, kg: dict, home_code: str, rt: dict, rt_form: dict | None = None) -> dict:
-    """All the expected margins/totals for one game, before the AI step."""
+def stats_forecast(cfg: BotConfig, g: dict, rt: dict, rt_form: dict | None = None) -> dict:
+    """The numbers-only forecast: expected home margin and total from the ratings. No prices involved."""
     notes: list[str] = []
-    model_margin = model_total = None
+    margin = total = None
     pred = ratings.predict(rt, g["home"]["id"], g["away"]["id"], hfa=cfg.hfa, neutral=g["neutral"])
-    enough = min(rt["games"].get(g["home"]["id"], 0), rt["games"].get(g["away"]["id"], 0)) >= cfg.min_rated_games
-    if pred and enough:
-        model_margin, model_total = pred
+    games = min(rt["games"].get(g["home"]["id"], 0), rt["games"].get(g["away"]["id"], 0))
+    if pred and games >= cfg.min_rated_games:
+        margin, total = pred
         form = ratings.predict(rt_form, g["home"]["id"], g["away"]["id"], hfa=cfg.hfa, neutral=g["neutral"]) if rt_form else None
         if form:  # season-long strength blended with how the teams have played lately
-            model_margin = (1 - cfg.form_weight) * model_margin + cfg.form_weight * form[0]
-            model_total = (1 - cfg.form_weight) * model_total + cfg.form_weight * form[1]
+            margin = (1 - cfg.form_weight) * margin + cfg.form_weight * form[0]
+            total = (1 - cfg.form_weight) * total + cfg.form_weight * form[1]
             notes.append(f"recent form alone says home by {form[0]:+.1f}, total {form[1]:.1f}")
         league_total = 2 * rt["mu"]
-        model_total = league_total + cfg.total_scale * (model_total - league_total) + cfg.total_bias
+        total = league_total + cfg.total_scale * (total - league_total) + cfg.total_bias
         if cfg.situational:
-            dm, dt, notes = cfg.situational({"game": g, "last": rt["last"]})
-            model_margin += dm
-            model_total += dt
-    book = pricing.book_anchors(g["odds"], cfg.sd_margin, cfg.sd_total)
-    k_margin, k_total = kalshi_anchors(kg, home_code, cfg)
-    anchors = {
-        "ml": book["margin_ml"] if book["margin_ml"] is not None else book["margin_spread"],
-        "spread": book["margin_spread"] if book["margin_spread"] is not None else book["margin_ml"],
-        "total": book["total"],
-    }
-    has_book = {k: v is not None for k, v in anchors.items()}
-    if anchors["ml"] is None:
-        anchors["ml"] = anchors["spread"] = k_margin
-    if anchors["total"] is None:
-        anchors["total"] = k_total
-    return {
-        "model": {"ml": model_margin, "spread": model_margin, "total": model_total},
-        "book": {k: (anchors[k] if has_book[k] else None) for k in anchors},
-        "has_book": has_book,
-        "blend": {
-            "ml": blend(anchors["ml"], model_margin, cfg.book_weight),
-            "spread": blend(anchors["spread"], model_margin, cfg.book_weight),
-            "total": blend(anchors["total"], model_total, cfg.book_weight),
-        },
-        "notes": notes,
-    }
+            dm, dt, sit = cfg.situational({"game": g, "last": rt["last"]})
+            margin += dm
+            total += dt
+            notes += sit
+    return {"margin": margin, "total": total, "notes": notes, "min_games": games}
 
 
-def price_markets(cfg: BotConfig, g: dict, kg: dict, home_code: str, fc: dict, adj: dict) -> list[dict]:
-    """One row per Kalshi market with every probability the scorecard compares."""
+def logit(p: float) -> float:
+    p = min(max(p, 1e-4), 1 - 1e-4)
+    return math.log(p / (1 - p))
+
+
+def shrink_to_market(p_own: float, p_mkt: float, trust: float) -> float:
+    """The probability the bot bets on: its own forecast pulled toward the market price in
+    log-odds. trust=1 keeps the forecast as is, trust=0 gives the market price back."""
+    z = logit(p_mkt) + trust * (logit(p_own) - logit(p_mkt))
+    return 1 / (1 + math.exp(-z))
+
+
+def effective_trust(cfg: BotConfig, mtype: str, min_games: int, check: str) -> float:
+    t = cfg.trust[mtype]
+    if min_games < cfg.thin_data_games:
+        t *= cfg.thin_data_factor
+    if check == "shrink":
+        t *= cfg.shrink_factor
+    return max(0.0, min(cfg.trust_ceiling, t))
+
+
+def price_markets(cfg: BotConfig, g: dict, kg: dict, home_code: str, st: dict, book: dict,
+                  ai: dict | None, check: str | None) -> list[dict]:
+    """One row per Kalshi market with every stage's probability of YES kept separately."""
     rows = []
     for mtype in ("ml", "spread", "total"):
-        shift = adj["total_adj"] if mtype == "total" else adj["margin_adj"]
         for m in kg[mtype]:
             if m["status"] not in ("active", "open"):
                 continue
-            mu_b = fc["blend"][mtype]
-            a = (mu_b, None) if mtype != "total" else (None, mu_b)
-            pb = p_yes(m, mtype, home_code, *a, cfg)
-            if pb is None:
-                continue
-            f = (mu_b + shift, None) if mtype != "total" else (None, mu_b + shift)
-            mo, bo = fc["model"][mtype], fc["book"][mtype]
+
+            def p(mu):
+                if mu is None:
+                    return None
+                return p_yes(m, mtype, home_code, *((mu, None) if mtype != "total" else (None, mu)), cfg)
+            key = "total" if mtype == "total" else "margin"
+            pk = kalshi.mid(m)
+            p_ai = p(ai[key]) if ai else None
+            p_trade = None
+            if p_ai is not None and pk is not None and check in ("stands", "shrink"):
+                p_trade = shrink_to_market(p_ai, pk, effective_trust(cfg, mtype, st["min_games"], check))
             odds, gap = g["odds"] or {}, None
             if mtype == "total" and odds.get("total") is not None:
                 gap = abs(m["strike"] - odds["total"])
             elif mtype == "spread" and odds.get("home_spread") is not None:
                 hs = odds["home_spread"]
                 gap = abs(m["strike"] + hs) if m["team_code"] == home_code else abs(m["strike"] - hs)
-            rows.append({
-                "m": m, "mtype": mtype, "has_book": fc["has_book"][mtype], "gap": gap,
-                "p_kalshi": kalshi.mid(m),
-                "p_book": None if bo is None else p_yes(m, mtype, home_code, *((bo, None) if mtype != "total" else (None, bo)), cfg),
-                "p_model": None if mo is None else p_yes(m, mtype, home_code, *((mo, None) if mtype != "total" else (None, mo)), cfg),
-                "p_blend": pb,
-                "p_final": p_yes(m, mtype, home_code, *f, cfg),
-            })
+            rows.append({"m": m, "mtype": mtype, "gap": gap, "p_kalshi": pk, "p_book": p(book[key]),
+                         "p_stats": p(st[key]), "p_ai": p_ai, "p_trade": p_trade})
     return rows
 
 
-def candidates(cfg: BotConfig, rows: list[dict], key: str = "p_final") -> list[dict]:
+def candidates(cfg: BotConfig, rows: list[dict], key: str = "p_trade") -> list[dict]:
     """Every buyable side that passes the market-quality rules, with its edge after fees."""
     out = []
     for r in rows:
+        if r[key] is None or r["mtype"] not in cfg.trade_types:
+            continue
         for side in ("yes", "no"):
             ask, bid, size = side_price(r["m"], side)
             lo, hi = cfg.price_band[r["mtype"]]
@@ -177,22 +175,46 @@ def candidates(cfg: BotConfig, rows: list[dict], key: str = "p_final") -> list[d
                 continue
             if ask - bid > cfg.max_spread + 1e-9 or size < cfg.min_ask_size:
                 continue
-            if r["mtype"] not in cfg.trade_types or r["p_model"] is None:
-                continue  # no opinion of the bot's own, no pick
             p = r[key] if side == "yes" else 1 - r[key]
-            cost = ask + pricing.fee_per_contract(ask)
-            out.append({**r, "side": side, "ask": ask, "bid": bid, "size": size, "p": p,
-                        "edge": p - cost, "cost": cost,
-                        "threshold": cfg.min_edge[r["mtype"]]})
+            out.append({**r, "side": side, "ask": ask, "bid": bid, "size": size, "p": p})
     return out
 
 
-def confidence(edge: float, ai_conf: str | None) -> str:
-    level = 2 if edge >= 0.08 else 1 if edge >= 0.06 else 0
-    if ai_conf == "low":
-        level = max(0, level - 1)
-    return ["Low", "Medium", "High"][level]
+def size_trade(cfg: BotConfig, c: dict, spent_on_game: float = 0.0) -> dict | None:
+    """Contracts, fee and edge for one candidate, using the exact fee for the exact order size.
+    Stake is a fraction of Kelly on the market-checked probability. There is no minimum stake:
+    a thin edge means a small bet or none."""
+    cost1 = c["ask"] + pricing.fee(100, c["ask"]) / 100
+    stake = cfg.bankroll * cfg.kelly_fraction * pricing.kelly(c["p"], cost1)
+    stake = min(stake, cfg.max_units_trade * cfg.unit, cfg.max_units_game * cfg.unit - spent_on_game)
+    n = int(min(stake / cost1, c["size"]))
+    if n < 1:
+        return None
+    fee = pricing.fee(n, c["ask"])
+    cost = n * c["ask"] + fee
+    edge = c["p"] - cost / n
+    if edge < cfg.min_edge_trade:
+        return None
+    return {"n": n, "fee": fee, "cost": cost, "edge": edge}
 
+
+def confidence(edge: float) -> str:
+    return "High" if edge >= 0.06 else "Medium" if edge >= 0.04 else "Low"
+
+
+def should_pull(cfg: BotConfig, t: dict, bid: float, fair: float | None, check: str | None) -> str | None:
+    """Hold-versus-sell: sell only when the sale, after its fee, beats the value of holding
+    by a clear margin, or when the forecast behind the pick has been withdrawn."""
+    if bid <= 0:
+        return None
+    if check == "drop":
+        return "the forecast behind this pick was withdrawn"
+    if fair is None:
+        return None
+    net_bid = bid - pricing.fee(t["contracts"], bid) / t["contracts"]
+    if net_bid - fair > cfg.pull_margin:
+        return f"market now pays {bid:.2f} for a position the bot values at {fair:.2f}"
+    return None
 
 # ---------------------------------------------------------------- grading
 
@@ -222,8 +244,9 @@ def settle(cfg: BotConfig, p: dict, now, dry: bool) -> dict:
             won = mk["result"] == t["side"]
             payout = float(t["contracts"]) if won else 0.0
             outcome = "won" if won else "lost"
-        else:  # market voided: stake returned
-            payout, outcome = t["cost"], "void"
+        else:  # market voided: contract price returned. Whether Kalshi also returns the fee is
+            # not verified, so the paper ledger assumes it does not.
+            payout, outcome = t["cost"] - t.get("fee", 0.0), "void"
         new_settle.append({
             "trade_id": t["id"], "ts": iso(now), "outcome": outcome, "payout": r4(payout),
             "pnl": r4(payout - t["cost"]), "close_price": r4(close_side),
@@ -260,62 +283,69 @@ def notify(title: str, body: str) -> None:
         pass  # an alert failing must never break a run
 
 
-def game_sheet(cfg: BotConfig, g: dict, fc: dict, rows: list[dict], cands: list[dict], rt: dict,
-               inj: dict, home_code: str, rt_form: dict | None = None, results: list[dict] | None = None) -> dict:
-    def last5(tid):
-        out = []
-        for r in sorted((r for r in results or [] if tid in (r["h"], r["a"])), key=lambda r: r["date"])[-5:]:
-            mine_, theirs = (r["hs"], r["as"]) if r["h"] == tid else (r["as"], r["hs"])
-            opp = r["an"] if r["h"] == tid else r["hn"]
-            out.append(f"{'W' if mine_ > theirs else 'L'} {int(mine_)}-{int(theirs)} {'vs' if r['h'] == tid else 'at'} {opp}")
-        return out
 
+def commit_hash(root: str) -> str | None:
+    try:
+        return subprocess.run(["git", "-C", root, "rev-parse", "--short", "HEAD"], capture_output=True,
+                              text=True, timeout=5).stdout.strip() or None
+    except Exception:
+        return None
+
+
+def blind_sheet(cfg: BotConfig, g: dict, st: dict, rt: dict, inj: dict, rt_form: dict | None,
+                results: list[dict], why: str) -> dict:
+    """Everything the forecaster sees for the blind forecast. Deliberately contains no Kalshi
+    price, no sportsbook line and nothing derived from either."""
     def team(t):
+        tid = t["id"]
+        mine_ = sorted((r for r in results if tid in (r["h"], r["a"]) and r["hs"] is not None), key=lambda r: r["date"])
+        lines, opp_r, pf, pa, vs_good, blow = [], [], 0.0, 0.0, [0, 0], 0
+        for r in mine_:
+            home = r["h"] == tid
+            s, o = (r["hs"], r["as"]) if home else (r["as"], r["hs"])
+            orate = ratings.net(rt, r["a"] if home else r["h"])
+            pf, pa = pf + s, pa + o
+            if orate is not None:
+                opp_r.append(orate)
+                if orate > 0:
+                    vs_good[0 if s > o else 1] += 1
+                if s - o >= 28 and orate < -7:
+                    blow += 1
+            lines.append(f"{'W' if s > o else 'L'} {int(s)}-{int(o)} {'vs' if home else 'at'} {r['an'] if home else r['hn']}"
+                         + ("" if orate is None else f" (opp {orate:+.0f})"))
+        n = max(1, len(mine_))
         return {"name": t["display"], "record": t["record"],
-                "season_rating_pts": r4(ratings.net(rt, t["id"])),
-                "recent_form_rating_pts": r4(ratings.net(rt_form, t["id"])) if rt_form else None,
-                "games_rated": rt["games"].get(t["id"], 0), "last_5": last5(t["id"]),
-                "stats": espn.team_stats(cfg.name, t["id"]),
-                "injuries": inj.get(t["id"], [])}
-    best, seen = [], set()
-    for c in sorted(cands, key=lambda c: -c["edge"]):
-        lb = label(c["m"], c["mtype"], c["side"], home_code, g)
-        if lb not in seen and len(best) < 4:
-            seen.add(lb)
-            best.append(c)
-    flags = []
-    mo, bo = fc["model"]["spread"], fc["book"]["spread"]
-    if mo is not None and bo is not None and abs(mo - bo) >= cfg.flag_gap_margin:
-        flags.append(f"Model and sportsbook disagree by {abs(mo - bo):.1f} points on the margin. "
-                     "Look for what the book may know (injury, suspension, quarterback change) before trusting the model.")
-    return {
-        "sport": cfg.title, "start_utc": g["start"], "neutral_site": g["neutral"],
-        "game_id": g["id"], "home": team(g["home"]), "away": team(g["away"]),
-        "sportsbook_line_for_reference": g["odds"],
-        "expected_home_margin": {"bot_model": r4(mo), "sportsbook": r4(bo), "forecast_used": r4(fc["blend"]["spread"])},
-        "expected_total": {"bot_model": r4(fc["model"]["total"]), "sportsbook": r4(fc["book"]["total"]),
-                           "forecast_used": r4(fc["blend"]["total"])},
-        "situational_notes": fc["notes"], "flags": flags,
-        "kalshi_sides_the_bot_is_considering": [
-            {"position": label(c["m"], c["mtype"], c["side"], home_code, g), "ask": c["ask"],
-             "bot_probability": r4(c["p"]), "edge_after_fees": r4(c["edge"])} for c in best],
-        "adjustment_caps": {"margin": cfg.ai_margin_cap, "total": cfg.ai_total_cap},
-    }
+                "season_rating_pts": r4(ratings.net(rt, tid)),
+                "recent_form_rating_pts": r4(ratings.net(rt_form, tid)) if rt_form else None,
+                "games_rated": rt["games"].get(tid, 0),
+                "points_for_against_per_game": [round(pf / n, 1), round(pa / n, 1)],
+                "avg_opponent_rating": round(sum(opp_r) / len(opp_r), 1) if opp_r else None,
+                "record_vs_above_average_teams": f"{vs_good[0]}-{vs_good[1]}",
+                "blowout_wins_over_weak_teams": blow,
+                "results_oldest_first": lines[-8:],
+                "stats": espn.team_stats(cfg.name, tid),
+                "injuries": inj.get(tid, []) if cfg.name != "cfb" else "no injury feed for college"}
+    return {"sport": cfg.title, "game_id": g["id"], "game": f"{g['away']['abbr']} @ {g['home']['abbr']}",
+            "start_utc": g["start"], "neutral_site": g["neutral"], "picked_for_review_because": why,
+            "home": team(g["home"]), "away": team(g["away"]),
+            "stats_forecast": {"home_margin": r4(st["margin"]), "total": r4(st["total"])},
+            "situational_notes": st["notes"]}
 
 
 def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = True,
         window_hours: float | None = None, verbose: bool = True) -> dict:
     now = now_utc()
     p = paths(cfg, root)
-    os.makedirs(p["dir"], exist_ok=True)
+    if not dry:
+        os.makedirs(p["dir"], exist_ok=True)
     window = window_hours or cfg.window_hours
-    log = {"ts": iso(now), "bot": cfg.name, "dry": dry}
+    log = {"ts": iso(now), "bot": cfg.name, "dry": dry, "version": cfg.strategy_version}
 
     def say(*a):
         if verbose:
             print(*a)
 
-    # 1. grade finished games
+    # 1. grade finished contracts and trades
     log.update(settle(cfg, p, now, dry))
 
     # 2. markets, schedule, ratings
@@ -326,164 +356,206 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
     lo, hi = now + timedelta(minutes=cfg.lockout_minutes), now + timedelta(hours=window)
     sched = [g for g in sched if g["state"] == "pre" and lo < parse_iso(g["start"]) <= hi]
     matched, _ = match.match_games(kgames, sched)
-    results = espn.season_results(cfg.name, p["results_cache"], season_start=cfg.season_start, groups=cfg.espn_groups)
+    results = espn.season_results(cfg.name, p["results_cache"], season_start=cfg.season_start,
+                                  groups=cfg.espn_groups, save=not dry)
     rt = ratings.fit(results, hfa=cfg.hfa, ridge=cfg.ridge, half_life_days=cfg.half_life_days,
                      margin_cap=cfg.margin_cap, min_games=cfg.min_games, as_of=now)
     rt_form = ratings.fit(results, hfa=cfg.hfa, ridge=cfg.ridge, half_life_days=cfg.form_half_life_days,
                           margin_cap=cfg.margin_cap, min_games=cfg.min_games, as_of=now)
-    inj = espn.injuries(cfg.name) if use_ai else {}
     log.update({"games_in_window": len(sched), "matched": len(matched), "results_used": rt["n"]})
     say(f"[{cfg.name}] {len(sched)} games start within {window:g}h, {len(matched)} have Kalshi markets, "
         f"ratings from {rt['n']} games")
 
+    # 3. grade every stage's game forecast against final scores
+    track = read_json(p["game_track"], {})
+    final = {r["id"]: r for r in results if r.get("hs") is not None and r.get("as") is not None}
+    grades = []
+    for gid in list(track):
+        if gid in final:
+            r = final[gid]
+            grades.append({**track.pop(gid), "game_id": gid, "graded_ts": iso(now),
+                           "actual_margin": r["hs"] - r["as"], "actual_total": r["hs"] + r["as"]})
+        elif now - parse_iso(track[gid]["start"]) > timedelta(days=7):
+            del track[gid]
+    log["games_graded"] = len(grades)
+
     trades = read_jsonl(p["trades"])
     closed = {s["trade_id"] for s in read_jsonl(p["settlements"])}
     preds = read_json(p["open_preds"], {})
-    ai_cache = read_json(p["ai_cache"], {})
-    new_trades, new_settle = [], []
-    stats = {"ai_calls": 0, "vetoed": 0, "too_good": 0, "pulled": 0, "awaiting_review": 0}
-    sheets: dict[str, dict] = {}
-
-    # First pass: price every game with the numbers alone and rank them. Only the day's
-    # strongest opinions go forward to an AI review and a possible pick.
-    zero = {**ai.NEUTRAL, "status": "not_needed"}
+    fc_all = fstore.latest(p["forecasts"])
+    new_trades, new_settle, new_events = [], [], []
+    stats = {"pulled": 0, "awaiting_forecast": 0, "awaiting_check": 0, "dropped": 0, "no_edge": 0}
     day = now.astimezone(ET).date()
-    today_n = sum(1 for t in trades if parse_iso(t["ts"]).astimezone(ET).date() == day)
-    slots = max(0, cfg.max_trades_per_day - today_n)
+    v2_today = [t for t in trades if t.get("version") and parse_iso(t["ts"]).astimezone(ET).date() == day]
+    slots = max(0, cfg.max_trades_per_day - len(v2_today))
+
+    # First pass: the numbers-only forecast and the market's view for every game.
     ctxs = []
     for key, mt in sorted(matched.items(), key=lambda kv: kv[1]["espn"]["start"]):
         g, kg, home_code = mt["espn"], kgames[key], mt["home_code"]
-        fc = forecast(cfg, g, kg, home_code, rt, rt_form)
-        if fc["blend"]["ml"] is None and fc["blend"]["total"] is None:
+        st = stats_forecast(cfg, g, rt, rt_form)
+        if st["margin"] is None:
             continue
-        rows0 = price_markets(cfg, g, kg, home_code, fc, zero)
-        cands0 = candidates(cfg, rows0, "p_blend")
-        fresh = [c for c in cands0 if not any(t["game_id"] == g["id"] and t["mtype"] == c["mtype"] for t in trades)]
-        best0 = max((c["edge"] - c["threshold"] for c in fresh if c["edge"] <= cfg.max_edge), default=-1)
-        ctxs.append((best0, key, mt, fc, rows0, cands0))
-    ranked = sorted((c for c in ctxs if c[0] >= -0.01), key=lambda c: -c[0])
-    shortlist = {c[1] for c in ranked[:slots + 2]} if slots else set()
+        b = pricing.book_anchors(g["odds"], cfg.sd_margin, cfg.sd_total)
+        book = {"margin": b["margin_spread"] if b["margin_spread"] is not None else b["margin_ml"], "total": b["total"]}
+        k_margin, k_total = kalshi_anchors(kg, home_code, cfg)
+        mkt = {"margin": k_margin, "total": k_total}
+        gap = abs(st["margin"] - k_margin) if k_margin is not None else 0.0
+        ctxs.append({"key": key, "g": g, "kg": kg, "home_code": home_code, "st": st, "book": book, "mkt": mkt, "gap": gap})
 
-    for best0, key, mt, fc, rows0, cands0 in ctxs:
-        g, kg, home_code = mt["espn"], kgames[key], mt["home_code"]
+    # Which games get a deep read today: the biggest disagreements between the numbers and the
+    # market, plus a few picked at random as a control group so the AI is also graded on games
+    # nobody singled out. Games already forecast today count against the budget.
+    have = {c["g"]["id"] for c in ctxs if c["g"]["id"] in fc_all}
+    done_today = sum(1 for gid, f in fc_all.items()
+                     if parse_iso(f["blind"]["ts"]).astimezone(ET).date() == day)
+    budget = max(0, cfg.deep_reads_per_day + cfg.control_reads_per_day - done_today)
+    lead = now + timedelta(minutes=cfg.forecast_lead_minutes)
+
+    def tradeable(c):  # at least one contract passes the market-quality rules, whatever its price
+        rows = price_markets(cfg, c["g"], c["kg"], c["home_code"], c["st"], c["book"], None, None)
+        return bool(candidates(cfg, rows, "p_kalshi"))
+    todo = [c for c in ctxs if c["g"]["id"] not in have and c["mkt"]["margin"] is not None
+            and parse_iso(c["g"]["start"]) > lead
+            and not any(t["game_id"] == c["g"]["id"] for t in trades) and tradeable(c)]
+    by_gap = sorted(todo, key=lambda c: -c["gap"])
+    n_ctrl = min(cfg.control_reads_per_day, budget)
+    picks = {c["g"]["id"]: "the numbers and the market disagree" for c in by_gap[:max(0, budget - n_ctrl)]}
+    rest = sorted((c for c in todo if c["g"]["id"] not in picks),
+                  key=lambda c: hashlib.sha256((str(day) + c["g"]["id"]).encode()).hexdigest())
+    for c in rest[:n_ctrl]:
+        picks[c["g"]["id"]] = "random control game"
+    if not use_ai:
+        picks = {}
+    inj = espn.injuries(cfg.name) if picks else {}
+    sheets: dict[str, dict] = {}
+    reveals: dict[str, dict] = {}
+
+    for c in ctxs:
+        g, kg, home_code, st, book, mkt = c["g"], c["kg"], c["home_code"], c["st"], c["book"], c["mkt"]
+        gid = g["id"]
         gname = f"{g['away']['abbr']} @ {g['home']['abbr']}"
-        mine = [t for t in trades if t["game_id"] == g["id"]]
+        mine = [t for t in trades if t["game_id"] == gid]
         held = [t for t in mine if t["id"] not in closed]
+        f = fc_all.get(gid) or {}
+        blind, chk = f.get("blind"), f.get("check")
+        if gid in picks and not blind:
+            sheets[gid] = blind_sheet(cfg, g, st, rt, inj, rt_form, results, picks[gid])
+            stats["awaiting_forecast"] += 1
+        ai = {"margin": blind["margin"], "total": blind["total"]} if blind else None
+        check = chk["outcome"] if chk else None
 
-        # 3. AI step, only for games that are near a trade or already hold a pick.
-        #    A review is a note in ai_cache.json: written by Claude during the run
-        #    (python -m core.notes), or fetched from the API when a key is configured.
-        adj, waiting = zero, False
-        near = key in shortlist
-        if use_ai and (near or held):
-            cached = ai_cache.get(g["id"])
-            if cached and now - parse_iso(cached["ts"]) < timedelta(hours=cfg.notes_fresh_hours):
-                adj = cached
+        # Market check. A small disagreement stands automatically; a big one waits for a written answer.
+        if blind and not chk and mkt["margin"] is not None:
+            dm = ai["margin"] - mkt["margin"]
+            dt = None if mkt["total"] is None else ai["total"] - mkt["total"]
+            if abs(dm) < cfg.check_gap_margin and (dt is None or abs(dt) < cfg.check_gap_total):
+                chk = {"type": "check", "game_id": gid, "ts": iso(now), "outcome": "stands", "auto": True,
+                       "why": "within a few points of the market on both margin and total"}
+                new_events.append(chk)
+                check = "stands"
             else:
-                sheet = game_sheet(cfg, g, fc, rows0, cands0, rt, inj, home_code, rt_form, results)
-                if ai.available():
-                    adj = ai.analyze(sheet, cfg.ai_margin_cap, cfg.ai_total_cap)
-                    if adj["status"] == "ok":
-                        stats["ai_calls"] += 1
-                        ai_cache[g["id"]] = {**adj, "ts": iso(now)}
-                else:
-                    # no review yet: hold new trades for this game until one is written
-                    sheets[g["id"]] = {"game": gname, **sheet}
-                    waiting = near
-                    adj = cached or zero  # a stale note still protects a held pick
-        elif near or held:
-            adj = {**ai.NEUTRAL, "status": "skipped", "reason": "AI turned off for this run"}
-        rows = price_markets(cfg, g, kg, home_code, fc, adj)
+                reveals[gid] = {"game": gname, "start_utc": g["start"],
+                                "your_blind_forecast": {"home_margin": ai["margin"], "total": ai["total"]},
+                                "stats_forecast": {"home_margin": r4(st["margin"]), "total": r4(st["total"])},
+                                "kalshi_implied": {"home_margin": r4(mkt["margin"]), "total": r4(mkt["total"])},
+                                "sportsbook": g["odds"],
+                                "question": "What would someone on the other side of this price know that the forecast does not?"}
+                stats["awaiting_check"] += 1
+
+        rows = price_markets(cfg, g, kg, home_code, st, book, ai, check)
         by_ticker = {r["m"]["ticker"]: r for r in rows}
 
-        # 4. pull picks the bot no longer believes in (allowed once, before the start only)
+        # Pull rule for v2 picks. Picks made under v1 rules are left to settle untouched.
         for t in held:
             r = by_ticker.get(t["ticker"])
-            if not r:
+            if not r or not t.get("version"):
                 continue
             _, bid, _ = side_price(r["m"], t["side"])
-            fair = r["p_final"] if t["side"] == "yes" else 1 - r["p_final"]
-            exit_fee = pricing.fee(t["contracts"], bid) if bid > 0 else 0.0
-            net_bid = bid - exit_fee / t["contracts"]
-            why = None
-            if bid > 0 and adj.get("veto"):
-                why = "AI flagged the game: " + adj.get("reason", "")[:200]
-            elif bid > 0 and net_bid - fair > cfg.pull_margin:
-                why = f"market now pays {bid:.2f} for a position the bot values at {fair:.2f}"
+            fair = None if r["p_trade"] is None else (r["p_trade"] if t["side"] == "yes" else 1 - r["p_trade"])
+            why = should_pull(cfg, t, bid, fair, check)
             if why:
-                proceeds = t["contracts"] * bid - exit_fee
+                proceeds = t["contracts"] * bid - pricing.fee(t["contracts"], bid)
                 new_settle.append({"trade_id": t["id"], "ts": iso(now), "outcome": "pulled",
                                    "payout": r4(proceeds), "pnl": r4(proceeds - t["cost"]),
-                                   "close_price": r4(bid), "clv": r4(bid - t["price"]), "note": why})
+                                   "exit_price": r4(bid), "close_price": None, "clv": None, "note": why})
                 closed.add(t["id"])
                 stats["pulled"] += 1
                 say(f"  PULL  {gname}: {t['label']} sold at {bid:.2f} ({why})")
                 notify(f"{cfg.title} paper pick pulled: {t['label']}", f"{gname}\n{why}")
 
-        # 5. new paper trades: at most one per game per market type, never a re-entry
-        if adj.get("veto"):
-            stats["vetoed"] += 1
-        elif waiting:
-            stats["awaiting_review"] += 1
-        elif key in shortlist and slots - len(new_trades) > 0:
-            cands = candidates(cfg, rows)
-            spent = sum(t["cost"] for t in mine if t["id"] not in closed)
-            for mtype in ("ml", "total"):
-                # winner and spread are the same opinion, so a game gets one of them, not both
-                group = ("ml", "spread") if mtype != "total" else ("total",)
-                if any(t["mtype"] in group for t in mine) or slots - len(new_trades) <= 0:
-                    continue
-                pool = [c for c in cands if c["mtype"] in group]
-                stats["too_good"] += sum(c["edge"] > cfg.max_edge for c in pool)
-                pool = [c for c in pool if c["edge"] <= cfg.max_edge]  # larger is more likely error than insight
-                if not pool:
-                    continue
-                c = max(pool, key=lambda c: c["edge"])
-                if c["edge"] < c["threshold"]:
-                    continue
-                # Stake grows with the edge (fractional Kelly) and with the AI's confidence,
-                # inside a floor and a cap so one overconfident forecast cannot dominate.
-                stake = cfg.bankroll * cfg.kelly_fraction * pricing.kelly(c["p"], c["cost"])
-                stake *= cfg.confidence_stake.get(adj.get("confidence") or "medium", 1.0)
-                stake = max(stake, cfg.min_units_trade * cfg.unit)
-                stake = min(stake, cfg.max_units_trade * cfg.unit, cfg.max_units_game * cfg.unit - spent)
-                n = int(min(stake / c["cost"], c["size"]))
-                if n < 1:
-                    continue
-                fee = pricing.fee(n, c["ask"])
-                cost = n * c["ask"] + fee
-                yes = c["side"] == "yes"
+        # New paper trade: at most one position per game, ever. The code prices every eligible
+        # contract off the market-checked forecast and takes the single best one, or none.
+        if check == "drop":
+            stats["dropped"] += 1
+        elif check in ("stands", "shrink") and not mine and slots - len(new_trades) > 0:
+            best = None
+            for cand in candidates(cfg, rows):
+                sz = size_trade(cfg, cand)
+                if sz and (best is None or sz["edge"] > best[1]["edge"]):
+                    best = (cand, sz)
+            if not best:
+                stats["no_edge"] += 1
+            else:
+                cand, sz = best
+                yes = cand["side"] == "yes"
 
                 def sd(v):
                     return None if v is None else r4(v if yes else 1 - v)
                 t = {
                     "id": uuid.uuid4().hex[:12], "bot": cfg.name, "ts": iso(now),
-                    "game_id": g["id"], "game": gname, "start": g["start"], "ticker": c["m"]["ticker"],
-                    "mtype": c["mtype"], "side": c["side"], "label": label(c["m"], c["mtype"], c["side"], home_code, g),
-                    "price": c["ask"], "contracts": n, "fee": fee, "cost": r4(cost),
-                    "units": r4(cost / cfg.unit),
-                    "p_kalshi": sd(c["p_kalshi"]), "p_book": sd(c["p_book"]), "p_model": sd(c["p_model"]),
-                    "p_blend": sd(c["p_blend"]), "p_final": r4(c["p"]),
-                    "edge": r4(c["edge"]), "confidence": confidence(c["edge"], adj.get("confidence")),
-                    "has_book": c["has_book"], "book": g["odds"],
-                    "ai": {k: adj.get(k) for k in ("status", "margin_adj", "total_adj", "confidence", "reason")},
-                    "notes": fc["notes"],
+                    "version": cfg.strategy_version, "commit": commit_hash(root),
+                    "rules": {"trust": effective_trust(cfg, cand["mtype"], st["min_games"], check),
+                              "kelly_fraction": cfg.kelly_fraction, "min_edge": cfg.min_edge_trade,
+                              "max_units": cfg.max_units_trade},
+                    "game_id": gid, "game": gname, "start": g["start"], "ticker": cand["m"]["ticker"],
+                    "mtype": cand["mtype"], "side": cand["side"],
+                    "label": label(cand["m"], cand["mtype"], cand["side"], home_code, g),
+                    "price": cand["ask"], "bid": cand["bid"], "ask_size": cand["size"],
+                    "contracts": sz["n"], "fee": sz["fee"], "cost": r4(sz["cost"]),
+                    "units": r4(sz["cost"] / cfg.unit),
+                    "p_kalshi": sd(cand["p_kalshi"]), "p_book": sd(cand["p_book"]), "p_stats": sd(cand["p_stats"]),
+                    "p_ai": sd(cand["p_ai"]), "p_final": r4(cand["p"]),
+                    "edge": r4(sz["edge"]), "confidence": confidence(sz["edge"]),
+                    "book": g["odds"], "book_seen_ts": iso(now),
+                    "forecast": {"margin": blind["margin"], "total": blind["total"],
+                                 "stats_margin": r4(st["margin"]), "stats_total": r4(st["total"]),
+                                 "market_margin": r4(mkt["margin"]), "market_total": r4(mkt["total"]),
+                                 "summary": blind.get("summary"), "reasons": blind.get("reasons"),
+                                 "check": check, "check_why": chk.get("why"), "selected": blind.get("selected")},
                 }
                 new_trades.append(t)
                 mine.append(t)
-                spent += cost
-                say(f"  TRADE {gname}: {t['label']} x{n} at {c['ask']:.2f} | bot {c['p'] * 100:.1f}% | "
-                    f"book {(t['p_book'] or 0) * 100:.1f}% | model {(t['p_model'] or 0) * 100:.1f}% | edge {c['edge'] * 100:+.1f} | {t['units']:.2f}u | {t['confidence']} | AI {adj['status']}")
-                notify(f"{cfg.title} paper pick: {t['label']} at {c['ask'] * 100:.0f}c",
-                       f"{gname}\nKalshi {t['ticker']}\nSize {t['units']:.2f} units | Edge {c['edge'] * 100:+.1f} pts | "
-                       f"Confidence {t['confidence']}\nPAPER ONLY. No real order was placed.")
+                say(f"  TRADE {gname}: {t['label']} x{sz['n']} at {cand['ask']:.2f} | bet on {cand['p'] * 100:.1f}% | "
+                    f"AI {(t['p_ai'] or 0) * 100:.1f}% | stats {(t['p_stats'] or 0) * 100:.1f}% | market {(t['p_kalshi'] or 0) * 100:.1f}% | "
+                    f"edge {sz['edge'] * 100:+.1f} | {t['units']:.2f}u")
+                notify(f"{cfg.title} paper pick: {t['label']} at {cand['ask'] * 100:.0f}c",
+                       f"{gname}\nKalshi {t['ticker']}\nSize {t['units']:.2f} units | Edge {sz['edge'] * 100:+.1f} pts\n"
+                       "PAPER ONLY. No real order was placed.")
 
-        # 6. remember the latest pre-game numbers for calibration and closing prices
+        # Remember the latest pre-game numbers: per game for the stage-by-stage comparison ...
+        prev = track.get(gid) or {}
+        snaps = prev.get("market_snapshots") or []
+        mins = (parse_iso(g["start"]) - now).total_seconds() / 60
+        snaps = (snaps + [{"ts": iso(now), "mins_to_start": round(mins), "margin": r4(mkt["margin"]), "total": r4(mkt["total"])}])[-30:]
+        track[gid] = {
+            "game": gname, "start": g["start"], "ts": iso(now), "min_games": st["min_games"],
+            "stats": {"margin": r4(st["margin"]), "total": r4(st["total"])},
+            "ai": None if not blind else {"margin": blind["margin"], "total": blind["total"], "ts": blind["ts"],
+                                          "selected": blind.get("selected"), "prompt": blind.get("prompt_version")},
+            "check": check,
+            "market": {"margin": r4(mkt["margin"]), "total": r4(mkt["total"])},
+            "market_at_forecast": prev.get("market_at_forecast") or (
+                {"margin": r4(mkt["margin"]), "total": r4(mkt["total"])} if blind else None),
+            "book": {"margin": r4(book["margin"]), "total": r4(book["total"])},
+            "market_snapshots": snaps, "sd_margin": cfg.sd_margin,
+            "traded": bool(mine), "version": cfg.strategy_version,
+        }
+        # ... and per contract for calibration and closing prices.
         held_tickers = {t["ticker"] for t in mine}
         for r in rows:
             tk = r["m"]["ticker"]
             pk = r["p_kalshi"]
-            # winner markets, plus the spread/total strikes at or beside the sportsbook's number
             if not (r["mtype"] == "ml" or tk in preds or tk in held_tickers
                     or (r["gap"] is not None and r["gap"] <= 1.5)
                     or (r["gap"] is None and pk is not None and 0.4 <= pk <= 0.6)):
@@ -491,25 +563,24 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
             if pk is None and tk in preds:
                 pk = preds[tk].get("p_kalshi")  # keep the last real quote rather than erase it
             preds[tk] = {
-                "game_id": g["id"], "game": gname, "start": g["start"], "mtype": r["mtype"],
+                "game_id": gid, "game": gname, "start": g["start"], "mtype": r["mtype"],
                 "label": label(r["m"], r["mtype"], "yes", home_code, g), "ts": iso(now),
-                "p_kalshi": r4(pk), "p_book": r4(r["p_book"]), "p_model": r4(r["p_model"]),
-                "p_blend": r4(r["p_blend"]), "p_final": r4(r["p_final"]),
-                "ai": adj["status"],
+                "p_kalshi": r4(pk), "p_book": r4(r["p_book"]), "p_stats": r4(r["p_stats"]),
+                "p_ai": r4(r["p_ai"]), "p_trade": r4(r["p_trade"]), "version": cfg.strategy_version,
             }
 
     log.update(stats)
-    log.update({"new_trades": len(new_trades), "tracked_markets": len(preds)})
+    log.update({"new_trades": len(new_trades), "tracked_markets": len(preds), "tracked_games": len(track)})
     if not dry:
         append_jsonl(p["trades"], new_trades)
         append_jsonl(p["settlements"], new_settle)
+        append_jsonl(p["forecasts"], new_events)
+        append_jsonl(p["game_grades"], grades)
         write_json(p["open_preds"], preds)
-        write_json(p["ai_cache"], {k: v for k, v in ai_cache.items()
-                                   if now - parse_iso(v["ts"]) < timedelta(days=3)})
+        write_json(p["game_track"], track)
+        write_json(p["sheets"], sheets)
+        write_json(p["reveal"], reveals)
         append_jsonl(p["run_log"], [log])
-    write_json(p["sheets"], sheets)
-    say(f"[{cfg.name}] new paper trades: {len(new_trades)}, pulled: {stats['pulled']}, "
-        f"settled: {log['settled']}, graded predictions: {log['graded']}, AI calls: {stats['ai_calls']}")
-    if sheets:
-        say(f"[{cfg.name}] {len(sheets)} game(s) need an AI review before trading: {p['sheets']}")
-    return {"log": log, "new_trades": new_trades, "sheets": sheets}
+    say(f"[{cfg.name}] new paper trades: {len(new_trades)}, pulled: {stats['pulled']}, settled: {log['settled']}, "
+        f"games graded: {len(grades)}, awaiting forecast: {len(sheets)}, awaiting market check: {len(reveals)}")
+    return {"log": log, "new_trades": new_trades, "sheets": sheets, "reveals": reveals}
