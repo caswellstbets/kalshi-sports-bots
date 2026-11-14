@@ -16,3 +16,4 @@
 {"close_price":null,"clv":null,"note":"Withdrawn before kickoff at Livy's direction when the pick rules were tightened (v2.3). Not sold on the market; treated as never placed.","outcome":"withdrawn","payout":4.78,"pnl":0.0,"trade_id":"07e7017c53cd","ts":"2026-11-14T16:49:37Z"}
 {"close_price":0.455,"clv":-0.035,"outcome":"won","payout":28.0,"pnl":13.79,"trade_id":"96046499fbf8","ts":"2026-11-14T20:48:26Z"}
 {"close_price":0.325,"clv":-0.035,"outcome":"won","payout":36.0,"pnl":22.45,"trade_id":"99b279c25b9f","ts":"2026-11-14T20:48:26Z"}
+{"close_price":0.395,"clv":-0.005,"outcome":"lost","payout":0.0,"pnl":-4.59,"trade_id":"d54a438c8a9a","ts":"2026-11-14T22:08:19Z"}
