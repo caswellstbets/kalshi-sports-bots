@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 12:32 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 10:03 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Sat Nov 14 12:19 AM ET. Runs so far: 1.
+Test started Sat Nov 14 12:19 AM ET. Runs so far: 2.
 
 | Bot | Trades | Open | Won | Lost | Pulled | Profit | Units | Return on stake | Closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -22,7 +22,7 @@ Too early to say. Not enough finished games yet.
 | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
 
 
-Calibration: no graded markets yet (0 being tracked).
+Calibration: no graded markets yet (31 being tracked).
 
 ## NFL
 
@@ -33,7 +33,7 @@ Too early to say. Not enough finished games yet.
 | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
 
 
-Calibration: no graded markets yet (0 being tracked).
+Calibration: no graded markets yet (8 being tracked).
 
 ## College football
 
@@ -45,7 +45,7 @@ Too early to say. Not enough finished games yet.
 
 Average edge claimed at entry: +7.9 points after fees.
 
-Calibration: no graded markets yet (632 being tracked).
+Calibration: no graded markets yet (652 being tracked).
 
 | Placed | Game | Pick | Price | Size | Bot | Edge | Confidence | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
