@@ -1,15 +1,15 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 10:03 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 11:08 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Sat Nov 14 12:19 AM ET. Runs so far: 2.
+Test started Sat Nov 14 12:19 AM ET. Runs so far: 3.
 
 | Bot | Trades | Open | Won | Lost | Pulled | Profit | Units | Return on stake | Closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| NBA | 0 | 0 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
+| NBA | 1 | 1 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | College football | 8 | 8 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
-| **All three** | 8 | 8 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
+| **All three** | 9 | 9 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 
 How to read this: profit over a handful of bets is mostly luck. Closing-price edge (did the price move toward the bot's side after it bought) and calibration (were its percentages right) are the fairer early tests.
 
@@ -19,10 +19,19 @@ Too early to say. Not enough finished games yet.
 
 | Paper trades | Open | Won | Lost | Pulled | Staked | Profit | Units | Return on stake |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
+| 1 | 1 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
 
+Average edge claimed at entry: +6.1 points after fees.
 
-Calibration: no graded markets yet (31 being tracked).
+Calibration: no graded markets yet (32 being tracked).
+
+| Placed | Game | Pick | Price | Size | Bot | Edge | Confidence | Result | Profit | Closing edge |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sat Nov 14 11:08 AM ET | DET @ MIA | Over 229.5 | 48c | 30 (1.49u) | 55.8% | +6.1 | Medium | open |  |  |
+
+AI notes on the most recent picks:
+
+- **DET @ MIA, Over 229.5:** Model and market agree on the margin; Miami back-to-back and Duren out roughly offset. No adjustment.
 
 ## NFL
 
@@ -45,7 +54,7 @@ Too early to say. Not enough finished games yet.
 
 Average edge claimed at entry: +7.9 points after fees.
 
-Calibration: no graded markets yet (652 being tracked).
+Calibration: no graded markets yet (662 being tracked).
 
 | Placed | Game | Pick | Price | Size | Bot | Edge | Confidence | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
