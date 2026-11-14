@@ -2,7 +2,7 @@
 
 Updated Sat Nov 14 3:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 65 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 68 (each bot counts separately).
 
 **v2 picks**
 
@@ -60,7 +60,7 @@ Forecast accuracy by game: no finished games graded yet (10 games being tracked,
 
 ## College football
 
-Too early to say: 0 settled picks and 4 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 0 settled picks and 5 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -98,9 +98,9 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 28 | 12.3 | 9.8 | 13.1 | 12.9 | 13.9 | 12.6 |
-| Games with an AI forecast | 4 | 8.4 | 9.8 | 9.6 | 18.0 | 13.9 | 13.3 |
-|   of which random control games | 1 | 5.2 | 4.0 | 1.7 | 25.7 | 26.0 | 20.5 |
+| All tracked games | 30 | 13.0 | 15.9 | 13.7 | 12.4 | 11.5 | 12.1 |
+| Games with an AI forecast | 5 | 14.6 | 15.9 | 15.8 | 14.7 | 11.5 | 10.9 |
+|   of which random control games | 2 | 22.3 | 22.2 | 21.1 | 13.7 | 14.0 | 10.8 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
