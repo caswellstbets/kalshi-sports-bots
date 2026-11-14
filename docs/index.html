@@ -6,8 +6,8 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>Kalshi sports paper-trading scorecard</h1>
-<p>Updated Sat Nov 14 2:08 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
-<p>Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 55 (each bot counts separately).</p>
+<p>Updated Sat Nov 14 3:08 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
+<p>Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 58 (each bot counts separately).</p>
 <p><strong>v2 picks</strong></p>
 <div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
 <tr><td>NBA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
@@ -68,7 +68,17 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <p class='li'><strong>LOW: Abilene Christian at Austin Peay, Abilene Christian to win.</strong> My forecast: home team +4.5, total 53.0. Market: home team +9.2, total 55.5848. Austin Peay at home and efficient, but less proven. Why the price may be wrong: Market has Austin Peay by 7.5 to 9. Common opponent West Florida: Abilene Christian won 35-7 at home, Austin Peay won 38-16 on the road. Austin Peay&#x27;s schedule is rated about 9 points weaker. The market may be paying for the 8-2 record.</p>
 <p class='li'><strong>LOW: Lindenwood at UT Martin, Lindenwood +2.5.</strong> My forecast: home team -6.5, total 46.0. Market: home team -2.2, total 50.3677. Lindenwood is the better team lately. Why the price may be wrong: Market has Lindenwood by only 1.5 to 2. Common opponents: Eastern Illinois (Lindenwood won 20-13 there, UT Martin lost 45-16 at home), Tennessee State (Lindenwood 27-0, UT Martin 42-28) and Gardner-Webb (Lindenwood won by 13 on the road, UT Martin by 11 at home). Lindenwood has won four straight. The market may be weighting its early losses.</p>
 <p class='li'><strong>LOW: Minnesota at Penn State, Minnesota to win.</strong> My forecast: home team +8.5, total 45.5. Market: home team +13.3, total 42.2832. Minnesota&#x27;s offense is one of the least efficient here (6.1 yards per pass, 31 percent on third down) and it lost by 28 at Purdue, a team Penn State beat by 14. Low-scoring game expected. Why the price may be wrong: Market has Penn State by 12.5 with a total of only 42.5, which is a lot of points in a low-scoring game for a 5-4 team whose best recent results are a 14 point home win over Purdue and a 3 point win at Washington, where Minnesota also won. Risk I cannot rule out: a Minnesota injury, and Minnesota&#x27;s 28 point loss at Purdue.</p>
-<p>Forecast accuracy by game: no finished games graded yet (115 games being tracked, 40 with an AI forecast).</p>
+<p><strong>Forecast accuracy by game</strong> (average miss in points, lower is better; each row uses the same games for every column)</p>
+<div class='tw'><table><tr><th>Games</th><th>Count</th><th>Margin: stats</th><th>Margin: AI</th><th>Margin: market</th><th>Total: stats</th><th>Total: AI</th><th>Total: market</th></tr>
+<tr><td>All tracked games</td><td>4</td><td>9.2</td><td>n/a</td><td>9.6</td><td>14.8</td><td>n/a</td><td>15.5</td></tr>
+</table></div>
+<p>Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.</p>
+<p><strong>Probability accuracy on all tracked contracts</strong>: 13 contracts from 5 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
+<tr><td>Kalshi closing price</td><td>0.2550</td><td>13</td></tr>
+<tr><td>Sportsbook line</td><td>0.2569</td><td>13</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2379</td><td>13</td></tr>
+</table></div>
 <p><strong>v1 picks</strong> (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.</p>
 <div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
 <tr><td>8</td><td>8</td><td>0</td><td>0</td><td>0</td><td>$99.25</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>

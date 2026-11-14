@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 2:08 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 3:08 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 55 (each bot counts separately).
+Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 58 (each bot counts separately).
 
 **v2 picks**
 
@@ -94,7 +94,21 @@ Why each pick was made:
 - **LOW: Lindenwood at UT Martin, Lindenwood +2.5.** My forecast: home team -6.5, total 46.0. Market: home team -2.2, total 50.3677. Lindenwood is the better team lately. Why the price may be wrong: Market has Lindenwood by only 1.5 to 2. Common opponents: Eastern Illinois (Lindenwood won 20-13 there, UT Martin lost 45-16 at home), Tennessee State (Lindenwood 27-0, UT Martin 42-28) and Gardner-Webb (Lindenwood won by 13 on the road, UT Martin by 11 at home). Lindenwood has won four straight. The market may be weighting its early losses.
 - **LOW: Minnesota at Penn State, Minnesota to win.** My forecast: home team +8.5, total 45.5. Market: home team +13.3, total 42.2832. Minnesota's offense is one of the least efficient here (6.1 yards per pass, 31 percent on third down) and it lost by 28 at Purdue, a team Penn State beat by 14. Low-scoring game expected. Why the price may be wrong: Market has Penn State by 12.5 with a total of only 42.5, which is a lot of points in a low-scoring game for a 5-4 team whose best recent results are a 14 point home win over Purdue and a 3 point win at Washington, where Minnesota also won. Risk I cannot rule out: a Minnesota injury, and Minnesota's 28 point loss at Purdue.
 
-Forecast accuracy by game: no finished games graded yet (115 games being tracked, 40 with an AI forecast).
+**Forecast accuracy by game** (average miss in points, lower is better; each row uses the same games for every column)
+
+| Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| All tracked games | 4 | 9.2 | n/a | 9.6 | 14.8 | n/a | 15.5 |
+
+Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
+
+**Probability accuracy on all tracked contracts**: 13 contracts from 5 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+
+| Forecast | Brier score | Contracts |
+| --- | --- | --- |
+| Kalshi closing price | 0.2550 | 13 |
+| Sportsbook line | 0.2569 | 13 |
+| Stats forecast alone | 0.2379 | 13 |
 
 **v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.
 
