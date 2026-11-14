@@ -21,12 +21,22 @@ def load(root: str, bot: str) -> dict:
     d = os.path.join(root, "data", bot)
     trades = read_jsonl(os.path.join(d, "trades.jsonl"))
     settles = {s["trade_id"]: s for s in read_jsonl(os.path.join(d, "settlements.jsonl"))}
+    names = read_json(os.path.join(d, "names.json"), {})
+
+    def full(s):  # older records used abbreviations; show full team names
+        s = s.replace(" @ ", " at ")
+        return " ".join(names.get(w, w) for w in s.split(" "))
+    n_withdrawn = sum(1 for t in trades if (settles.get(t["id"]) or {}).get("outcome") == "withdrawn")
+    trades = [t for t in trades if (settles.get(t["id"]) or {}).get("outcome") != "withdrawn"]
     for t in trades:
         t["settle"] = settles.get(t["id"])
+        t["game"], t["label"] = full(t["game"]), full(t["label"])
+        c = t.get("confidence") or "Low"
+        t["confidence"] = {"Medium": "Mid"}.get(c, c)
     graded = read_jsonl(os.path.join(d, "graded_predictions.jsonl"))
     for g in graded:  # v1 rows used older names
         g.setdefault("p_stats", g.get("p_model"))
-    return {"trades": trades, "graded": graded,
+    return {"trades": trades, "graded": graded, "withdrawn": n_withdrawn,
             "open_preds": read_json(os.path.join(d, "open_predictions.json"), {}),
             "games": read_jsonl(os.path.join(d, "game_grades.jsonl")),
             "track": read_json(os.path.join(d, "game_track.json"), {}),
@@ -124,14 +134,15 @@ def verdict(ts: dict, n_games: int) -> str:
 
 
 def trade_table(trades: list[dict]) -> list[str]:
-    L = ["| Placed | Kind | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |",
-         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
-    for t in sorted(trades, key=lambda t: t["ts"], reverse=True):
+    L = ["| Confidence | Game | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge | Placed |",
+         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+    rank = {"High": 0, "Mid": 1, "Low": 2}
+    for t in sorted(trades, key=lambda t: (t["ts"][:10], -rank.get(t["confidence"], 3), t["ts"]), reverse=True):
         s = t["settle"]
         closing = "" if not s or s.get("clv") is None or s["outcome"] == "pulled" else f"{s['clv'] * 100:+.0f}c"
-        L.append(f"| {when(t['ts'])} | {t.get('tier', 'bet' if t.get('version') else 'v1')} | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
-                 f"{t['contracts']} ({t['units']:.2f}u) | {pct(t['p_final'])} | {pct(t.get('p_ai'))} | {pct(t.get('p_kalshi'))} | "
-                 f"{t['edge'] * 100:+.1f} | {s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | {closing} |")
+        L.append(f"| **{t['confidence'].upper()}** | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
+                 f"{t['units']:.2f}u | {pct(t.get('p_ai') or t.get('p_final'), digits=0)} | {pct(t.get('p_kalshi'), digits=0)} | "
+                 f"{s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | {closing} | {when(t['ts'])} |")
     return L + [""]
 
 
@@ -147,14 +158,20 @@ def bot_md(bot: str, title: str, d: dict) -> str:
     v1 = [t for t in d["trades"] if version(t) == "v1"]
     ts = trade_stats(v2)
     ai_games = [g for g in d["games"] if g.get("ai")]
-    L = [f"## {title}", "", verdict(ts, len(ai_games)), "", "**v2 picks** (blind AI forecast, market check, code-chosen contract)", "",
-         "*Bets* clear a 3 point edge after the market check and are sized by Kelly. *Samples* are 0.5 unit picks on "
-         "games where the AI's own forecast beats the price by 5+ points but the market-checked edge is too thin to bet; "
-         "they exist to grade the AI's read.", ""]
-    for tier in ("bet", "sample"):
-        sub = [t for t in v2 if t.get("tier", "bet") == tier]
-        if sub:
-            L += [f"{tier.capitalize()}s:", ""] + stats_line(trade_stats(sub))
+    L = [f"## {title}", "", verdict(ts, len(ai_games)), "", "**v2 picks** (blind AI forecast, market check, code-chosen contract)", ""]
+    if v2:
+        L += ["| Confidence | Picks | Open | Won | Lost | Open stake | Profit | Units | Return on settled stake |",
+              "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+        for tier in ("High", "Mid", "Low", "All"):
+            s = trade_stats([t for t in v2 if tier == "All" or t["confidence"] == tier])
+            L.append(f"| **{tier.upper()}** | {s['n']} | {s['open']} | {s['won']} | {s['lost']} | ${s['open_stake']:,.2f} | "
+                     f"{money(s['pnl'])} | {s['units']:+.2f} | {pct(s['roi'], True)} |")
+        L.append("")
+    else:
+        L += ["No picks yet.", ""]
+    if d["withdrawn"]:
+        L += [f"{d['withdrawn']} earlier picks were withdrawn before kickoff when the pick rules were tightened on Nov 14. "
+              "They are in the ledger but not counted here.", ""]
     if ts["decided"]:
         L.append(f"Of {ts['decided']} decided picks the bot expected to win {ts['expected_wins']:.1f} and won {ts['won']}.")
     if ts["clv_n"]:
@@ -169,8 +186,11 @@ def bot_md(bot: str, title: str, d: dict) -> str:
         L += ["Why each pick was made:", ""]
         for t in sorted(v2, key=lambda t: t["ts"], reverse=True)[:10]:
             f = t.get("forecast") or {}
-            L.append(f"- **{t['game']}, {t['label']}:** AI forecast home margin {f.get('margin')}, market {f.get('market_margin')}, "
-                     f"stats {f.get('stats_margin')}. {f.get('summary') or ''} Market check ({f.get('check')}): {f.get('check_why') or ''}")
+            def n1(x):
+                return "n/a" if x is None else f"{x:+.1f}"
+            L.append(f"- **{t['confidence'].upper()}: {t['game']}, {t['label']}.** My forecast: home team {n1(f.get('margin'))}, "
+                     f"total {f.get('total')}. Market: home team {n1(f.get('market_margin'))}, total {f.get('market_total')}. "
+                     f"{f.get('summary') or ''} Why the price may be wrong: {f.get('check_why') or ''}")
         L.append("")
     gs = game_scores(d["games"])
     if gs:
@@ -277,6 +297,10 @@ def build(root: str = ".") -> str:
                      f"{money(s['pnl'])} | {s['units']:+.2f} | {pct(s['roi'], True)} | "
                      f"{'n/a' if s['clv_avg'] is None else f'{s['clv_avg'] * 100:+.1f}c'} |")
         L.append("")
+    L += ["**Confidence.** HIGH: the edge holds up even after the forecast is pulled most of the way to the market price; "
+          "sized by Kelly, up to 2 units. MID: I have a specific written reason the price may be wrong and my own forecast "
+          "beats the price by 10 or more points; half a unit. LOW: the same, with a 7 to 10 point gap; a quarter unit. "
+          "A game with no specific reason against the market gets no pick. There is no daily limit on picks.", ""]
     L += ["How to read this: profit over a handful of bets is mostly luck. The fairer tests are whether the AI forecast "
           "misses by less than the stats forecast and the market on the same games, and whether prices move toward the "
           "picks after they are made. The rules, and what would cause the AI to lose authority, are in the README.", ""]

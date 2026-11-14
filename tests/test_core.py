@@ -164,6 +164,18 @@ def test_scorecard_counts_open_stake_and_keeps_versions_apart():
     assert report.trade_stats(pulled)["clv_n"] == 0                      # an exit is not a closing price
 
 
+def test_read_picks_need_a_clear_gap_and_get_the_right_tier():
+    cfg = nba.CONFIG
+    m = {"yes_ask": 0.45, "yes_bid": 0.43, "yes_ask_size": 100, "no_ask": 0.57, "no_bid": 0.55, "no_ask_size": 100}
+    row = {"m": m, "mtype": "spread", "p_kalshi": 0.44, "p_trade": 0.46}
+    assert engine.read_pick(cfg, [{**row, "p_ai": 0.50}]) == (None, None)        # 5 points: no pick
+    low = engine.read_pick(cfg, [{**row, "p_ai": 0.54}])
+    mid = engine.read_pick(cfg, [{**row, "p_ai": 0.60}])
+    assert low[1] == "Low" and mid[1] == "Mid"
+    assert low[0][1]["cost"] <= cfg.read_units["Low"] * cfg.unit + 1e-9
+    assert mid[0][1]["cost"] > low[0][1]["cost"]
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_"):

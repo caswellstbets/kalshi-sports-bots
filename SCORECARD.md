@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 11:45 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 11:50 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 35 (each bot counts separately).
+Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 36 (each bot counts separately).
 
 **v2 picks**
 
@@ -10,8 +10,8 @@ Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so fa
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | NBA | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
-| College football | 16 | 16 | 0 | 0 | 0 | $78.25 | +$0.00 | +0.00 | n/a | n/a |
-| **All three** | 16 | 16 | 0 | 0 | 0 | $78.25 | +$0.00 | +0.00 | n/a | n/a |
+| College football | 7 | 7 | 0 | 0 | 0 | $22.93 | +$0.00 | +0.00 | n/a | n/a |
+| **All three** | 7 | 7 | 0 | 0 | 0 | $22.93 | +$0.00 | +0.00 | n/a | n/a |
 
 **v1 picks (earlier rules)**
 
@@ -22,6 +22,8 @@ Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so fa
 | College football | 8 | 8 | 0 | 0 | 0 | $99.25 | +$0.00 | +0.00 | n/a | n/a |
 | **All three** | 9 | 9 | 0 | 0 | 0 | $114.18 | +$0.00 | +0.00 | n/a | n/a |
 
+**Confidence.** HIGH: the edge holds up even after the forecast is pulled most of the way to the market price; sized by Kelly, up to 2 units. MID: I have a specific written reason the price may be wrong and my own forecast beats the price by 10 or more points; half a unit. LOW: the same, with a 7 to 10 point gap; a quarter unit. A game with no specific reason against the market gets no pick. There is no daily limit on picks.
+
 How to read this: profit over a handful of bets is mostly luck. The fairer tests are whether the AI forecast misses by less than the stats forecast and the market on the same games, and whether prices move toward the picks after they are made. The rules, and what would cause the AI to lose authority, are in the README.
 
 ## NBA
@@ -30,7 +32,7 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
-*Bets* clear a 3 point edge after the market check and are sized by Kelly. *Samples* are 0.5 unit picks on games where the AI's own forecast beats the price by 5+ points but the market-checked edge is too thin to bet; they exist to grade the AI's read.
+No picks yet.
 
 
 Forecast accuracy by game: no finished games graded yet (5 games being tracked, 0 with an AI forecast).
@@ -41,9 +43,9 @@ Forecast accuracy by game: no finished games graded yet (5 games being tracked, 
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 1 | 0 | 0 | 0 | $14.93 | $0.00 | +$0.00 | +0.00 | n/a |
 
-| Placed | Kind | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Sat Nov 14 11:08 AM ET | v1 | DET @ MIA | Over 229.5 | 48c | 30 (1.49u) | 55.8% | n/a | 47.5% | +6.1 | open |  |  |
+| Confidence | Game | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge | Placed |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | DET at MIA | Over 229.5 | 48c | 1.49u | 56% | 48% | open |  |  | Sat Nov 14 11:08 AM ET |
 
 ## NFL
 
@@ -51,7 +53,7 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
-*Bets* clear a 3 point edge after the market check and are sized by Kelly. *Samples* are 0.5 unit picks on games where the AI's own forecast beats the price by 5+ points but the market-checked edge is too thin to bet; they exist to grade the AI's read.
+No picks yet.
 
 
 Forecast accuracy by game: no finished games graded yet (1 games being tracked, 0 with an AI forecast).
@@ -62,52 +64,35 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
-*Bets* clear a 3 point edge after the market check and are sized by Kelly. *Samples* are 0.5 unit picks on games where the AI's own forecast beats the price by 5+ points but the market-checked edge is too thin to bet; they exist to grade the AI's read.
+| Confidence | Picks | Open | Won | Lost | Open stake | Profit | Units | Return on settled stake |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **HIGH** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
+| **MID** | 3 | 3 | 0 | 0 | $14.29 | +$0.00 | +0.00 | n/a |
+| **LOW** | 4 | 4 | 0 | 0 | $8.64 | +$0.00 | +0.00 | n/a |
+| **ALL** | 7 | 7 | 0 | 0 | $22.93 | +$0.00 | +0.00 | n/a |
 
-Bets:
-
-| Picks | Open | Won | Lost | Pulled | Open stake | Settled stake | Profit | Units | Return on settled stake |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 1 | 0 | 0 | 0 | $7.47 | $0.00 | +$0.00 | +0.00 | n/a |
-
-Samples:
-
-| Picks | Open | Won | Lost | Pulled | Open stake | Settled stake | Profit | Units | Return on settled stake |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 15 | 15 | 0 | 0 | 0 | $70.78 | $0.00 | +$0.00 | +0.00 | n/a |
+16 earlier picks were withdrawn before kickoff when the pick rules were tightened on Nov 14. They are in the ledger but not counted here.
 
 
-| Placed | Kind | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Sat Nov 14 11:44 AM ET | sample | CIT @ VMI | VMI +20.5 | 58c | 8 (0.48u) | 58.6% | 66.0% | 57.5% | -1.2 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | NEB @ RUTG | RUTG +13.5 | 43c | 11 (0.49u) | 44.2% | 56.3% | 42.5% | -0.5 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | ALA @ VAN | Over 52.5 | 37c | 12 (0.46u) | 37.5% | 51.1% | 36.5% | -1.1 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | BUCK @ W&M | Under 41.5 | 40c | 11 (0.46u) | 41.1% | 53.4% | 39.0% | -0.6 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | NCAT @ HAMP | Under 42.5 | 40c | 11 (0.46u) | 41.2% | 51.1% | 39.5% | -0.5 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | DART @ COR | COR to win | 48c | 10 (0.50u) | 49.4% | 55.0% | 47.5% | -0.4 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | HARV @ PENN | PENN to win | 17c | 27 (0.49u) | 17.3% | 23.3% | 16.5% | -0.7 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | HCU @ NWST | Under 46.5 | 39c | 12 (0.49u) | 39.4% | 51.1% | 38.5% | -1.2 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | ACU @ APSU | ACU to win | 28c | 16 (0.47u) | 30.1% | 38.8% | 27.5% | +0.7 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | DRKE @ STMN | DRKE +14.5 | 45c | 10 (0.47u) | 46.8% | 53.8% | 44.5% | +0.0 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | SDST @ SIU | SIU +19.5 | 56c | 8 (0.46u) | 56.9% | 66.0% | 55.5% | -0.9 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | TXSO @ AAMU | Under 58.5 | 44c | 10 (0.46u) | 45.0% | 53.4% | 43.5% | -0.8 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | LIN @ UTM | LIN +2.5 | 61c | 7 (0.44u) | 63.4% | 71.5% | 60.5% | +0.7 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | PV @ UAPB | UAPB to win | 46c | 10 (0.48u) | 47.2% | 58.8% | 45.5% | -0.6 | open |  |  |
-| Sat Nov 14 11:44 AM ET | sample | USC @ IU | Under 50.5 | 46c | 10 (0.48u) | 47.7% | 60.3% | 45.5% | -0.1 | open |  |  |
-| Sat Nov 14 11:30 AM ET | bet | SJSU @ AFA | SJSU +13.5 | 48c | 15 (0.75u) | 52.8% | 62.4% | 47.5% | +3.0 | open |  |  |
+| Confidence | Game | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge | Placed |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | San José State at Air Force | Under 46.5 | 43c | 0.49u | 58% | 42% | open |  |  | Sat Nov 14 11:50 AM ET |
+| **MID** | USC at Indiana | Under 50.5 | 46c | 0.48u | 60% | 46% | open |  |  | Sat Nov 14 11:50 AM ET |
+| **MID** | Bucknell at William & Mary | Under 41.5 | 40c | 0.46u | 53% | 39% | open |  |  | Sat Nov 14 11:50 AM ET |
+| **LOW** | Stanford at Virginia Tech | Stanford +16.5 | 50c | 0.21u | 61% | 50% | open |  |  | Sat Nov 14 11:50 AM ET |
+| **LOW** | Abilene Christian at Austin Peay | Abilene Christian to win | 28c | 0.24u | 39% | 28% | open |  |  | Sat Nov 14 11:50 AM ET |
+| **LOW** | Lindenwood at UT Martin | Lindenwood +2.5 | 61c | 0.19u | 72% | 60% | open |  |  | Sat Nov 14 11:50 AM ET |
+| **LOW** | Minnesota at Penn State | Minnesota to win | 20c | 0.23u | 30% | 20% | open |  |  | Sat Nov 14 11:50 AM ET |
 
 Why each pick was made:
 
-- **CIT @ VMI, VMI +20.5:** AI forecast home margin -14.0, market -18.9657, stats -10.6422. VMI is 0-10 and scores under 9 a game. The Citadel is bad but clearly better. Rivalry game at VMI keeps it from being a rout. Combined scoring of these two offenses points well under the stats total. Market check (shrink): Market has The Citadel by 17.5 to 19. My own common-opponent work pointed to about 20 and I trimmed it for the rivalry, which is soft. The total matches the market.
-- **NEB @ RUTG, RUTG +13.5:** AI forecast home margin -11.0, market -16.7183, stats -12.6282. Nebraska is clearly better but its offense has stalled. Rutgers gives up 32 a game. Market check (shrink): Market has Nebraska by 16.5. Nebraska's recent scoring slump is public, so I have nothing the market lacks.
-- **ALA @ VAN, Over 52.5:** AI forecast home margin -19.0, market -16.7183, stats -20.1644. Alabama has handled every team near Vanderbilt's level by multiple scores, including Kentucky, who beat Vanderbilt by 17. Vanderbilt's offense is inefficient on the ground. Market check (shrink): Market has Vanderbilt closer and the total 5.5 lower than mine. I have no information the market lacks; my total came mostly from the ratings.
-- **BUCK @ W&M, Under 41.5:** AI forecast home margin 5.0, market 7.6113, stats 4.334. Two of the worst teams in FCS. Low scoring. Market check (stands): On the total: market has 45.5, but these offenses average 11.8 and 18.3 points, about 30 combined, and Bucknell has scored 14 or fewer in eight of ten. The market looks anchored to a generic FCS total.
-- **NCAT @ HAMP, Under 42.5:** AI forecast home margin -12.5, market -13.582, stats -12.4591. Hampton is 1-9 and scores 15 a game. North Carolina A&T has won 4 of 6. Market check (stands): within a few points of the market on both margin and total
-- **DART @ COR, COR to win:** AI forecast home margin 2.0, market -0.9908, stats 3.7283. Even Ivy game. Dartmouth's defense allows 21 a game. Market check (stands): within a few points of the market on both margin and total
-- **HARV @ PENN, PENN to win:** AI forecast home margin -11.5, market -15.391, stats -12.2965. Harvard is 7-1 with the best defense in the league. Market check (shrink): Market has Harvard by 13.5 to 15. No specific reason the market is wrong.
-- **HCU @ NWST, Under 46.5:** AI forecast home margin -12.0, market -18.1755, stats -14.565. Northwestern State is 0-10 and allows 48 a game, but Houston Christian's offense is weak. Market check (shrink): Market has Houston Christian by 16.5 to 18. The 88-0 distortion is visible to anyone, so I cannot claim the market missed it.
-- **ACU @ APSU, ACU to win:** AI forecast home margin 4.5, market 9.2089, stats 5.9062. Austin Peay at home and efficient, but less proven. Market check (stands): Market has Austin Peay by 7.5 to 9. Common opponent West Florida: Abilene Christian won 35-7 at home, Austin Peay won 38-16 on the road. Austin Peay's schedule is rated about 9 points weaker. The market may be paying for the 8-2 record.
-- **DRKE @ STMN, DRKE +14.5:** AI forecast home margin 13.0, market 15.391, stats 12.0164. Two teams with very weak schedules. St. Thomas is better. Market check (stands): within a few points of the market on both margin and total
+- **MID: San José State at Air Force, Under 46.5.** My forecast: home team +8.5, total 43.0. Market: home team +15.4, total 48.7168. Air Force is better and at home at altitude, but it wins close. San Jose State's offense is weak on the ground and on third down, so points should be scarce. Why the price may be wrong: Market has Air Force by 14 to 15. Air Force's option offense shortens games and five of its six listed wins were by 10 or fewer. Against three common opponents (Nevada, Wyoming, NIU) Air Force was only about 6 points better than San Jose State before home field. Risk I cannot rule out: a San Jose State quarterback absence.
+- **MID: USC at Indiana, Under 50.5.** My forecast: home team +7.0, total 46.0. Market: home team +11.2, total 51.7168. Indiana's defense allows 12 a game. Both teams off a bye. Why the price may be wrong: On the total: market has 51.5. Indiana's nine games averaged about 42 combined points and it allows 12 a game; only two of its games went over 52. USC's offense is good, but it scored 7 at Wisconsin, the closest defense to Indiana's it has faced.
+- **MID: Bucknell at William & Mary, Under 41.5.** My forecast: home team +5.0, total 40.0. Market: home team +7.6, total 44.8494. Two of the worst teams in FCS. Low scoring. Why the price may be wrong: On the total: market has 45.5, but these offenses average 11.8 and 18.3 points, about 30 combined, and Bucknell has scored 14 or fewer in eight of ten. The market looks anchored to a generic FCS total.
+- **LOW: Stanford at Virginia Tech, Stanford +16.5.** My forecast: home team +12.0, total 56.0. Market: home team +18.2, total 58.1506. Stanford has been routed every time it left home and now travels across the country. Virginia Tech is average but at home at night. Why the price may be wrong: Market has Virginia Tech by 16.5 to 18. I already charged Stanford for its road blowouts, but those came against teams rated 17 to 25 points above average. Virginia Tech is rated 6, lost at Cal (rated like Stanford) and by 23 at SMU. Stanford is also off a bye. The market may be pricing Stanford's worst games against a team that is not that class. Risk I cannot rule out: a Stanford quarterback or injury problem.
+- **LOW: Abilene Christian at Austin Peay, Abilene Christian to win.** My forecast: home team +4.5, total 53.0. Market: home team +9.2, total 55.5848. Austin Peay at home and efficient, but less proven. Why the price may be wrong: Market has Austin Peay by 7.5 to 9. Common opponent West Florida: Abilene Christian won 35-7 at home, Austin Peay won 38-16 on the road. Austin Peay's schedule is rated about 9 points weaker. The market may be paying for the 8-2 record.
+- **LOW: Lindenwood at UT Martin, Lindenwood +2.5.** My forecast: home team -6.5, total 46.0. Market: home team -2.2, total 50.3677. Lindenwood is the better team lately. Why the price may be wrong: Market has Lindenwood by only 1.5 to 2. Common opponents: Eastern Illinois (Lindenwood won 20-13 there, UT Martin lost 45-16 at home), Tennessee State (Lindenwood 27-0, UT Martin 42-28) and Gardner-Webb (Lindenwood won by 13 on the road, UT Martin by 11 at home). Lindenwood has won four straight. The market may be weighting its early losses.
+- **LOW: Minnesota at Penn State, Minnesota to win.** My forecast: home team +8.5, total 45.5. Market: home team +13.3, total 42.2832. Minnesota's offense is one of the least efficient here (6.1 yards per pass, 31 percent on third down) and it lost by 28 at Purdue, a team Penn State beat by 14. Low-scoring game expected. Why the price may be wrong: Market has Penn State by 12.5 with a total of only 42.5, which is a lot of points in a low-scoring game for a 5-4 team whose best recent results are a 14 point home win over Purdue and a 3 point win at Washington, where Minnesota also won. Risk I cannot rule out: a Minnesota injury, and Minnesota's 28 point loss at Purdue.
 
 Forecast accuracy by game: no finished games graded yet (115 games being tracked, 40 with an AI forecast).
 
@@ -117,14 +102,14 @@ Forecast accuracy by game: no finished games graded yet (115 games being tracked
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 8 | 8 | 0 | 0 | 0 | $99.25 | $0.00 | +$0.00 | +0.00 | n/a |
 
-| Placed | Kind | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Sat Nov 14 12:31 AM ET | v1 | WAKE @ SMU | WAKE to win | 49c | 28 (1.42u) | 59.0% | n/a | 48.5% | +8.2 | open |  |  |
-| Sat Nov 14 12:31 AM ET | v1 | WAKE @ SMU | WAKE -4.5 | 36c | 36 (1.35u) | 47.5% | n/a | 35.0% | +9.9 | open |  |  |
-| Sat Nov 14 12:31 AM ET | v1 | TENN @ TA&M | TENN -3.5 | 39c | 36 (1.46u) | 50.8% | n/a | 38.5% | +10.1 | open |  |  |
-| Sat Nov 14 12:31 AM ET | v1 | TENN @ TA&M | Under 40.5 | 38c | 25 (0.99u) | 46.6% | n/a | 37.5% | +7.0 | open |  |  |
-| Sat Nov 14 12:31 AM ET | v1 | TAR @ UWF | UWF to win | 15c | 41 (0.65u) | 22.2% | n/a | 14.5% | +6.3 | open |  |  |
-| Sat Nov 14 12:31 AM ET | v1 | TAR @ UWF | UWF +18.5 | 54c | 14 (0.78u) | 65.5% | n/a | 53.0% | +9.8 | open |  |  |
-| Sat Nov 14 12:31 AM ET | v1 | ASU @ UCF | UCF -7.5 | 37c | 37 (1.43u) | 45.8% | n/a | 36.0% | +7.2 | open |  |  |
-| Sat Nov 14 12:20 AM ET | v1 | EWU @ UTU | UTU to win | 35c | 50 (1.83u) | 41.3% | n/a | 34.0% | +4.7 | open |  |  |
+| Confidence | Game | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge | Placed |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | Wake Forest at SMU | Wake Forest to win | 49c | 1.42u | 59% | 48% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **MID** | Wake Forest at SMU | Wake Forest -4.5 | 36c | 1.35u | 48% | 35% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **MID** | Tennessee at Texas A&M | Tennessee -3.5 | 39c | 1.46u | 51% | 38% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **MID** | Tarleton State at West Florida | West Florida +18.5 | 54c | 0.78u | 66% | 53% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **MID** | Arizona State at UCF | UCF -7.5 | 37c | 1.43u | 46% | 36% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **LOW** | Tennessee at Texas A&M | Under 40.5 | 38c | 0.99u | 47% | 38% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **LOW** | Tarleton State at West Florida | West Florida to win | 15c | 0.65u | 22% | 14% | open |  |  | Sat Nov 14 12:31 AM ET |
+| **LOW** | Eastern Washington at Utah Tech | Utah Tech to win | 35c | 1.83u | 41% | 34% | open |  |  | Sat Nov 14 12:20 AM ET |
 

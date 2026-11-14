@@ -29,7 +29,8 @@ def paths(cfg: BotConfig, root: str) -> dict:
         "forecasts": os.path.join(d, "forecasts.jsonl"),     # append-only: every AI forecast and market check
         "game_track": os.path.join(d, "game_track.json"),     # latest pre-game numbers per game, all stages
         "game_grades": os.path.join(d, "game_grades.jsonl"),  # append-only: each stage graded against the final score
-        "reveal": os.path.join(d, "reveal_sheets.json"),      # games waiting for the market check
+        "reveal": os.path.join(d, "reveal_sheets.json"),
+        "names": os.path.join(d, "names.json"),               # abbreviation -> full team name, for the scorecard      # games waiting for the market check
         "results_cache": os.path.join(d, "results_cache.json"),
         "run_log": os.path.join(d, "run_log.jsonl"),
         "sheets": os.path.join(d, "blind_sheets.json"),       # games waiting for a blind AI forecast (no prices inside)
@@ -59,11 +60,20 @@ def p_yes(m: dict, mtype: str, home_code: str, mu_margin: float | None, mu_total
     return 1 - pricing.p_margin_over(mu_margin, -line, cfg.sd_margin)
 
 
+def team_name(t: dict) -> str:
+    """Full school or city name, never the abbreviation."""
+    return t.get("location") or t.get("display") or t.get("abbr") or "?"
+
+
+def game_name(g: dict) -> str:
+    return f"{team_name(g['away'])} at {team_name(g['home'])}"
+
+
 def label(m: dict, mtype: str, side: str, home_code: str, g: dict) -> str:
     """Plain-English name of a position, e.g. 'DEN -10.5' or 'Under 233.5'."""
     if mtype == "total":
         return f"{'Over' if side == 'yes' else 'Under'} {m['strike']}"
-    home, away = g["home"]["abbr"], g["away"]["abbr"]
+    home, away = team_name(g["home"]), team_name(g["away"])
     team, other = (home, away) if m["team_code"] == home_code else (away, home)
     if mtype == "ml":
         return f"{team if side == 'yes' else other} to win"
@@ -199,7 +209,7 @@ def size_trade(cfg: BotConfig, c: dict, spent_on_game: float = 0.0) -> dict | No
     return {"n": n, "fee": fee, "cost": cost, "edge": edge, "edge_ai": None if p_ai is None else p_ai - cost / n}
 
 
-def size_sample(cfg: BotConfig, c: dict) -> dict | None:
+def size_sample(cfg: BotConfig, c: dict, units: float, min_edge: float) -> dict | None:
     """A fixed small stake on the side the AI's own (blind) forecast favours, when that forecast beats
     the ask by at least sample_min_edge after the exact fee. Edge on the market-checked probability is
     recorded too; it is usually near zero or negative, which is why this is a sample and not a bet."""
@@ -207,15 +217,29 @@ def size_sample(cfg: BotConfig, c: dict) -> dict | None:
         return None
     p_ai = c["p_ai"] if c["side"] == "yes" else 1 - c["p_ai"]
     cost1 = c["ask"] + pricing.fee(100, c["ask"]) / 100
-    n = int(min(cfg.sample_units * cfg.unit / cost1, c["size"]))
+    n = int(min(units * cfg.unit / cost1, c["size"]))
     if n < 1:
         return None
     fee = pricing.fee(n, c["ask"])
     cost = n * c["ask"] + fee
     edge_ai = p_ai - cost / n
-    if edge_ai < cfg.sample_min_edge:
+    if edge_ai < min_edge:
         return None
     return {"n": n, "fee": fee, "cost": cost, "edge": c["p"] - cost / n, "edge_ai": edge_ai}
+
+
+def read_pick(cfg: BotConfig, rows: list[dict]) -> tuple:
+    """Best contract on the AI's own read, and its confidence tier, or (None, None)."""
+    best = None
+    for cand in candidates(cfg, rows):
+        sz = size_sample(cfg, cand, cfg.read_units["Low"], cfg.read_min_edge["Low"])
+        if sz and (best is None or sz["edge_ai"] > best[1]["edge_ai"]):
+            best = (cand, sz)
+    if not best:
+        return None, None
+    if best[1]["edge_ai"] >= cfg.read_min_edge["Mid"]:
+        return (best[0], size_sample(cfg, best[0], cfg.read_units["Mid"], cfg.read_min_edge["Mid"]) or best[1]), "Mid"
+    return best, "Low"
 
 
 def confidence(edge: float) -> str:
@@ -345,7 +369,7 @@ def blind_sheet(cfg: BotConfig, g: dict, st: dict, rt: dict, inj: dict, rt_form:
                 "results_oldest_first": lines[-8:],
                 "stats": espn.team_stats(cfg.name, tid),
                 "injuries": inj.get(tid, []) if cfg.name != "cfb" else "no injury feed for college"}
-    return {"sport": cfg.title, "game_id": g["id"], "game": f"{g['away']['abbr']} @ {g['home']['abbr']}",
+    return {"sport": cfg.title, "game_id": g["id"], "game": game_name(g),
             "start_utc": g["start"], "neutral_site": g["neutral"], "picked_for_review_because": why,
             "home": team(g["home"]), "away": team(g["away"]),
             "stats_forecast": {"home_margin": r4(st["margin"]), "total": r4(st["total"])},
@@ -399,16 +423,18 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
             del track[gid]
     log["games_graded"] = len(grades)
 
-    trades = read_jsonl(p["trades"])
-    closed = {s["trade_id"] for s in read_jsonl(p["settlements"])}
+    settles = read_jsonl(p["settlements"])
+    withdrawn = {s["trade_id"] for s in settles if s["outcome"] == "withdrawn"}
+    trades = [t for t in read_jsonl(p["trades"]) if t["id"] not in withdrawn]  # a withdrawn pick never happened
+    closed = {s["trade_id"] for s in settles}
     preds = read_json(p["open_preds"], {})
+    names = read_json(p["names"], {})
     fc_all = fstore.latest(p["forecasts"])
     new_trades, new_settle, new_events = [], [], []
     stats = {"pulled": 0, "awaiting_forecast": 0, "awaiting_check": 0, "dropped": 0, "no_edge": 0}
     day = now.astimezone(ET).date()
     v2_today = [t for t in trades if t.get("version") and parse_iso(t["ts"]).astimezone(ET).date() == day]
-    slots = max(0, cfg.max_trades_per_day - sum(t.get("tier", "bet") == "bet" for t in v2_today))
-    sample_slots = max(0, cfg.sample_picks_per_day - sum(t.get("tier") == "sample" for t in v2_today))
+    del v2_today  # no daily count limit: the bar for a pick is what keeps the number down
 
     # First pass: the numbers-only forecast and the market's view for every game.
     ctxs = []
@@ -422,6 +448,9 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
         k_margin, k_total = kalshi_anchors(kg, home_code, cfg)
         mkt = {"margin": k_margin, "total": k_total}
         gap = abs(st["margin"] - k_margin) if k_margin is not None else 0.0
+        for t in (g["home"], g["away"]):
+            if t.get("abbr"):
+                names[t["abbr"]] = team_name(t)
         ctxs.append({"key": key, "g": g, "kg": kg, "home_code": home_code, "st": st, "book": book, "mkt": mkt, "gap": gap})
 
     # Which games get a deep read today: the biggest disagreements between the numbers and the
@@ -465,16 +494,17 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
             sz = size_trade(cfg, cand)
             if sz:
                 best = max(best, 1.0 + sz["edge"])
-            sz = size_sample(cfg, cand)
-            if sz:
-                best = max(best, sz["edge_ai"])
+        if ch == "stands" and not f["check"].get("auto"):
+            rp, _ = read_pick(cfg, rows)
+            if rp:
+                best = max(best, rp[1]["edge_ai"])
         return best
     ctxs.sort(key=lambda c: -strength(c))
 
     for c in ctxs:
         g, kg, home_code, st, book, mkt = c["g"], c["kg"], c["home_code"], c["st"], c["book"], c["mkt"]
         gid = g["id"]
-        gname = f"{g['away']['abbr']} @ {g['home']['abbr']}"
+        gname = game_name(g)
         mine = [t for t in trades if t["game_id"] == gid]
         held = [t for t in mine if t["id"] not in closed]
         f = fc_all.get(gid) or {}
@@ -529,22 +559,17 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
         if check == "drop":
             stats["dropped"] += 1
         elif check in ("stands", "shrink") and not mine:
-            n_bets = sum(t.get("tier", "bet") == "bet" for t in new_trades)
-            n_samples = len(new_trades) - n_bets
-            best, tier = None, "bet"
-            if slots - n_bets > 0:
-                for cand in candidates(cfg, rows):
-                    sz = size_trade(cfg, cand)
-                    if sz and (best is None or sz["edge"] > best[1]["edge"]):
-                        best = (cand, sz)
-            if not best and sample_slots - n_samples > 0:
-                # Sample pick: the market-checked edge is too thin to bet on, but the AI's own read
-                # clearly disagrees with the price. Bought at a small fixed stake so the AI's read
-                # builds a graded record. Never mixed with bets in the scorecard.
-                for cand in candidates(cfg, rows):
-                    sz = size_sample(cfg, cand)
-                    if sz and (best is None or sz["edge_ai"] > best[1]["edge_ai"]):
-                        best, tier = (cand, sz), "sample"
+            # High: the edge survives the market check and is sized by Kelly.
+            # Mid / Low: the market check ended in a written "stands" (a specific stated reason the
+            #      price may be wrong) and the AI's own forecast beats the ask by a clear margin.
+            #      Fixed small stakes. A "shrink" or an automatic "stands" never produces these.
+            best, tier = None, "High"
+            for cand in candidates(cfg, rows):
+                sz = size_trade(cfg, cand)
+                if sz and (best is None or sz["edge"] > best[1]["edge"]):
+                    best = (cand, sz)
+            if not best and check == "stands" and not chk.get("auto"):
+                best, tier = read_pick(cfg, rows)
             if not best:
                 stats["no_edge"] += 1
             else:
@@ -568,7 +593,7 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
                     "units": r4(sz["cost"] / cfg.unit),
                     "p_kalshi": sd(cand["p_kalshi"]), "p_book": sd(cand["p_book"]), "p_stats": sd(cand["p_stats"]),
                     "p_ai": sd(cand["p_ai"]), "p_final": r4(cand["p"]),
-                    "edge": r4(sz["edge"]), "confidence": confidence(sz["edge"]),
+                    "edge": r4(sz["edge"]), "confidence": tier,
                     "book": g["odds"], "book_seen_ts": iso(now),
                     "forecast": {"margin": blind["margin"], "total": blind["total"],
                                  "stats_margin": r4(st["margin"]), "stats_total": r4(st["total"]),
@@ -578,10 +603,10 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
                 }
                 new_trades.append(t)
                 mine.append(t)
-                say(f"  {'TRADE' if tier == 'bet' else 'SAMPLE'} {gname}: {t['label']} x{sz['n']} at {cand['ask']:.2f} | bet on {cand['p'] * 100:.1f}% | "
+                say(f"  {tier.upper():4} {gname}: {t['label']} x{sz['n']} at {cand['ask']:.2f} | bet on {cand['p'] * 100:.1f}% | "
                     f"AI {(t['p_ai'] or 0) * 100:.1f}% | stats {(t['p_stats'] or 0) * 100:.1f}% | market {(t['p_kalshi'] or 0) * 100:.1f}% | "
                     f"edge {sz['edge'] * 100:+.1f} | {t['units']:.2f}u")
-                notify(f"{cfg.title} paper {'pick' if tier == 'bet' else 'sample pick'}: {t['label']} at {cand['ask'] * 100:.0f}c",
+                notify(f"{cfg.title} paper {tier.lower()}-confidence pick: {t['label']} at {cand['ask'] * 100:.0f}c",
                        f"{gname}\nKalshi {t['ticker']}\nSize {t['units']:.2f} units | Edge {sz['edge'] * 100:+.1f} pts\n"
                        "PAPER ONLY. No real order was placed.")
 
@@ -630,6 +655,7 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
         append_jsonl(p["game_grades"], grades)
         write_json(p["open_preds"], preds)
         write_json(p["game_track"], track)
+        write_json(p["names"], names)
         write_json(p["sheets"], sheets)
         write_json(p["reveal"], reveals)
         append_jsonl(p["run_log"], [log])

@@ -28,10 +28,15 @@ Every stage is saved separately so each can be graded on its own.
 6. **Code picks the bet.** Every eligible contract in the game is priced with exact fees. The single best one is
    bought if its edge is at least 3 points, sized at one eighth of Kelly with no minimum stake. Otherwise no bet.
 
-7. **Sample picks.** If no contract clears the bar but the AI's own forecast beats the ask by at least 5 points
-   after fees, the bot buys a fixed 0.5 units on that side (up to 15 a day in college, 6 elsewhere). These are
-   reported separately from bets. They exist because a paper test needs a sample to grade the AI's read, and the
-   strict bar alone produces about one bet a day.
+7. **Confidence.** Every pick carries one of three ratings.
+   - **High**: the edge clears 3 points after the market check. Sized by Kelly, up to 2 units.
+   - **Mid**: the market check ended in a written `stands` and the AI's own forecast beats the ask by 10 or more
+     points after fees. Half a unit.
+   - **Low**: the same with a 7 to 10 point gap. A quarter unit.
+
+   A `shrink` or an automatic `stands` never produces a Mid or Low pick. There is no daily limit on picks; the
+   bars are what keep the number down. Mid and Low exist so the AI's read builds a graded record, since High
+   picks alone are rare.
 
 Nothing is traded without both a blind forecast and a market check.
 
@@ -52,7 +57,7 @@ Numbers marked GUESS have no evidence behind them yet.
 | Trust ceiling | 0.70 | Never reached in this window |
 | Minimum edge after the market check and fees | 3 points | GUESS |
 | Stake | 1/8 Kelly, max 2 units, no floor | |
-| Sample picks | 0.5 units fixed, AI's own edge 5+ points after fees | Added v2.2 at Livy's request for more picks |
+| Mid / Low picks | 0.5 / 0.25 units, written `stands` plus AI edge of 10+ / 7+ points | v2.3 |
 | Positions per game | 1 | Winner, spread and total on one game are correlated |
 | Pull | net bid beats hold value by 4 cents, or forecast dropped | |
 | Soft judgment alone may move a forecast | 3 points | |
@@ -84,7 +89,7 @@ than the Kalshi price on the same contracts (Brier), trust for that sport drops 
 - Fills at the ask, capped at the size offered, with the taker fee. No long shots: 15 to 85 cents for
   winners, 35 to 65 for spreads and totals. Bid-ask gap 8 cents or less.
 - Entry only before the scheduled start: within 12 hours (NBA) or 24 hours (football), never in the last 5 minutes.
-- No adding and no re-entry. Daily caps: 4 NBA, 5 NFL, 8 college.
+- No adding and no re-entry. One position per game.
 - Nothing is ever traded during a game.
 
 ## Files
