@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import html
 import os
+from zoneinfo import ZoneInfo
 
 from .util import ET, iso, now_utc, parse_iso, read_json, read_jsonl
 
@@ -122,8 +123,15 @@ def money(x):
     return "n/a" if x is None else f"{'-' if x < 0 else '+'}${abs(x):,.2f}"
 
 
+CT = ZoneInfo("America/Chicago")
+
+
 def when(ts: str) -> str:
-    return parse_iso(ts).astimezone(ET).strftime("%a %b %-d %-I:%M %p ET")
+    return parse_iso(ts).astimezone(CT).strftime("%a %b %-d %-I:%M %p CT")
+
+
+def start_ct(ts: str) -> str:
+    return parse_iso(ts).astimezone(CT).strftime("%a %-I:%M %p")
 
 
 def verdict(ts: dict, n_games: int) -> str:
@@ -134,15 +142,15 @@ def verdict(ts: dict, n_games: int) -> str:
 
 
 def trade_table(trades: list[dict]) -> list[str]:
-    L = ["| Confidence | Game | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge | Placed |",
+    L = ["| Confidence | Game | Start (CT) | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge |",
          "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     rank = {"High": 0, "Mid": 1, "Low": 2}
-    for t in sorted(trades, key=lambda t: (t["ts"][:10], -rank.get(t["confidence"], 3), t["ts"]), reverse=True):
+    for t in sorted(trades, key=lambda t: (t["start"][:10], -rank.get(t["confidence"], 3), t["start"]), reverse=True):
         s = t["settle"]
         closing = "" if not s or s.get("clv") is None or s["outcome"] == "pulled" else f"{s['clv'] * 100:+.0f}c"
-        L.append(f"| **{t['confidence'].upper()}** | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
+        L.append(f"| **{t['confidence'].upper()}** | {t['game']} | {start_ct(t['start'])} | {t['label']} | {t['price'] * 100:.0f}c | "
                  f"{t['units']:.2f}u | {pct(t.get('p_ai') or t.get('p_final'), digits=0)} | {pct(t.get('p_kalshi'), digits=0)} | "
-                 f"{s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | {closing} | {when(t['ts'])} |")
+                 f"{s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | {closing} |")
     return L + [""]
 
 
