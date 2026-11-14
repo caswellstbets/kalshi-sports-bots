@@ -28,6 +28,11 @@ Every stage is saved separately so each can be graded on its own.
 6. **Code picks the bet.** Every eligible contract in the game is priced with exact fees. The single best one is
    bought if its edge is at least 3 points, sized at one eighth of Kelly with no minimum stake. Otherwise no bet.
 
+7. **Sample picks.** If no contract clears the bar but the AI's own forecast beats the ask by at least 5 points
+   after fees, the bot buys a fixed 0.5 units on that side (up to 15 a day in college, 6 elsewhere). These are
+   reported separately from bets. They exist because a paper test needs a sample to grade the AI's read, and the
+   strict bar alone produces about one bet a day.
+
 Nothing is traded without both a blind forecast and a market check.
 
 ## Rules set in advance
@@ -47,6 +52,7 @@ Numbers marked GUESS have no evidence behind them yet.
 | Trust ceiling | 0.70 | Never reached in this window |
 | Minimum edge after the market check and fees | 3 points | GUESS |
 | Stake | 1/8 Kelly, max 2 units, no floor | |
+| Sample picks | 0.5 units fixed, AI's own edge 5+ points after fees | Added v2.2 at Livy's request for more picks |
 | Positions per game | 1 | Winner, spread and total on one game are correlated |
 | Pull | net bid beats hold value by 4 cents, or forecast dropped | |
 | Soft judgment alone may move a forecast | 3 points | |

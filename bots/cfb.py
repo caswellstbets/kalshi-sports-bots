@@ -23,7 +23,7 @@ CONFIG = BotConfig(
     hfa=2.6, ridge=1.0, half_life_days=70, sd_margin=15.8, sd_total=17.3, total_scale=0.63, total_bias=-1.3,
     margin_cap=28.0, min_games=3, espn_groups=["80", "81"],
     window_hours=24, situational=situational,
-    form_half_life_days=21, form_weight=0.30, max_trades_per_day=8, deep_reads_per_day=10, control_reads_per_day=3,
+    form_half_life_days=21, form_weight=0.30, max_trades_per_day=8, sample_picks_per_day=15, deep_reads_per_day=34, control_reads_per_day=6,
 )
 
 if __name__ == "__main__":

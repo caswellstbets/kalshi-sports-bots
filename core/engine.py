@@ -195,7 +195,27 @@ def size_trade(cfg: BotConfig, c: dict, spent_on_game: float = 0.0) -> dict | No
     edge = c["p"] - cost / n
     if edge < cfg.min_edge_trade:
         return None
-    return {"n": n, "fee": fee, "cost": cost, "edge": edge}
+    p_ai = None if c.get("p_ai") is None else (c["p_ai"] if c["side"] == "yes" else 1 - c["p_ai"])
+    return {"n": n, "fee": fee, "cost": cost, "edge": edge, "edge_ai": None if p_ai is None else p_ai - cost / n}
+
+
+def size_sample(cfg: BotConfig, c: dict) -> dict | None:
+    """A fixed small stake on the side the AI's own (blind) forecast favours, when that forecast beats
+    the ask by at least sample_min_edge after the exact fee. Edge on the market-checked probability is
+    recorded too; it is usually near zero or negative, which is why this is a sample and not a bet."""
+    if c.get("p_ai") is None:
+        return None
+    p_ai = c["p_ai"] if c["side"] == "yes" else 1 - c["p_ai"]
+    cost1 = c["ask"] + pricing.fee(100, c["ask"]) / 100
+    n = int(min(cfg.sample_units * cfg.unit / cost1, c["size"]))
+    if n < 1:
+        return None
+    fee = pricing.fee(n, c["ask"])
+    cost = n * c["ask"] + fee
+    edge_ai = p_ai - cost / n
+    if edge_ai < cfg.sample_min_edge:
+        return None
+    return {"n": n, "fee": fee, "cost": cost, "edge": c["p"] - cost / n, "edge_ai": edge_ai}
 
 
 def confidence(edge: float) -> str:
@@ -387,7 +407,8 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
     stats = {"pulled": 0, "awaiting_forecast": 0, "awaiting_check": 0, "dropped": 0, "no_edge": 0}
     day = now.astimezone(ET).date()
     v2_today = [t for t in trades if t.get("version") and parse_iso(t["ts"]).astimezone(ET).date() == day]
-    slots = max(0, cfg.max_trades_per_day - len(v2_today))
+    slots = max(0, cfg.max_trades_per_day - sum(t.get("tier", "bet") == "bet" for t in v2_today))
+    sample_slots = max(0, cfg.sample_picks_per_day - sum(t.get("tier") == "sample" for t in v2_today))
 
     # First pass: the numbers-only forecast and the market's view for every game.
     ctxs = []
@@ -430,6 +451,25 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
     inj = espn.injuries(cfg.name) if picks else {}
     sheets: dict[str, dict] = {}
     reveals: dict[str, dict] = {}
+
+    # Games with the strongest checked AI opinion get first claim on the day's pick slots.
+    def strength(c):
+        f = fc_all.get(c["g"]["id"]) or {}
+        b, ch = f.get("blind"), (f.get("check") or {}).get("outcome")
+        if not b or ch not in ("stands", "shrink"):
+            return 0.0
+        rows = price_markets(cfg, c["g"], c["kg"], c["home_code"], c["st"], c["book"],
+                             {"margin": b["margin"], "total": b["total"]}, ch)
+        best = 0.0
+        for cand in candidates(cfg, rows):
+            sz = size_trade(cfg, cand)
+            if sz:
+                best = max(best, 1.0 + sz["edge"])
+            sz = size_sample(cfg, cand)
+            if sz:
+                best = max(best, sz["edge_ai"])
+        return best
+    ctxs.sort(key=lambda c: -strength(c))
 
     for c in ctxs:
         g, kg, home_code, st, book, mkt = c["g"], c["kg"], c["home_code"], c["st"], c["book"], c["mkt"]
@@ -488,12 +528,23 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
         # contract off the market-checked forecast and takes the single best one, or none.
         if check == "drop":
             stats["dropped"] += 1
-        elif check in ("stands", "shrink") and not mine and slots - len(new_trades) > 0:
-            best = None
-            for cand in candidates(cfg, rows):
-                sz = size_trade(cfg, cand)
-                if sz and (best is None or sz["edge"] > best[1]["edge"]):
-                    best = (cand, sz)
+        elif check in ("stands", "shrink") and not mine:
+            n_bets = sum(t.get("tier", "bet") == "bet" for t in new_trades)
+            n_samples = len(new_trades) - n_bets
+            best, tier = None, "bet"
+            if slots - n_bets > 0:
+                for cand in candidates(cfg, rows):
+                    sz = size_trade(cfg, cand)
+                    if sz and (best is None or sz["edge"] > best[1]["edge"]):
+                        best = (cand, sz)
+            if not best and sample_slots - n_samples > 0:
+                # Sample pick: the market-checked edge is too thin to bet on, but the AI's own read
+                # clearly disagrees with the price. Bought at a small fixed stake so the AI's read
+                # builds a graded record. Never mixed with bets in the scorecard.
+                for cand in candidates(cfg, rows):
+                    sz = size_sample(cfg, cand)
+                    if sz and (best is None or sz["edge_ai"] > best[1]["edge_ai"]):
+                        best, tier = (cand, sz), "sample"
             if not best:
                 stats["no_edge"] += 1
             else:
@@ -504,7 +555,8 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
                     return None if v is None else r4(v if yes else 1 - v)
                 t = {
                     "id": uuid.uuid4().hex[:12], "bot": cfg.name, "ts": iso(now),
-                    "version": cfg.strategy_version, "commit": commit_hash(root),
+                    "version": cfg.strategy_version, "commit": commit_hash(root), "tier": tier,
+                    "edge_ai": r4(sz.get("edge_ai")),
                     "rules": {"trust": effective_trust(cfg, cand["mtype"], st["min_games"], check),
                               "kelly_fraction": cfg.kelly_fraction, "min_edge": cfg.min_edge_trade,
                               "max_units": cfg.max_units_trade},
@@ -526,10 +578,10 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
                 }
                 new_trades.append(t)
                 mine.append(t)
-                say(f"  TRADE {gname}: {t['label']} x{sz['n']} at {cand['ask']:.2f} | bet on {cand['p'] * 100:.1f}% | "
+                say(f"  {'TRADE' if tier == 'bet' else 'SAMPLE'} {gname}: {t['label']} x{sz['n']} at {cand['ask']:.2f} | bet on {cand['p'] * 100:.1f}% | "
                     f"AI {(t['p_ai'] or 0) * 100:.1f}% | stats {(t['p_stats'] or 0) * 100:.1f}% | market {(t['p_kalshi'] or 0) * 100:.1f}% | "
                     f"edge {sz['edge'] * 100:+.1f} | {t['units']:.2f}u")
-                notify(f"{cfg.title} paper pick: {t['label']} at {cand['ask'] * 100:.0f}c",
+                notify(f"{cfg.title} paper {'pick' if tier == 'bet' else 'sample pick'}: {t['label']} at {cand['ask'] * 100:.0f}c",
                        f"{gname}\nKalshi {t['ticker']}\nSize {t['units']:.2f} units | Edge {sz['edge'] * 100:+.1f} pts\n"
                        "PAPER ONLY. No real order was placed.")
 

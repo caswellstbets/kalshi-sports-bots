@@ -29,7 +29,7 @@ class BotConfig:
     trade_types: tuple = ("ml", "spread", "total")
     min_rated_games: int = 5       # both teams need this many games behind their rating
     # --- AI forecast and market check (v2) ---
-    strategy_version: str = "v2.1"
+    strategy_version: str = "v2.2"
     deep_reads_per_day: int = 8    # games per day that get a full AI forecast: biggest stats-vs-market gaps
     forecast_lead_minutes: float = 40.0  # no deep read for a game starting sooner than this
     control_reads_per_day: int = 2 # plus this many chosen at random, so the AI is graded on unselected games too
@@ -57,6 +57,11 @@ class BotConfig:
     max_units_game: float = 2.0    # one position per game, so this equals the per-trade cap
     min_edge_trade: float = 0.03   # edge after the market check and exact fees, below which there is no bet (GUESS)
     max_trades_per_day: int = 5
+    # Sample picks: when the market-checked edge is too thin to bet, but the AI's own forecast beats
+    # the ask by this much after fees, buy a small fixed stake so the AI's read gets a graded record.
+    sample_units: float = 0.5
+    sample_min_edge: float = 0.05
+    sample_picks_per_day: int = 6
     # only trade near the main line, where the forecast is most reliable; no long shots
     price_band: dict = field(default_factory=lambda: {"ml": (0.15, 0.85), "spread": (0.35, 0.65), "total": (0.35, 0.65)})
     max_spread: float = 0.08

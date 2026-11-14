@@ -124,12 +124,12 @@ def verdict(ts: dict, n_games: int) -> str:
 
 
 def trade_table(trades: list[dict]) -> list[str]:
-    L = ["| Placed | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |",
-         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+    L = ["| Placed | Kind | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |",
+         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for t in sorted(trades, key=lambda t: t["ts"], reverse=True):
         s = t["settle"]
         closing = "" if not s or s.get("clv") is None or s["outcome"] == "pulled" else f"{s['clv'] * 100:+.0f}c"
-        L.append(f"| {when(t['ts'])} | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
+        L.append(f"| {when(t['ts'])} | {t.get('tier', 'bet' if t.get('version') else 'v1')} | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
                  f"{t['contracts']} ({t['units']:.2f}u) | {pct(t['p_final'])} | {pct(t.get('p_ai'))} | {pct(t.get('p_kalshi'))} | "
                  f"{t['edge'] * 100:+.1f} | {s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | {closing} |")
     return L + [""]
@@ -147,8 +147,14 @@ def bot_md(bot: str, title: str, d: dict) -> str:
     v1 = [t for t in d["trades"] if version(t) == "v1"]
     ts = trade_stats(v2)
     ai_games = [g for g in d["games"] if g.get("ai")]
-    L = [f"## {title}", "", verdict(ts, len(ai_games)), "", "**v2 picks** (blind AI forecast, market check, code-chosen bet)", ""]
-    L += stats_line(ts)
+    L = [f"## {title}", "", verdict(ts, len(ai_games)), "", "**v2 picks** (blind AI forecast, market check, code-chosen contract)", "",
+         "*Bets* clear a 3 point edge after the market check and are sized by Kelly. *Samples* are 0.5 unit picks on "
+         "games where the AI's own forecast beats the price by 5+ points but the market-checked edge is too thin to bet; "
+         "they exist to grade the AI's read.", ""]
+    for tier in ("bet", "sample"):
+        sub = [t for t in v2 if t.get("tier", "bet") == tier]
+        if sub:
+            L += [f"{tier.capitalize()}s:", ""] + stats_line(trade_stats(sub))
     if ts["decided"]:
         L.append(f"Of {ts['decided']} decided picks the bot expected to win {ts['expected_wins']:.1f} and won {ts['won']}.")
     if ts["clv_n"]:
