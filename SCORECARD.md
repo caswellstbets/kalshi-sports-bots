@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 1:09 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 2:08 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 52 (each bot counts separately).
+Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 55 (each bot counts separately).
 
 **v2 picks**
 
