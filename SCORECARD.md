@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 11:50 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 12:09 PM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 36 (each bot counts separately).
+Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 45 (each bot counts separately).
 
 **v2 picks**
 
@@ -35,7 +35,7 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 No picks yet.
 
 
-Forecast accuracy by game: no finished games graded yet (5 games being tracked, 0 with an AI forecast).
+Forecast accuracy by game: no finished games graded yet (5 games being tracked, 4 with an AI forecast).
 
 **v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.
 
@@ -45,7 +45,7 @@ Forecast accuracy by game: no finished games graded yet (5 games being tracked, 
 
 | Confidence | Game | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge | Placed |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **MID** | DET at MIA | Over 229.5 | 48c | 1.49u | 56% | 48% | open |  |  | Sat Nov 14 11:08 AM ET |
+| **MID** | Detroit at Miami | Over 229.5 | 48c | 1.49u | 56% | 48% | open |  |  | Sat Nov 14 11:08 AM ET |
 
 ## NFL
 
@@ -56,7 +56,7 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 No picks yet.
 
 
-Forecast accuracy by game: no finished games graded yet (1 games being tracked, 0 with an AI forecast).
+Forecast accuracy by game: no finished games graded yet (1 games being tracked, 1 with an AI forecast).
 
 ## College football
 
