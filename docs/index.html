@@ -7,13 +7,13 @@ th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>Kalshi sports paper-trading scorecard</h1>
 <p>Updated Sat Nov 14 5:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
-<p>Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 74 (each bot counts separately).</p>
+<p>Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 75 (each bot counts separately).</p>
 <p><strong>v2 picks</strong></p>
 <div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
-<tr><td>NBA</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$6.96</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td>NBA</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>$0.00</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td><td>n/a</td></tr>
 <tr><td>NFL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
 <tr><td>College football</td><td>7</td><td>5</td><td>1</td><td>1</td><td>0</td><td>$15.98</td><td>+$1.05</td><td>+0.10</td><td>+15.1%</td><td>+0.0c</td></tr>
-<tr><td><strong>All three</strong></td><td>8</td><td>6</td><td>1</td><td>1</td><td>0</td><td>$22.94</td><td>+$1.05</td><td>+0.10</td><td>+15.1%</td><td>+0.0c</td></tr>
+<tr><td><strong>All three</strong></td><td>8</td><td>5</td><td>1</td><td>1</td><td>1</td><td>$15.98</td><td>+$0.27</td><td>+0.03</td><td>+1.9%</td><td>+0.0c</td></tr>
 </table></div>
 <p><strong>v1 picks (earlier rules)</strong></p>
 <div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
@@ -25,16 +25,17 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <p><strong>Confidence.</strong> HIGH: the edge holds up even after the forecast is pulled most of the way to the market price; sized by Kelly, up to 2 units. MID: I have a specific written reason the price may be wrong and my own forecast beats the price by 10 or more points; half a unit. LOW: the same, with a 7 to 10 point gap; a quarter unit. A game with no specific reason against the market gets no pick. There is no daily limit on picks.</p>
 <p>How to read this: profit over a handful of bets is mostly luck. The fairer tests are whether the AI forecast misses by less than the stats forecast and the market on the same games, and whether prices move toward the picks after they are made. The rules, and what would cause the AI to lose authority, are in the README.</p>
 <h2>NBA</h2>
-<p>Too early to say: 0 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
+<p>Too early to say: 1 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
 <p><strong>v2 picks</strong> (blind AI forecast, market check, code-chosen contract)</p>
 <div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
-<tr><td><strong>HIGH</strong></td><td>1</td><td>1</td><td>0</td><td>0</td><td>$6.96</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
+<tr><td><strong>HIGH</strong></td><td>1</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td></tr>
 <tr><td><strong>MID</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
 <tr><td><strong>LOW</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
-<tr><td><strong>ALL</strong></td><td>1</td><td>1</td><td>0</td><td>0</td><td>$6.96</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
+<tr><td><strong>ALL</strong></td><td>1</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td></tr>
 </table></div>
+<p>Pulled picks: 1, exit profit -$0.78 (not counted as closing-price edge).</p>
 <div class='tw'><table><tr><th>Confidence</th><th>Game</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>AI says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
-<tr><td><strong>HIGH</strong></td><td>Dallas at Cleveland</td><td>Sat 6:30 PM</td><td>Cleveland +4.5</td><td>37c</td><td>0.70u</td><td>60%</td><td>36%</td><td>open</td><td></td><td></td></tr>
+<tr><td><strong>HIGH</strong></td><td>Dallas at Cleveland</td><td>Sat 6:30 PM</td><td>Cleveland +4.5</td><td>37c</td><td>0.70u</td><td>60%</td><td>36%</td><td>pulled</td><td>-$0.78</td><td></td></tr>
 </table></div>
 <p>Why each pick was made:</p>
 <p class='li'><strong>HIGH: Dallas at Cleveland, Cleveland +4.5.</strong> My forecast: home team -1.0, total 229.0. Market: home team -10.0, total 226.8155. Even matchup. Cleveland is on a back-to-back and Mobley sat last night; Dallas is without Lively and lost by 39 on Thursday. Why the price may be wrong: within a few points of the market on both margin and total</p>

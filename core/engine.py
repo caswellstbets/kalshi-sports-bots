@@ -516,6 +516,12 @@ def run(cfg: BotConfig, root: str = ".", *, dry: bool = False, use_ai: bool = Tr
             sheets[gid] = blind_sheet(cfg, g, st, rt, inj, rt_form, results, picks[gid])
             stats["awaiting_forecast"] += 1
         ai = {"margin": blind["margin"], "total": blind["total"]} if blind else None
+        # An automatic "stands" goes stale when the market moves a lot after the forecast: that is
+        # usually news (an injury, a lineup change) the forecast never saw. A written check is needed.
+        at_fc = (track.get(gid) or {}).get("market_at_forecast") or {}
+        if (chk and chk.get("auto") and mkt["margin"] is not None and at_fc.get("margin") is not None
+                and abs(mkt["margin"] - at_fc["margin"]) >= cfg.check_gap_margin):
+            chk = None
         check = chk["outcome"] if chk else None
 
         # Market check. A small disagreement stands automatically; a big one waits for a written answer.

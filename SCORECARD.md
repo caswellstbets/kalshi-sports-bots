@@ -2,16 +2,16 @@
 
 Updated Sat Nov 14 5:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 74 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 75 (each bot counts separately).
 
 **v2 picks**
 
 | Bot | Picks | Open | Won | Lost | Pulled | Open stake | Profit | Units | Return on settled stake | Closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| NBA | 1 | 1 | 0 | 0 | 0 | $6.96 | +$0.00 | +0.00 | n/a | n/a |
+| NBA | 1 | 0 | 0 | 0 | 1 | $0.00 | -$0.78 | -0.08 | -11.2% | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
 | College football | 7 | 5 | 1 | 1 | 0 | $15.98 | +$1.05 | +0.10 | +15.1% | +0.0c |
-| **All three** | 8 | 6 | 1 | 1 | 0 | $22.94 | +$1.05 | +0.10 | +15.1% | +0.0c |
+| **All three** | 8 | 5 | 1 | 1 | 1 | $15.98 | +$0.27 | +0.03 | +1.9% | +0.0c |
 
 **v1 picks (earlier rules)**
 
@@ -28,21 +28,22 @@ How to read this: profit over a handful of bets is mostly luck. The fairer tests
 
 ## NBA
 
-Too early to say: 0 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 1 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
 | Confidence | Picks | Open | Won | Lost | Open stake | Profit | Units | Return on settled stake |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **HIGH** | 1 | 1 | 0 | 0 | $6.96 | +$0.00 | +0.00 | n/a |
+| **HIGH** | 1 | 0 | 0 | 0 | $0.00 | -$0.78 | -0.08 | -11.2% |
 | **MID** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
 | **LOW** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
-| **ALL** | 1 | 1 | 0 | 0 | $6.96 | +$0.00 | +0.00 | n/a |
+| **ALL** | 1 | 0 | 0 | 0 | $0.00 | -$0.78 | -0.08 | -11.2% |
 
+Pulled picks: 1, exit profit -$0.78 (not counted as closing-price edge).
 
 | Confidence | Game | Start (CT) | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **HIGH** | Dallas at Cleveland | Sat 6:30 PM | Cleveland +4.5 | 37c | 0.70u | 60% | 36% | open |  |  |
+| **HIGH** | Dallas at Cleveland | Sat 6:30 PM | Cleveland +4.5 | 37c | 0.70u | 60% | 36% | pulled | -$0.78 |  |
 
 Why each pick was made:
 
