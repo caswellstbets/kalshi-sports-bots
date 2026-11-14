@@ -62,7 +62,10 @@ def p_yes(m: dict, mtype: str, home_code: str, mu_margin: float | None, mu_total
 
 def team_name(t: dict) -> str:
     """Full school or city name, never the abbreviation."""
-    return t.get("location") or t.get("display") or t.get("abbr") or "?"
+    loc = t.get("location")
+    if loc in ("New York", "Los Angeles", "LA"):  # two teams share the city
+        return t.get("display") or loc
+    return loc or t.get("display") or t.get("abbr") or "?"
 
 
 def game_name(g: dict) -> str:
