@@ -20,10 +20,10 @@ def situational(ctx: dict) -> tuple[float, float, list[str]]:
 
 CONFIG = BotConfig(
     name="cfb", title="College football", kalshi_prefix="KXNCAAF", season_start="2026-08-22",
-    hfa=2.6, ridge=2.5, half_life_days=70, sd_margin=15.5, sd_total=16.5,
+    hfa=2.6, ridge=1.0, half_life_days=70, sd_margin=15.8, sd_total=17.3, total_scale=0.63, total_bias=-1.3,
     margin_cap=28.0, min_games=3, espn_groups=["80", "81"],
     window_hours=24, situational=situational,
-    ai_margin_cap=2.5, ai_total_cap=3.5,
+    form_half_life_days=21, form_weight=0.30, max_trades_per_day=8, ai_margin_cap=3.5, ai_total_cap=4.5,
 )
 
 if __name__ == "__main__":

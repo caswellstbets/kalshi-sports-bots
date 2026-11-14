@@ -25,10 +25,9 @@ def situational(ctx: dict) -> tuple[float, float, list[str]]:
 
 CONFIG = BotConfig(
     name="nba", title="NBA", kalshi_prefix="KXNBA", season_start="2026-10-20",
-    hfa=2.2, ridge=8.0, half_life_days=45, sd_margin=12.3, sd_total=18.0,
+    hfa=2.2, ridge=3.0, half_life_days=45, sd_margin=14.5, sd_total=18.2, total_scale=0.7,
     window_hours=12, situational=situational,
-    ai_margin_cap=2.0, ai_total_cap=3.0,
-    max_strike_gap={"spread": 1.0, "total": 2.0},  # no key numbers in basketball
+    form_half_life_days=10, max_trades_per_day=4, ai_margin_cap=4.0, ai_total_cap=5.0,
 )
 
 if __name__ == "__main__":

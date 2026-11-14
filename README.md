@@ -8,27 +8,37 @@ Current results: [SCORECARD.md](SCORECARD.md)
 
 ## How a pick is made
 
-1. **Power ratings.** A ridge regression on this season's scores gives each team an offense and a defense
-   rating, adjusted for opponents, home field and recency. Each bot adds its own situational terms
-   (`bots/nba.py`, `bots/nfl.py`, `bots/cfb.py`).
-2. **Sportsbook anchor.** The DraftKings line shown on ESPN is stripped of the book's cut. The bot's forecast is
-   70% book and 30% model (75/25 for the NFL), and the model can pull the forecast at most 1.8 points.
-3. **AI review.** Games that are within a point of the trading bar get a written review from Claude, which can
-   nudge the forecast by a capped amount or veto the game. Reviews are saved with `python -m core.notes`.
-4. **Price check.** The bot buys only if all of these hold:
-   - its edge over the Kalshi ask is at least 4 points after fees, and no more than 15 (bigger means bad data);
-   - the sportsbook on its own also rates the price fair or better;
-   - for spreads and totals, the Kalshi strike is the sportsbook's own number (or right beside it);
-   - the price is not a long shot, the bid-ask gap is 8 cents or less, and at least 10 contracts are offered.
+The bot's own analysis drives every pick. The sportsbook line is a 10% input and a flag for the AI review, never a veto.
 
-Most games produce no trade. That is intended.
+1. **Season strength.** A ridge regression on this season's scores gives each team an offense and a defense
+   rating, adjusted for opponents and home field.
+2. **Recent form.** The same ratings refit with a short memory (10 days NBA, 21 days football) make up 30 to 35%
+   of the model.
+3. **Situation.** Each bot adds its own terms: back-to-backs and rest (NBA), byes and short road weeks (NFL),
+   byes and a blowout cap (college). See `bots/`.
+4. **Back-tested scale.** The ratings were tuned by predicting the second half of this season from the first:
+   how much to shrink them, how wide results really land around the forecast, and how much of a predicted total
+   to believe. The NFL ratings showed no skill on totals, so the NFL bot does not trade them.
+5. **AI review.** Each day's strongest opinions get a written review from Claude with team stats, last five
+   results, injuries and the sportsbook line for reference. It can move the forecast by up to about 4 points or
+   veto the game.
+6. **Price check.** The bot buys when its probability beats the Kalshi ask by 6 to 16 points after fees. Above 16
+   is treated as a model error, not an opportunity.
+
+Each bot makes at most a few picks a day (4 NBA, 5 NFL, 8 college), best first, and at most one side and one
+total per game.
 
 ## Paper trading rules
 
-- $1,000 paper bankroll per bot, 1 unit = $10. Quarter-Kelly sizing, 2 units max per trade, 5 per game.
-- Fills at the ask, capped at the size offered, with Kalshi's taker fee.
+- $1,000 paper bankroll per bot, 1 unit = $10.
+- **Stake size varies from 0.5 to 3 units.** It is one eighth of the Kelly stake, so it grows with the edge and
+  shrinks as the price gets worse, then is scaled by the AI's confidence (0.7x low, 1x medium, 1.2x high).
+  Flat staking would ignore how strong each opinion is; full Kelly assumes the probabilities are exact, which
+  they are not, so the fraction and the cap keep one overconfident forecast from doing much damage.
+- Fills at the ask, capped at the size offered, with Kalshi's taker fee. No long shots: 15 to 85 cents for
+  winners, 35 to 65 for spreads and totals. Bid-ask gap 8 cents or less.
 - Entry only before the scheduled start: within 12 hours (NBA) or 24 hours (football), never in the last 5 minutes.
-- One position per game per market type. No adding and no re-entry.
+- No adding and no re-entry.
 - A pick can be **pulled** before the start if the market is bidding more than the bot now thinks it is worth, or
   if a fresh AI review vetoes the game. It is sold at the bid. Nothing is ever traded during a game.
 

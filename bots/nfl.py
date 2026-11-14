@@ -1,5 +1,5 @@
-"""NFL bot. One game a week per team, so ratings lean harder on the sportsbook
-line, and the calendar matters: byes help, short road weeks hurt."""
+"""NFL bot. One game a week per team, so ratings shrink harder toward average
+and the calendar matters: byes help, short road weeks hurt."""
 from core.config import BotConfig
 from core.util import parse_iso
 
@@ -24,9 +24,9 @@ def situational(ctx: dict) -> tuple[float, float, list[str]]:
 
 CONFIG = BotConfig(
     name="nfl", title="NFL", kalshi_prefix="KXNFL", season_start="2026-09-09",
-    hfa=1.6, ridge=8.0, half_life_days=70, sd_margin=13.3, sd_total=13.5,
-    window_hours=24, situational=situational, book_weight=0.75,
-    ai_margin_cap=2.0, ai_total_cap=3.0,
+    hfa=1.6, ridge=3.0, half_life_days=70, sd_margin=13.0, sd_total=14.0,
+    trade_types=("ml", "spread"),  # back-test: the ratings do not predict NFL totals, so the bot has no opinion on them,
+    window_hours=24, situational=situational, form_half_life_days=21, form_weight=0.30, max_trades_per_day=5, ai_margin_cap=3.5, ai_total_cap=4.0,
 )
 
 if __name__ == "__main__":

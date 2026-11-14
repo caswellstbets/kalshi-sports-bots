@@ -196,3 +196,28 @@ def injuries(sport: str) -> dict[str, list[str]]:
             lines.append(f"{ath.get('displayName', '?')} ({pos}) {i.get('status', '')}: {(i.get('shortComment') or '')[:160]}")
         out[str(team.get("id"))] = lines
     return out
+
+
+_STATS = {
+    "nba": ["avgPoints", "fieldGoalPct", "threePointPct", "avgThreePointFieldGoalsAttempted", "avgFreeThrowsAttempted",
+            "avgTurnovers", "avgOffensiveRebounds", "avgRebounds", "avgAssists", "avgSteals", "avgBlocks"],
+    "football": ["totalPointsPerGame", "yardsPerGame", "yardsPerPassAttempt", "yardsPerRushAttempt", "completionPct",
+                 "thirdDownConvPct", "redzoneTouchdownPct", "turnOverDifferential", "totalGiveaways", "totalTakeaways",
+                 "sacks", "totalPenaltyYards", "teamGamesPlayed"],
+}
+
+
+def team_stats(sport: str, team_id: str) -> dict:
+    """A handful of season efficiency numbers for the AI review. Empty if unavailable."""
+    try:
+        d = get_json(SITE + PATHS[sport] + f"/teams/{team_id}/statistics", min_gap=GAP, tries=2)
+    except RuntimeError:
+        return {}
+    want = _STATS["nba" if sport == "nba" else "football"]
+    out = {}
+    for cat in ((d.get("results") or d).get("stats") or {}).get("categories", []):
+        for st in cat.get("stats", []):
+            key = st.get("name")
+            if key in want and key not in out and not (key == "sacks" and cat.get("name") != "defensive"):
+                out[key] = st.get("displayValue")
+    return out

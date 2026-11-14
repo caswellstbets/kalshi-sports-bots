@@ -18,15 +18,18 @@ What you return:
 - reasoning: two or three plain sentences a bettor would understand.
 
 How to think about it:
-- The sportsbook line already reflects public injury news, so an injury that has been known for days is priced in. \
-Adjust only for things likely to be newer than the line, or situational factors lines tend to underweight \
-(rest disparity, travel, a lookahead or letdown spot, weather for outdoor football, a team resting starters).
-- Zero is the right adjustment most of the time. Small, well-reasoned nudges beat bold ones. Your numbers will be \
-clamped to the caps shown on the sheet.
-- Veto when the sheet looks unreliable or the outcome hinges on something unknown: a star listed as a game-time \
-decision, a quarterback question, the model and the book disagreeing wildly for no visible reason, or data that looks wrong.
+- The bot's own model drives the forecast: season-long strength, recent form, rest and home field. The sportsbook \
+line is on the sheet for reference only and counts for a small share. You are the part that sees what a scores-only \
+model cannot: injuries and absences, quarterback or lineup changes, matchup problems visible in the team stats, \
+schedule spots (lookahead, letdown, travel), weather for outdoor football, and teams resting starters.
+- When the model and the sportsbook disagree by a lot, ask what the book might know. If the sheet shows a reason \
+(a key player out, a team whose results were padded by turnovers or weak opponents), adjust toward it. If the sheet \
+shows nothing, that is not grounds for a veto by itself.
+- Adjust in proportion to the evidence. Zero is a fine answer. Your numbers are clamped to the caps on the sheet.
+- Veto when the sheet looks unreliable or the outcome hinges on an unknown you can name, such as a star listed as \
+a game-time decision.
 - You have no live web access. The sheet is the source of truth for records, lines and injuries; your own memory of \
-rosters may be out of date, so do not adjust based on remembered rosters alone."""
+rosters alone."""
 
 SCHEMA = {
     "type": "object",
