@@ -6,58 +6,68 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>Kalshi sports paper-trading scorecard</h1>
-<p>Updated Sat Nov 14 11:30 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
-<p>Test started Sat Nov 14 12:19 AM ET. Runs so far: 3.</p>
-<div class='tw'><table><tr><th>Bot</th><th>Trades</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Profit</th><th>Units</th><th>Return on stake</th><th>Closing-price edge</th></tr>
-<tr><td>NBA</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
-<tr><td>NFL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
-<tr><td>College football</td><td>9</td><td>9</td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
-<tr><td><strong>All three</strong></td><td>10</td><td>10</td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<p>Updated Sat Nov 14 11:32 AM ET. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
+<p>Test started Sat Nov 14 12:19 AM ET. v2 rules started Sat Nov 14. Bot runs so far: 27 (27 sessions of up to three bots).</p>
+<p><strong>v2 picks</strong></p>
+<div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
+<tr><td>NBA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td>NFL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td>College football</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$7.47</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>All three</strong></td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$7.47</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
 </table></div>
-<p>How to read this: profit over a handful of bets is mostly luck. Closing-price edge (did the price move toward the bot&#x27;s side after it bought) and calibration (were its percentages right) are the fairer early tests.</p>
+<p><strong>v1 picks (earlier rules)</strong></p>
+<div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
+<tr><td>NBA</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$14.93</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td>NFL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td>College football</td><td>8</td><td>8</td><td>0</td><td>0</td><td>0</td><td>$99.25</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>All three</strong></td><td>9</td><td>9</td><td>0</td><td>0</td><td>0</td><td>$114.18</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td></tr>
+</table></div>
+<p>How to read this: profit over a handful of bets is mostly luck. The fairer tests are whether the AI forecast misses by less than the stats forecast and the market on the same games, and whether prices move toward the picks after they are made. The rules, and what would cause the AI to lose authority, are in the README.</p>
 <h2>NBA</h2>
-<p>Too early to say. Not enough finished games yet.</p>
-<div class='tw'><table><tr><th>Paper trades</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return on stake</th></tr>
-<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
+<p>Too early to say: 0 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
+<p><strong>v2 picks</strong> (blind AI forecast, market check, code-chosen bet)</p>
+<div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
 </table></div>
-<p>Average edge claimed at entry: +6.1 points after fees.</p>
-<p>Calibration: no graded markets yet (32 being tracked).</p>
-<div class='tw'><table><tr><th>Placed</th><th>Game</th><th>Pick</th><th>Price</th><th>Size</th><th>Bot</th><th>Edge</th><th>Confidence</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
-<tr><td>Sat Nov 14 11:08 AM ET</td><td>DET @ MIA</td><td>Over 229.5</td><td>48c</td><td>30 (1.49u)</td><td>55.8%</td><td>+6.1</td><td>Medium</td><td>open</td><td></td><td></td></tr>
+<p>Forecast accuracy by game: no finished games graded yet (0 games being tracked, 0 with an AI forecast).</p>
+<p><strong>v1 picks</strong> (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.</p>
+<div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$14.93</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
 </table></div>
-<p>AI notes on the most recent picks:</p>
-<p class='li'><strong>DET @ MIA, Over 229.5:</strong> Model and market agree on the margin; Miami back-to-back and Duren out roughly offset. No adjustment.</p>
+<div class='tw'><table><tr><th>Placed</th><th>Game</th><th>Pick</th><th>Price</th><th>Size</th><th>Bet on</th><th>AI</th><th>Market</th><th>Edge</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td>Sat Nov 14 11:08 AM ET</td><td>DET @ MIA</td><td>Over 229.5</td><td>48c</td><td>30 (1.49u)</td><td>55.8%</td><td>n/a</td><td>47.5%</td><td>+6.1</td><td>open</td><td></td><td></td></tr>
+</table></div>
 <h2>NFL</h2>
-<p>Too early to say. Not enough finished games yet.</p>
-<div class='tw'><table><tr><th>Paper trades</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return on stake</th></tr>
-<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
+<p>Too early to say: 0 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
+<p><strong>v2 picks</strong> (blind AI forecast, market check, code-chosen bet)</p>
+<div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
 </table></div>
-<p>Calibration: no graded markets yet (8 being tracked).</p>
+<p>Forecast accuracy by game: no finished games graded yet (0 games being tracked, 0 with an AI forecast).</p>
 <h2>College football</h2>
-<p>Too early to say. Not enough finished games yet.</p>
-<div class='tw'><table><tr><th>Paper trades</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return on stake</th></tr>
-<tr><td>9</td><td>9</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
+<p>Too early to say: 0 settled picks and 0 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
+<p><strong>v2 picks</strong> (blind AI forecast, market check, code-chosen bet)</p>
+<div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>$7.47</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
 </table></div>
-<p>Average edge claimed at entry: +7.3 points after fees.</p>
-<p>Calibration: no graded markets yet (665 being tracked).</p>
-<div class='tw'><table><tr><th>Placed</th><th>Game</th><th>Pick</th><th>Price</th><th>Size</th><th>Bot</th><th>Edge</th><th>Confidence</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
-<tr><td>Sat Nov 14 11:30 AM ET</td><td>SJSU @ AFA</td><td>SJSU +13.5</td><td>48c</td><td>15 (0.75u)</td><td>52.8%</td><td>+3.0</td><td>Low</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>WAKE @ SMU</td><td>WAKE to win</td><td>49c</td><td>28 (1.42u)</td><td>59.0%</td><td>+8.2</td><td>Medium</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>WAKE @ SMU</td><td>WAKE -4.5</td><td>36c</td><td>36 (1.35u)</td><td>47.5%</td><td>+9.9</td><td>Medium</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>TENN @ TA&amp;M</td><td>TENN -3.5</td><td>39c</td><td>36 (1.46u)</td><td>50.8%</td><td>+10.1</td><td>Medium</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>TENN @ TA&amp;M</td><td>Under 40.5</td><td>38c</td><td>25 (0.99u)</td><td>46.6%</td><td>+7.0</td><td>Low</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>TAR @ UWF</td><td>UWF to win</td><td>15c</td><td>41 (0.65u)</td><td>22.2%</td><td>+6.3</td><td>Low</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>TAR @ UWF</td><td>UWF +18.5</td><td>54c</td><td>14 (0.78u)</td><td>65.5%</td><td>+9.8</td><td>Medium</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:31 AM ET</td><td>ASU @ UCF</td><td>UCF -7.5</td><td>37c</td><td>37 (1.43u)</td><td>45.8%</td><td>+7.2</td><td>Medium</td><td>open</td><td></td><td></td></tr>
-<tr><td>Sat Nov 14 12:20 AM ET</td><td>EWU @ UTU</td><td>UTU to win</td><td>35c</td><td>50 (1.83u)</td><td>41.3%</td><td>+4.7</td><td>Low</td><td>open</td><td></td><td></td></tr>
+<div class='tw'><table><tr><th>Placed</th><th>Game</th><th>Pick</th><th>Price</th><th>Size</th><th>Bet on</th><th>AI</th><th>Market</th><th>Edge</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td>Sat Nov 14 11:30 AM ET</td><td>SJSU @ AFA</td><td>SJSU +13.5</td><td>48c</td><td>15 (0.75u)</td><td>52.8%</td><td>62.4%</td><td>47.5%</td><td>+3.0</td><td>open</td><td></td><td></td></tr>
 </table></div>
-<p>AI notes on the most recent picks:</p>
-<p class='li'><strong>WAKE @ SMU, WAKE to win:</strong> Wake Forest&#x27;s rating is inflated by lopsided wins over weak opponents, including a 77-0 game. SMU at home is the best team Wake has seen in a month. Forecast moved 3 points toward SMU.</p>
-<p class='li'><strong>WAKE @ SMU, WAKE -4.5:</strong> Wake Forest&#x27;s rating is inflated by lopsided wins over weak opponents, including a 77-0 game. SMU at home is the best team Wake has seen in a month. Forecast moved 3 points toward SMU.</p>
-<p class='li'><strong>TENN @ TA&amp;M, TENN -3.5:</strong> Tennessee is 7-2 with a win over Alabama and A&amp;M has lost three of four, yet the book calls it even. That can mean a Tennessee absence the sheet does not show, so the forecast is moved 2 points toward A&amp;M.</p>
-<p class='li'><strong>TENN @ TA&amp;M, Under 40.5:</strong> Tennessee is 7-2 with a win over Alabama and A&amp;M has lost three of four, yet the book calls it even. That can mean a Tennessee absence the sheet does not show, so the forecast is moved 2 points toward A&amp;M.</p>
-<p class='li'><strong>TAR @ UWF, UWF to win:</strong> Tarleton State is 10-0 partly on a +12 turnover margin, which rarely lasts, and that supports the model&#x27;s view that 17 points is too many. Their passing and rushing numbers are dominant though, so the forecast is moved 2.5 points back toward Tarleton.</p>
-<p class='li'><strong>TAR @ UWF, UWF +18.5:</strong> Tarleton State is 10-0 partly on a +12 turnover margin, which rarely lasts, and that supports the model&#x27;s view that 17 points is too many. Their passing and rushing numbers are dominant though, so the forecast is moved 2.5 points back toward Tarleton.</p>
-<p class='li'><strong>ASU @ UCF, UCF -7.5:</strong> The model&#x27;s higher total fits what these teams have actually done: their last five games each have averaged about 54 combined points against a line of 47.5. Nothing on the sheet explains the low number, so the forecast stands.</p>
-<p class='li'><strong>EWU @ UTU, UTU to win:</strong> Two bad FCS teams rated nearly even by results, while the book makes the road team a 4.5-point favorite. No injury or weather information either way, so the forecast stands unadjusted and confidence is low.</p>
+<p>Why each pick was made:</p>
+<p class='li'><strong>SJSU @ AFA, SJSU +13.5:</strong> AI forecast home margin 8.5, market 15.391, stats 10.0303. Air Force is better and at home at altitude, but it wins close. San Jose State&#x27;s offense is weak on the ground and on third down, so points should be scarce. Market check (stands): Market has Air Force by 14 to 15. Air Force&#x27;s option offense shortens games and five of its six listed wins were by 10 or fewer. Against three common opponents (Nevada, Wyoming, NIU) Air Force was only about 6 points better than San Jose State before home field. Risk I cannot rule out: a San Jose State quarterback absence.</p>
+<p>Forecast accuracy by game: no finished games graded yet (115 games being tracked, 13 with an AI forecast).</p>
+<p><strong>v1 picks</strong> (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.</p>
+<div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
+<tr><td>8</td><td>8</td><td>0</td><td>0</td><td>0</td><td>$99.25</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td></tr>
+</table></div>
+<div class='tw'><table><tr><th>Placed</th><th>Game</th><th>Pick</th><th>Price</th><th>Size</th><th>Bet on</th><th>AI</th><th>Market</th><th>Edge</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>WAKE @ SMU</td><td>WAKE to win</td><td>49c</td><td>28 (1.42u)</td><td>59.0%</td><td>n/a</td><td>48.5%</td><td>+8.2</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>WAKE @ SMU</td><td>WAKE -4.5</td><td>36c</td><td>36 (1.35u)</td><td>47.5%</td><td>n/a</td><td>35.0%</td><td>+9.9</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>TENN @ TA&amp;M</td><td>TENN -3.5</td><td>39c</td><td>36 (1.46u)</td><td>50.8%</td><td>n/a</td><td>38.5%</td><td>+10.1</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>TENN @ TA&amp;M</td><td>Under 40.5</td><td>38c</td><td>25 (0.99u)</td><td>46.6%</td><td>n/a</td><td>37.5%</td><td>+7.0</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>TAR @ UWF</td><td>UWF to win</td><td>15c</td><td>41 (0.65u)</td><td>22.2%</td><td>n/a</td><td>14.5%</td><td>+6.3</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>TAR @ UWF</td><td>UWF +18.5</td><td>54c</td><td>14 (0.78u)</td><td>65.5%</td><td>n/a</td><td>53.0%</td><td>+9.8</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:31 AM ET</td><td>ASU @ UCF</td><td>UCF -7.5</td><td>37c</td><td>37 (1.43u)</td><td>45.8%</td><td>n/a</td><td>36.0%</td><td>+7.2</td><td>open</td><td></td><td></td></tr>
+<tr><td>Sat Nov 14 12:20 AM ET</td><td>EWU @ UTU</td><td>UTU to win</td><td>35c</td><td>50 (1.83u)</td><td>41.3%</td><td>n/a</td><td>34.0%</td><td>+4.7</td><td>open</td><td></td><td></td></tr>
+</table></div>
 </body></html>

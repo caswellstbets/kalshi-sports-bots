@@ -9,8 +9,12 @@ from .util import ET, iso, now_utc, parse_iso, read_json, read_jsonl
 
 BOTS = [("nba", "NBA"), ("nfl", "NFL"), ("cfb", "College football")]
 BANKROLL, UNIT = 1000.0, 10.0
-SOURCES = [("p_kalshi", "Kalshi closing price"), ("p_book", "Sportsbook line"), ("p_model", "Power ratings alone"),
-           ("p_blend", "Bot before AI"), ("p_final", "Bot with AI")]
+SOURCES = [("p_kalshi", "Kalshi closing price"), ("p_book", "Sportsbook line"), ("p_stats", "Stats forecast alone"),
+           ("p_ai", "Blind AI forecast"), ("p_trade", "Bet probability (AI after market check)")]
+
+
+def version(t: dict) -> str:
+    return t.get("version") or "v1"
 
 
 def load(root: str, bot: str) -> dict:
@@ -19,23 +23,31 @@ def load(root: str, bot: str) -> dict:
     settles = {s["trade_id"]: s for s in read_jsonl(os.path.join(d, "settlements.jsonl"))}
     for t in trades:
         t["settle"] = settles.get(t["id"])
-    return {"trades": trades, "graded": read_jsonl(os.path.join(d, "graded_predictions.jsonl")),
+    graded = read_jsonl(os.path.join(d, "graded_predictions.jsonl"))
+    for g in graded:  # v1 rows used older names
+        g.setdefault("p_stats", g.get("p_model"))
+    return {"trades": trades, "graded": graded,
             "open_preds": read_json(os.path.join(d, "open_predictions.json"), {}),
+            "games": read_jsonl(os.path.join(d, "game_grades.jsonl")),
+            "track": read_json(os.path.join(d, "game_track.json"), {}),
             "runs": read_jsonl(os.path.join(d, "run_log.jsonl"))}
 
 
 def trade_stats(trades: list[dict]) -> dict:
     done = [t for t in trades if t["settle"]]
     decided = [t for t in done if t["settle"]["outcome"] in ("won", "lost")]
+    pulled = [t for t in done if t["settle"]["outcome"] == "pulled"]
     staked = sum(t["cost"] for t in done)
     pnl = sum(t["settle"]["pnl"] for t in done)
-    clv = [t["settle"]["clv"] for t in done if t["settle"].get("clv") is not None]
+    # closing-price edge only means something for picks held to the start
+    clv = [t["settle"]["clv"] for t in done if t["settle"]["outcome"] != "pulled" and t["settle"].get("clv") is not None]
     return {
         "n": len(trades), "open": len(trades) - len(done), "settled": len(done),
         "won": sum(t["settle"]["outcome"] == "won" for t in done),
         "lost": sum(t["settle"]["outcome"] == "lost" for t in done),
-        "pulled": sum(t["settle"]["outcome"] == "pulled" for t in done),
-        "staked": staked, "pnl": pnl, "units": pnl / UNIT,
+        "pulled": len(pulled), "pulled_pnl": sum(t["settle"]["pnl"] for t in pulled),
+        "staked": staked, "open_stake": sum(t["cost"] for t in trades if not t["settle"]),
+        "pnl": pnl, "units": pnl / UNIT,
         "roi": pnl / staked if staked else None,
         "avg_edge": sum(t["edge"] for t in trades) / len(trades) if trades else None,
         "expected_wins": sum(t["p_final"] for t in decided), "decided": len(decided),
@@ -44,9 +56,9 @@ def trade_stats(trades: list[dict]) -> dict:
     }
 
 
-def brier(graded: list[dict]) -> dict:
-    """Brier score per source on the markets where every source has a number, so they are comparable.
-    Winner markets only count once per game (the two sides are mirror images)."""
+def brier(graded: list[dict], need: tuple = ("p_kalshi", "p_stats")) -> dict:
+    """Brier score per source on exactly the same contracts (those where every source in `need`
+    has a number), so the comparison is paired. Winner markets count once per game."""
     rows, seen = [], set()
     for g in graded:
         if g["mtype"] == "ml":
@@ -54,7 +66,6 @@ def brier(graded: list[dict]) -> dict:
                 continue
             seen.add(g["game_id"])
         rows.append(g)
-    need = ["p_kalshi", "p_blend", "p_final"]
     base = [g for g in rows if all(g.get(k) is not None for k in need)]
     out = {"n": len(base), "games": len({g["game_id"] for g in base})}
     for key, _ in SOURCES:
@@ -63,7 +74,24 @@ def brier(graded: list[dict]) -> dict:
     return out
 
 
-def buckets(graded: list[dict], key: str = "p_final") -> list[tuple]:
+def game_scores(games: list[dict]) -> list[tuple]:
+    """Average miss on the final margin and total, per forecast stage, by game. Each row compares
+    the stages on exactly the same games."""
+    def mae(rows, key, field, actual):
+        v = [abs(g[key][field] - g[actual]) for g in rows if g.get(key) and g[key].get(field) is not None]
+        return sum(v) / len(v) if v else None
+    out = []
+    groups = [("All tracked games", [g for g in games if g.get("market") and g["market"].get("margin") is not None]),
+              ("Games with an AI forecast", [g for g in games if g.get("ai") and g.get("market") and g["market"].get("margin") is not None]),
+              ("  of which random control games", [g for g in games if g.get("ai") and (g["ai"].get("selected") or "").startswith("random")])]
+    for name, rows in groups:
+        if rows:
+            out.append((name, len(rows), [(mae(rows, k, "margin", "actual_margin"), mae(rows, k, "total", "actual_total"))
+                                          for k in ("stats", "ai", "market")]))
+    return out
+
+
+def buckets(graded: list[dict], key: str = "p_stats") -> list[tuple]:
     edges = [(0, .2), (.2, .4), (.4, .6), (.6, .8), (.8, 1.01)]
     out = []
     for lo, hi in edges:
@@ -88,66 +116,91 @@ def when(ts: str) -> str:
     return parse_iso(ts).astimezone(ET).strftime("%a %b %-d %-I:%M %p ET")
 
 
-def verdict(ts: dict, br: dict) -> str:
-    if ts["settled"] < 10 and br["n"] < 60:
-        return "Too early to say. Not enough finished games yet."
-    bits = []
-    if ts["clv_n"] >= 8:
-        bits.append("prices moved toward its picks on average" if ts["clv_avg"] > 0.003 else
-                    "prices moved against its picks on average" if ts["clv_avg"] < -0.003 else
-                    "prices did not move for or against its picks")
-    if br.get("p_final") and br.get("p_kalshi") and br["n"] >= 60:
-        d = br["p_final"][0] - br["p_kalshi"][0]
-        bits.append("its probabilities scored better than Kalshi's closing prices" if d < -0.002 else
-                    "its probabilities scored worse than Kalshi's closing prices" if d > 0.002 else
-                    "its probabilities scored about the same as Kalshi's closing prices")
-    return ("So far, " + " and ".join(bits) + ".") if bits else "Too early to say."
+def verdict(ts: dict, n_games: int) -> str:
+    if ts["settled"] < 30 or n_games < 60:
+        return (f"Too early to say: {ts['settled']} settled picks and {n_games} graded games. "
+                "The rules call for 60 graded AI-forecast games before any conclusion.")
+    return "Enough games to start reading the tables below. Profit alone is still mostly luck at this size."
+
+
+def trade_table(trades: list[dict]) -> list[str]:
+    L = ["| Placed | Game | Pick | Price | Size | Bet on | AI | Market | Edge | Result | Profit | Closing edge |",
+         "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+    for t in sorted(trades, key=lambda t: t["ts"], reverse=True):
+        s = t["settle"]
+        closing = "" if not s or s.get("clv") is None or s["outcome"] == "pulled" else f"{s['clv'] * 100:+.0f}c"
+        L.append(f"| {when(t['ts'])} | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
+                 f"{t['contracts']} ({t['units']:.2f}u) | {pct(t['p_final'])} | {pct(t.get('p_ai'))} | {pct(t.get('p_kalshi'))} | "
+                 f"{t['edge'] * 100:+.1f} | {s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | {closing} |")
+    return L + [""]
+
+
+def stats_line(ts: dict) -> list[str]:
+    return ["| Picks | Open | Won | Lost | Pulled | Open stake | Settled stake | Profit | Units | Return on settled stake |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+            f"| {ts['n']} | {ts['open']} | {ts['won']} | {ts['lost']} | {ts['pulled']} | ${ts['open_stake']:,.2f} | "
+            f"${ts['staked']:,.2f} | {money(ts['pnl'])} | {ts['units']:+.2f} | {pct(ts['roi'], True)} |", ""]
 
 
 def bot_md(bot: str, title: str, d: dict) -> str:
-    ts, br = trade_stats(d["trades"]), brier(d["graded"])
-    L = [f"## {title}", "", verdict(ts, br), ""]
-    L += ["| Paper trades | Open | Won | Lost | Pulled | Staked | Profit | Units | Return on stake |",
-          "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-          f"| {ts['n']} | {ts['open']} | {ts['won']} | {ts['lost']} | {ts['pulled']} | ${ts['staked']:,.2f} | "
-          f"{money(ts['pnl'])} | {ts['units']:+.2f} | {pct(ts['roi'], True)} |", ""]
+    v2 = [t for t in d["trades"] if version(t) != "v1"]
+    v1 = [t for t in d["trades"] if version(t) == "v1"]
+    ts = trade_stats(v2)
+    ai_games = [g for g in d["games"] if g.get("ai")]
+    L = [f"## {title}", "", verdict(ts, len(ai_games)), "", "**v2 picks** (blind AI forecast, market check, code-chosen bet)", ""]
+    L += stats_line(ts)
     if ts["decided"]:
-        L.append(f"Of {ts['decided']} decided trades the bot expected to win {ts['expected_wins']:.1f} and won {ts['won']}.")
+        L.append(f"Of {ts['decided']} decided picks the bot expected to win {ts['expected_wins']:.1f} and won {ts['won']}.")
     if ts["clv_n"]:
-        L.append(f"Closing-price edge: {ts['clv_avg'] * 100:+.1f} cents per contract on average across {ts['clv_n']} trades, "
-                 f"and {pct(ts['clv_beat'], digits=0)} of them beat the closing price.")
-    if ts["avg_edge"] is not None:
-        L.append(f"Average edge claimed at entry: {ts['avg_edge'] * 100:+.1f} points after fees.")
+        L.append(f"Closing-price edge on picks held to the start: {ts['clv_avg'] * 100:+.1f} cents per contract on average "
+                 f"across {ts['clv_n']} picks, and {pct(ts['clv_beat'], digits=0)} beat the last recorded price. "
+                 "The last price is from the final hourly run before the start, not the exact close.")
+    if ts["pulled"]:
+        L.append(f"Pulled picks: {ts['pulled']}, exit profit {money(ts['pulled_pnl'])} (not counted as closing-price edge).")
     L.append("")
-    if br["n"]:
-        L += [f"**Calibration** on {br['n']} graded markets from {br['games']} games (Brier score, lower is better; "
-              "0.25 is a coin flip):", "", "| Forecast | Brier score | Markets |", "| --- | --- | --- |"]
-        for key, name in SOURCES:
-            if br.get(key):
-                L.append(f"| {name} | {br[key][0]:.4f} | {br[key][1]} |")
-        L += ["", "| When the bot said | Markets | Average forecast | Actually happened |", "| --- | --- | --- | --- |"]
-        for name, n, avg, hit in buckets(d["graded"]):
-            L.append(f"| {name} | {n} | {pct(avg)} | {pct(hit)} |")
+    if v2:
+        L += trade_table(v2)
+        L += ["Why each pick was made:", ""]
+        for t in sorted(v2, key=lambda t: t["ts"], reverse=True)[:10]:
+            f = t.get("forecast") or {}
+            L.append(f"- **{t['game']}, {t['label']}:** AI forecast home margin {f.get('margin')}, market {f.get('market_margin')}, "
+                     f"stats {f.get('stats_margin')}. {f.get('summary') or ''} Market check ({f.get('check')}): {f.get('check_why') or ''}")
         L.append("")
+    gs = game_scores(d["games"])
+    if gs:
+        L += ["**Forecast accuracy by game** (average miss in points, lower is better; each row uses the same games "
+              "for every column)", "",
+              "| Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |",
+              "| --- | --- | --- | --- | --- | --- | --- | --- |"]
+
+        def f1(x):
+            return "n/a" if x is None else f"{x:.1f}"
+        for name, n, cols in gs:
+            L.append(f"| {name} | {n} | {f1(cols[0][0])} | {f1(cols[1][0])} | {f1(cols[2][0])} | "
+                     f"{f1(cols[0][1])} | {f1(cols[1][1])} | {f1(cols[2][1])} |")
+        L += ["", "Games get an AI forecast because the stats and the market disagreed, so that group is not a "
+              "random sample. The control row is.", ""]
     else:
-        L += [f"Calibration: no graded markets yet ({len(d['open_preds'])} being tracked).", ""]
-    if d["trades"]:
-        L += ["| Placed | Game | Pick | Price | Size | Bot | Edge | Confidence | Result | Profit | Closing edge |",
-              "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
-        for t in sorted(d["trades"], key=lambda t: t["ts"], reverse=True):
-            s = t["settle"]
-            L.append(f"| {when(t['ts'])} | {t['game']} | {t['label']} | {t['price'] * 100:.0f}c | "
-                     f"{t['contracts']} ({t['units']:.2f}u) | {pct(t['p_final'])} | {t['edge'] * 100:+.1f} | {t['confidence']} | "
-                     f"{s['outcome'] if s else 'open'} | {money(s['pnl']) if s else ''} | "
-                     f"{'' if not s or s.get('clv') is None else f'{s['clv'] * 100:+.0f}c'} |")
-        L.append("")
-        why = [t for t in d["trades"] if (t.get("ai") or {}).get("reason")]
-        if why:
-            L.append("AI notes on the most recent picks:")
+        L += [f"Forecast accuracy by game: no finished games graded yet ({len(d['track'])} games being tracked, "
+              f"{sum(1 for g in d['track'].values() if g.get('ai'))} with an AI forecast).", ""]
+    for label_, need in (("all tracked contracts", ("p_kalshi", "p_stats")),
+                         ("contracts in games with an AI forecast", ("p_kalshi", "p_stats", "p_ai"))):
+        br = brier(d["graded"], need)
+        if br["n"]:
+            L += [f"**Probability accuracy on {label_}**: {br['n']} contracts from {br['games']} games (Brier score, lower is "
+                  "better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.",
+                  "", "| Forecast | Brier score | Contracts |", "| --- | --- | --- |"]
+            for key, name in SOURCES:
+                if br.get(key):
+                    L.append(f"| {name} | {br[key][0]:.4f} | {br[key][1]} |")
             L.append("")
-            for t in sorted(why, key=lambda t: t["ts"], reverse=True)[:8]:
-                L.append(f"- **{t['game']}, {t['label']}:** {t['ai']['reason']}")
-            L.append("")
+    if v1:
+        t1 = trade_stats(v1)
+        L += ["**v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college "
+              "picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two "
+              "positions and one pick is under the old 6 point minimum.", ""]
+        L += stats_line(t1)
+        L += trade_table(v1)
     return "\n".join(L)
 
 
@@ -196,27 +249,31 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}"""
 
 def build(root: str = ".") -> str:
     data = {b: load(root, b) for b, _ in BOTS}
-    all_trades = [t for d in data.values() for t in d["trades"]]
-    ts = trade_stats(all_trades)
-    runs = [r for d in data.values() for r in d["runs"]]
+    runs = [r for d in data.values() for r in d["runs"] if not r.get("dry")]
     first = min((r["ts"] for r in runs), default=None)
     L = ["# Kalshi sports paper-trading scorecard", "",
          f"Updated {when(iso(now_utc()))}. Paper trading only: no real orders are placed and no real money is at risk. "
          "Each bot starts with a $1,000 paper bankroll and 1 unit is $10.", ""]
     if first:
-        L += [f"Test started {when(first)}. Runs so far: {len({r['ts'][:13] for r in runs})}.", ""]
-    L += ["| Bot | Trades | Open | Won | Lost | Pulled | Profit | Units | Return on stake | Closing-price edge |",
-          "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
-    for b, title in BOTS:
-        s = trade_stats(data[b]["trades"])
-        L.append(f"| {title} | {s['n']} | {s['open']} | {s['won']} | {s['lost']} | {s['pulled']} | {money(s['pnl'])} | "
-                 f"{s['units']:+.2f} | {pct(s['roi'], True)} | "
-                 f"{'n/a' if s['clv_avg'] is None else f'{s['clv_avg'] * 100:+.1f}c'} |")
-    L.append(f"| **All three** | {ts['n']} | {ts['open']} | {ts['won']} | {ts['lost']} | {ts['pulled']} | {money(ts['pnl'])} | "
-             f"{ts['units']:+.2f} | {pct(ts['roi'], True)} | "
-             f"{'n/a' if ts['clv_avg'] is None else f'{ts['clv_avg'] * 100:+.1f}c'} |")
-    L += ["", "How to read this: profit over a handful of bets is mostly luck. Closing-price edge (did the price move "
-          "toward the bot's side after it bought) and calibration (were its percentages right) are the fairer early tests.", ""]
+        L += [f"Test started {when(first)}. v2 rules started Sat Nov 14. Bot runs so far: {len(runs)} "
+              "(each bot counts separately).", ""]
+    for ver, name in (("v2", "v2 picks"), ("v1", "v1 picks (earlier rules)")):
+        L += [f"**{name}**", "",
+              "| Bot | Picks | Open | Won | Lost | Pulled | Open stake | Profit | Units | Return on settled stake | Closing-price edge |",
+              "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+        allv = []
+        for b, title in BOTS + [(None, "**All three**")]:
+            tr = allv if b is None else [t for t in data[b]["trades"] if (version(t) == "v1") == (ver == "v1")]
+            if b is not None:
+                allv += tr
+            s = trade_stats(tr)
+            L.append(f"| {title} | {s['n']} | {s['open']} | {s['won']} | {s['lost']} | {s['pulled']} | ${s['open_stake']:,.2f} | "
+                     f"{money(s['pnl'])} | {s['units']:+.2f} | {pct(s['roi'], True)} | "
+                     f"{'n/a' if s['clv_avg'] is None else f'{s['clv_avg'] * 100:+.1f}c'} |")
+        L.append("")
+    L += ["How to read this: profit over a handful of bets is mostly luck. The fairer tests are whether the AI forecast "
+          "misses by less than the stats forecast and the market on the same games, and whether prices move toward the "
+          "picks after they are made. The rules, and what would cause the AI to lose authority, are in the README.", ""]
     for b, title in BOTS:
         L.append(bot_md(b, title, data[b]))
     md = "\n".join(L) + "\n"
