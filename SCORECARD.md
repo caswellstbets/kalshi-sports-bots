@@ -1,17 +1,17 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 4:08 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 5:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 71 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 74 (each bot counts separately).
 
 **v2 picks**
 
 | Bot | Picks | Open | Won | Lost | Pulled | Open stake | Profit | Units | Return on settled stake | Closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| NBA | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
+| NBA | 1 | 1 | 0 | 0 | 0 | $6.96 | +$0.00 | +0.00 | n/a | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
-| College football | 7 | 6 | 0 | 1 | 0 | $18.34 | -$4.59 | -0.46 | -100.0% | -0.5c |
-| **All three** | 7 | 6 | 0 | 1 | 0 | $18.34 | -$4.59 | -0.46 | -100.0% | -0.5c |
+| College football | 7 | 5 | 1 | 1 | 0 | $15.98 | +$1.05 | +0.10 | +15.1% | +0.0c |
+| **All three** | 8 | 6 | 1 | 1 | 0 | $22.94 | +$1.05 | +0.10 | +15.1% | +0.0c |
 
 **v1 picks (earlier rules)**
 
@@ -32,8 +32,21 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
-No picks yet.
+| Confidence | Picks | Open | Won | Lost | Open stake | Profit | Units | Return on settled stake |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **HIGH** | 1 | 1 | 0 | 0 | $6.96 | +$0.00 | +0.00 | n/a |
+| **MID** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
+| **LOW** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
+| **ALL** | 1 | 1 | 0 | 0 | $6.96 | +$0.00 | +0.00 | n/a |
 
+
+| Confidence | Game | Start (CT) | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **HIGH** | Dallas at Cleveland | Sat 6:30 PM | Cleveland +4.5 | 37c | 0.70u | 60% | 36% | open |  |  |
+
+Why each pick was made:
+
+- **HIGH: Dallas at Cleveland, Cleveland +4.5.** My forecast: home team -1.0, total 229.0. Market: home team -10.0, total 226.8155. Even matchup. Cleveland is on a back-to-back and Mobley sat last night; Dallas is without Lively and lost by 39 on Thursday. Why the price may be wrong: within a few points of the market on both margin and total
 
 Forecast accuracy by game: no finished games graded yet (5 games being tracked, 4 with an AI forecast).
 
@@ -60,7 +73,7 @@ Forecast accuracy by game: no finished games graded yet (11 games being tracked,
 
 ## College football
 
-Too early to say: 1 settled picks and 9 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 2 settled picks and 14 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -68,13 +81,13 @@ Too early to say: 1 settled picks and 9 graded games. The rules call for 60 grad
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
 | **MID** | 3 | 2 | 0 | 1 | $9.70 | -$4.59 | -0.46 | -100.0% |
-| **LOW** | 4 | 4 | 0 | 0 | $8.64 | +$0.00 | +0.00 | n/a |
-| **ALL** | 7 | 6 | 0 | 1 | $18.34 | -$4.59 | -0.46 | -100.0% |
+| **LOW** | 4 | 3 | 1 | 0 | $6.28 | +$5.64 | +0.56 | +239.0% |
+| **ALL** | 7 | 5 | 1 | 1 | $15.98 | +$1.05 | +0.10 | +15.1% |
 
 16 earlier picks were withdrawn before kickoff when the pick rules were tightened on Nov 14. They are in the ledger but not counted here.
 
-Of 1 decided picks the bot expected to win 0.4 and won 0.
-Closing-price edge on picks held to the start: -0.5 cents per contract on average across 1 picks, and 0% beat the last recorded price. The last price is from the final hourly run before the start, not the exact close.
+Of 2 decided picks the bot expected to win 0.7 and won 1.
+Closing-price edge on picks held to the start: +0.0 cents per contract on average across 2 picks, and 50% beat the last recorded price. The last price is from the final hourly run before the start, not the exact close.
 
 | Confidence | Game | Start (CT) | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -84,7 +97,7 @@ Closing-price edge on picks held to the start: -0.5 cents per contract on averag
 | **MID** | USC at Indiana | Sat 2:30 PM | Under 50.5 | 46c | 0.48u | 60% | 46% | open |  |  |
 | **MID** | Bucknell at William & Mary | Sat 12:00 PM | Under 41.5 | 40c | 0.46u | 53% | 39% | lost | -$4.59 | -0c |
 | **LOW** | Lindenwood at UT Martin | Sat 2:00 PM | Lindenwood +2.5 | 61c | 0.19u | 72% | 60% | open |  |  |
-| **LOW** | Abilene Christian at Austin Peay | Sat 1:00 PM | Abilene Christian to win | 28c | 0.24u | 39% | 28% | open |  |  |
+| **LOW** | Abilene Christian at Austin Peay | Sat 1:00 PM | Abilene Christian to win | 28c | 0.24u | 39% | 28% | won | +$5.64 | +0c |
 
 Why each pick was made:
 
@@ -100,31 +113,31 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 42 | 12.3 | 12.1 | 13.0 | 12.1 | 14.3 | 11.8 |
-| Games with an AI forecast | 9 | 11.4 | 12.1 | 11.8 | 15.0 | 14.3 | 13.2 |
-|   of which random control games | 3 | 19.7 | 19.7 | 18.5 | 12.5 | 13.7 | 10.3 |
+| All tracked games | 55 | 11.7 | 11.5 | 12.2 | 12.3 | 13.2 | 12.0 |
+| Games with an AI forecast | 14 | 11.5 | 11.5 | 11.9 | 14.2 | 13.2 | 11.9 |
+|   of which random control games | 4 | 17.7 | 17.5 | 16.2 | 13.1 | 13.8 | 10.7 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
-**Probability accuracy on all tracked contracts**: 176 contracts from 44 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on all tracked contracts**: 216 contracts from 54 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2420 | 176 |
-| Sportsbook line | 0.2432 | 176 |
-| Stats forecast alone | 0.2277 | 176 |
-| Blind AI forecast | 0.2264 | 35 |
-| Bet probability (AI after market check) | 0.2045 | 35 |
+| Kalshi closing price | 0.2396 | 216 |
+| Sportsbook line | 0.2412 | 216 |
+| Stats forecast alone | 0.2305 | 216 |
+| Blind AI forecast | 0.2229 | 56 |
+| Bet probability (AI after market check) | 0.2055 | 56 |
 
-**Probability accuracy on contracts in games with an AI forecast**: 35 contracts from 9 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on contracts in games with an AI forecast**: 56 contracts from 14 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2023 | 35 |
-| Sportsbook line | 0.2088 | 35 |
-| Stats forecast alone | 0.2167 | 35 |
-| Blind AI forecast | 0.2264 | 35 |
-| Bet probability (AI after market check) | 0.2045 | 35 |
+| Kalshi closing price | 0.2041 | 56 |
+| Sportsbook line | 0.2132 | 56 |
+| Stats forecast alone | 0.2243 | 56 |
+| Blind AI forecast | 0.2229 | 56 |
+| Bet probability (AI after market check) | 0.2055 | 56 |
 
 **v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.
 
