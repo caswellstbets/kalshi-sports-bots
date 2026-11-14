@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 2:48 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 3:08 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 61 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 64 (each bot counts separately).
 
 **v2 picks**
 
@@ -56,11 +56,11 @@ Too early to say: 0 settled picks and 0 graded games. The rules call for 60 grad
 No picks yet.
 
 
-Forecast accuracy by game: no finished games graded yet (8 games being tracked, 8 with an AI forecast).
+Forecast accuracy by game: no finished games graded yet (10 games being tracked, 8 with an AI forecast).
 
 ## College football
 
-Too early to say: 0 settled picks and 1 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 0 settled picks and 4 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -98,30 +98,31 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 23 | 13.0 | 20.0 | 13.5 | 11.8 | 16.0 | 12.1 |
-| Games with an AI forecast | 1 | 18.4 | 20.0 | 14.3 | 21.1 | 16.0 | 20.7 |
+| All tracked games | 28 | 12.3 | 9.8 | 13.1 | 12.9 | 13.9 | 12.6 |
+| Games with an AI forecast | 4 | 8.4 | 9.8 | 9.6 | 18.0 | 13.9 | 13.3 |
+|   of which random control games | 1 | 5.2 | 4.0 | 1.7 | 25.7 | 26.0 | 20.5 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
-**Probability accuracy on all tracked contracts**: 89 contracts from 22 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on all tracked contracts**: 119 contracts from 28 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2462 | 89 |
-| Sportsbook line | 0.2474 | 89 |
-| Stats forecast alone | 0.2293 | 89 |
-| Blind AI forecast | 0.2375 | 6 |
-| Bet probability (AI after market check) | 0.1998 | 6 |
+| Kalshi closing price | 0.2484 | 119 |
+| Sportsbook line | 0.2480 | 119 |
+| Stats forecast alone | 0.2318 | 119 |
+| Blind AI forecast | 0.2087 | 19 |
+| Bet probability (AI after market check) | 0.1960 | 19 |
 
-**Probability accuracy on contracts in games with an AI forecast**: 6 contracts from 1 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on contracts in games with an AI forecast**: 19 contracts from 4 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.1943 | 6 |
-| Sportsbook line | 0.1990 | 6 |
-| Stats forecast alone | 0.2460 | 6 |
-| Blind AI forecast | 0.2375 | 6 |
-| Bet probability (AI after market check) | 0.1998 | 6 |
+| Kalshi closing price | 0.1969 | 19 |
+| Sportsbook line | 0.2018 | 19 |
+| Stats forecast alone | 0.2172 | 19 |
+| Blind AI forecast | 0.2087 | 19 |
+| Bet probability (AI after market check) | 0.1960 | 19 |
 
 **v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.
 
