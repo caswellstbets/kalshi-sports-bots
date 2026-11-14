@@ -29,14 +29,16 @@ class BotConfig:
     trade_types: tuple = ("ml", "spread", "total")
     min_rated_games: int = 5       # both teams need this many games behind their rating
     # --- AI forecast and market check (v2) ---
-    strategy_version: str = "v2.0"
+    strategy_version: str = "v2.1"
     deep_reads_per_day: int = 8    # games per day that get a full AI forecast: biggest stats-vs-market gaps
     forecast_lead_minutes: float = 40.0  # no deep read for a game starting sooner than this
     control_reads_per_day: int = 2 # plus this many chosen at random, so the AI is graded on unselected games too
     # Trust: how far the bet probability moves from the market price toward the AI forecast (log-odds).
-    # GUESS, deliberately cautious. The AI has no track record yet, and the stats back-test cannot
-    # stand in for one. Frozen for the evaluation window; see README "Rules set in advance".
-    trust: dict = field(default_factory=lambda: {"ml": 0.35, "spread": 0.35, "total": 0.25})
+    # The back-test (BACKTEST.md) found the stats forecast alone earns a weight of about zero against the
+    # sportsbook closing line in all three sports, so it supports no trust by itself. The AI gets a small
+    # starting value because it reads things the formula cannot; that value is a GUESS until its own
+    # forecasts are graded. v2.0 used 0.35/0.25 for about an hour before the back-test existed.
+    trust: dict = field(default_factory=lambda: {"ml": 0.25, "spread": 0.25, "total": 0.15})
     trust_ceiling: float = 0.70
     thin_data_games: int = 6       # either team with fewer rated games than this ...
     thin_data_factor: float = 0.7  # ... multiplies trust by this (GUESS)

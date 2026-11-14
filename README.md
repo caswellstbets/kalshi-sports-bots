@@ -33,12 +33,15 @@ Nothing is traded without both a blind forecast and a market check.
 ## Rules set in advance
 
 These are fixed for the evaluation window that started 2026-11-14 and are not tuned on results inside it.
+One change was made on day one: v2.0 ran for about an hour with trust 0.35/0.25 and made one pick before the
+back-test was finished. The back-test result lowered trust to the values below (v2.1). Every pick records the
+version and trust it was made under.
 Numbers marked GUESS have no evidence behind them yet.
 
 | Rule | Value | Basis |
 | --- | --- | --- |
-| Trust in the AI forecast, winner and spread | 0.35 | GUESS, cautious. The AI has no track record. |
-| Trust, totals | 0.25 | GUESS. The stats back-test found totals harder than margins. |
+| Trust in the AI forecast, winner and spread | 0.25 | GUESS, cautious. The AI has no track record, and the back-test gives the stats alone no weight. |
+| Trust, totals | 0.15 | GUESS. In the back-test the stats did worst on totals. |
 | Trust when either team has under 6 rated games | x 0.7 | GUESS |
 | Trust after a `shrink` market check | x 0.5 | GUESS |
 | Trust ceiling | 0.70 | Never reached in this window |
@@ -59,7 +62,10 @@ than the Kalshi price on the same contracts (Brier), trust for that sport drops 
 
 ## What is and is not proven
 
-- `backtest.py` replays this season for the stats forecast only. See [BACKTEST.md](BACKTEST.md).
+- `backtest.py` replays this season for the stats forecast only. See [BACKTEST.md](BACKTEST.md). Result: the
+  stats forecast was less accurate than the sportsbook closing line in all three sports, and when it disagreed
+  with the line its side won less than half the time in college football and the NFL. The numbers alone are
+  not an edge. Any edge has to come from what the AI adds, and that is unproven.
 - The AI forecast cannot be back-tested fairly, so it is tested forward. The scorecard grades the stats
   forecast, the blind AI forecast, the market and the bet probability on the same games.
 - Picks made before v2 are labelled v1 and reported separately. They were made under earlier rules.
@@ -79,6 +85,7 @@ than the Kalshi price on the same contracts (Brier), trust for that sport drops 
 
 | Path | What it is |
 | --- | --- |
+| `backtest.py`, `BACKTEST.md` | Walk-forward test of the stats forecast against results and closing lines |
 | `run_all.py` | Runs all three bots and rebuilds the scorecard |
 | `bots/` | One file per bot: settings and sport-specific adjustments |
 | `core/` | Shared code: Kalshi and ESPN readers, ratings, pricing, engine, grading, report |

@@ -9,7 +9,9 @@ when a run asks for it.
 1. Get the latest ledger: `git pull --rebase` (or clone `caswellstbets/kalshi-sports-bots`).
 2. `python run_all.py`
 3. For each **BLIND FORECAST NEEDED** line, read the game sheet printed under it. The sheet has no Kalshi price
-   and no sportsbook line in it on purpose. Do not look prices up. Write your own forecast:
+   and no sportsbook line in it on purpose. Do not look prices up. The sheet's stats forecast is a starting
+   point, not an authority: in the back-test it was less accurate than the closing line and its disagreements
+   with the line were worth nothing. Look for what the formula cannot see. Write your own forecast:
 
        python -m core.forecast blind <bot> <game_id> --margin <home margin> --total <points> \
            --reason "hard|<pts>|<text>" --reason "stat|<pts>|<text>" --reason "soft|<pts>|<text>" \
