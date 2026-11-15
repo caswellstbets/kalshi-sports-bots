@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 6:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 7:08 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 78 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 81 (each bot counts separately).
 
 **v2 picks**
 
@@ -74,7 +74,7 @@ Forecast accuracy by game: no finished games graded yet (11 games being tracked,
 
 ## College football
 
-Too early to say: 4 settled picks and 23 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 4 settled picks and 24 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -114,31 +114,31 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 78 | 11.5 | 11.2 | 11.6 | 12.5 | 14.7 | 12.7 |
-| Games with an AI forecast | 23 | 10.9 | 11.2 | 9.9 | 15.1 | 14.7 | 14.4 |
+| All tracked games | 84 | 11.6 | 12.0 | 11.6 | 12.4 | 14.2 | 12.6 |
+| Games with an AI forecast | 24 | 11.8 | 12.0 | 10.7 | 14.5 | 14.2 | 13.9 |
 |   of which random control games | 6 | 15.3 | 15.7 | 14.5 | 14.0 | 14.7 | 13.7 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
-**Probability accuracy on all tracked contracts**: 331 contracts from 76 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on all tracked contracts**: 369 contracts from 82 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2370 | 331 |
-| Sportsbook line | 0.2384 | 331 |
-| Stats forecast alone | 0.2277 | 331 |
-| Blind AI forecast | 0.2337 | 102 |
-| Bet probability (AI after market check) | 0.2180 | 102 |
+| Kalshi closing price | 0.2405 | 369 |
+| Sportsbook line | 0.2404 | 369 |
+| Stats forecast alone | 0.2335 | 369 |
+| Blind AI forecast | 0.2332 | 109 |
+| Bet probability (AI after market check) | 0.2190 | 109 |
 
-**Probability accuracy on contracts in games with an AI forecast**: 102 contracts from 23 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on contracts in games with an AI forecast**: 109 contracts from 24 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2156 | 102 |
-| Sportsbook line | 0.2211 | 102 |
-| Stats forecast alone | 0.2308 | 102 |
-| Blind AI forecast | 0.2337 | 102 |
-| Bet probability (AI after market check) | 0.2180 | 102 |
+| Kalshi closing price | 0.2168 | 109 |
+| Sportsbook line | 0.2214 | 109 |
+| Stats forecast alone | 0.2338 | 109 |
+| Blind AI forecast | 0.2332 | 109 |
+| Bet probability (AI after market check) | 0.2190 | 109 |
 
 **v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.
 
