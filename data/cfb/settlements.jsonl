@@ -28,3 +28,4 @@
 {"close_price":0.395,"clv":-0.035,"outcome":"won","payout":11.0,"pnl":6.08,"trade_id":"bf780717cd16","ts":"2026-11-15T04:08:09Z"}
 {"close_price":0.195,"clv":-0.005,"outcome":"lost","payout":0.0,"pnl":-2.33,"trade_id":"cf5afc53a121","ts":"2026-11-15T04:08:09Z"}
 {"close_price":0.465,"clv":-0.035,"outcome":"won","payout":4.0,"pnl":1.93,"trade_id":"97b1df358640","ts":"2026-11-15T05:08:32Z"}
+{"close_price":0.385,"clv":0.035,"outcome":"lost","payout":0.0,"pnl":-18.3,"trade_id":"1c3c6521511b","ts":"2026-11-15T15:09:02Z"}
