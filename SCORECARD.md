@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Sat Nov 14 5:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Sat Nov 14 6:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 75 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 78 (each bot counts separately).
 
 **v2 picks**
 
@@ -10,8 +10,8 @@ Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so fa
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | NBA | 1 | 0 | 0 | 0 | 1 | $0.00 | -$0.78 | -0.08 | -11.2% | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
-| College football | 7 | 5 | 1 | 1 | 0 | $15.98 | +$1.05 | +0.10 | +15.1% | +0.0c |
-| **All three** | 8 | 5 | 1 | 1 | 1 | $15.98 | +$0.27 | +0.03 | +1.9% | +0.0c |
+| College football | 7 | 3 | 2 | 2 | 0 | $9.32 | +$4.39 | +0.44 | +32.3% | -0.2c |
+| **All three** | 8 | 3 | 2 | 2 | 1 | $9.32 | +$3.61 | +0.36 | +17.5% | -0.2c |
 
 **v1 picks (earlier rules)**
 
@@ -19,8 +19,8 @@ Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so fa
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | NBA | 1 | 1 | 0 | 0 | 0 | $14.93 | +$0.00 | +0.00 | n/a | n/a |
 | NFL | 0 | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a |
-| College football | 8 | 6 | 2 | 0 | 0 | $71.49 | +$36.24 | +3.62 | +130.5% | -3.5c |
-| **All three** | 9 | 7 | 2 | 0 | 0 | $86.42 | +$36.24 | +3.62 | +130.5% | -3.5c |
+| College football | 8 | 2 | 5 | 1 | 0 | $32.60 | +$72.35 | +7.23 | +108.6% | -1.3c |
+| **All three** | 9 | 3 | 5 | 1 | 0 | $47.53 | +$72.35 | +7.23 | +108.6% | -1.3c |
 
 **Confidence.** HIGH: the edge holds up even after the forecast is pulled most of the way to the market price; sized by Kelly, up to 2 units. MID: I have a specific written reason the price may be wrong and my own forecast beats the price by 10 or more points; half a unit. LOW: the same, with a 7 to 10 point gap; a quarter unit. A game with no specific reason against the market gets no pick. There is no daily limit on picks.
 
@@ -74,30 +74,30 @@ Forecast accuracy by game: no finished games graded yet (11 games being tracked,
 
 ## College football
 
-Too early to say: 2 settled picks and 14 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 4 settled picks and 23 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
 | Confidence | Picks | Open | Won | Lost | Open stake | Profit | Units | Return on settled stake |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a |
-| **MID** | 3 | 2 | 0 | 1 | $9.70 | -$4.59 | -0.46 | -100.0% |
-| **LOW** | 4 | 3 | 1 | 0 | $6.28 | +$5.64 | +0.56 | +239.0% |
-| **ALL** | 7 | 5 | 1 | 1 | $15.98 | +$1.05 | +0.10 | +15.1% |
+| **MID** | 3 | 1 | 1 | 1 | $4.92 | +$0.63 | +0.06 | +6.7% |
+| **LOW** | 4 | 2 | 1 | 1 | $4.40 | +$3.76 | +0.38 | +88.7% |
+| **ALL** | 7 | 3 | 2 | 2 | $9.32 | +$4.39 | +0.44 | +32.3% |
 
 16 earlier picks were withdrawn before kickoff when the pick rules were tightened on Nov 14. They are in the ledger but not counted here.
 
-Of 2 decided picks the bot expected to win 0.7 and won 1.
-Closing-price edge on picks held to the start: +0.0 cents per contract on average across 2 picks, and 50% beat the last recorded price. The last price is from the final hourly run before the start, not the exact close.
+Of 4 decided picks the bot expected to win 1.8 and won 2.
+Closing-price edge on picks held to the start: -0.2 cents per contract on average across 4 picks, and 25% beat the last recorded price. The last price is from the final hourly run before the start, not the exact close.
 
 | Confidence | Game | Start (CT) | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **MID** | San José State at Air Force | Sat 6:00 PM | Under 46.5 | 43c | 0.49u | 58% | 42% | open |  |  |
 | **LOW** | Stanford at Virginia Tech | Sat 6:30 PM | Stanford +16.5 | 50c | 0.21u | 61% | 50% | open |  |  |
 | **LOW** | Minnesota at Penn State | Sat 6:00 PM | Minnesota to win | 20c | 0.23u | 30% | 20% | open |  |  |
-| **MID** | USC at Indiana | Sat 2:30 PM | Under 50.5 | 46c | 0.48u | 60% | 46% | open |  |  |
+| **MID** | USC at Indiana | Sat 2:30 PM | Under 50.5 | 46c | 0.48u | 60% | 46% | won | +$5.22 | -0c |
 | **MID** | Bucknell at William & Mary | Sat 12:00 PM | Under 41.5 | 40c | 0.46u | 53% | 39% | lost | -$4.59 | -0c |
-| **LOW** | Lindenwood at UT Martin | Sat 2:00 PM | Lindenwood +2.5 | 61c | 0.19u | 72% | 60% | open |  |  |
+| **LOW** | Lindenwood at UT Martin | Sat 2:00 PM | Lindenwood +2.5 | 61c | 0.19u | 72% | 60% | lost | -$1.88 | -0c |
 | **LOW** | Abilene Christian at Austin Peay | Sat 1:00 PM | Abilene Christian to win | 28c | 0.24u | 39% | 28% | won | +$5.64 | +0c |
 
 Why each pick was made:
@@ -114,46 +114,46 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 55 | 11.7 | 11.5 | 12.2 | 12.3 | 13.2 | 12.0 |
-| Games with an AI forecast | 14 | 11.5 | 11.5 | 11.9 | 14.2 | 13.2 | 11.9 |
-|   of which random control games | 4 | 17.7 | 17.5 | 16.2 | 13.1 | 13.8 | 10.7 |
+| All tracked games | 78 | 11.5 | 11.2 | 11.6 | 12.5 | 14.7 | 12.7 |
+| Games with an AI forecast | 23 | 10.9 | 11.2 | 9.9 | 15.1 | 14.7 | 14.4 |
+|   of which random control games | 6 | 15.3 | 15.7 | 14.5 | 14.0 | 14.7 | 13.7 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
-**Probability accuracy on all tracked contracts**: 216 contracts from 54 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on all tracked contracts**: 331 contracts from 76 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2396 | 216 |
-| Sportsbook line | 0.2412 | 216 |
-| Stats forecast alone | 0.2305 | 216 |
-| Blind AI forecast | 0.2229 | 56 |
-| Bet probability (AI after market check) | 0.2055 | 56 |
+| Kalshi closing price | 0.2370 | 331 |
+| Sportsbook line | 0.2384 | 331 |
+| Stats forecast alone | 0.2277 | 331 |
+| Blind AI forecast | 0.2337 | 102 |
+| Bet probability (AI after market check) | 0.2180 | 102 |
 
-**Probability accuracy on contracts in games with an AI forecast**: 56 contracts from 14 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on contracts in games with an AI forecast**: 102 contracts from 23 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2041 | 56 |
-| Sportsbook line | 0.2132 | 56 |
-| Stats forecast alone | 0.2243 | 56 |
-| Blind AI forecast | 0.2229 | 56 |
-| Bet probability (AI after market check) | 0.2055 | 56 |
+| Kalshi closing price | 0.2156 | 102 |
+| Sportsbook line | 0.2211 | 102 |
+| Stats forecast alone | 0.2308 | 102 |
+| Blind AI forecast | 0.2337 | 102 |
+| Bet probability (AI after market check) | 0.2180 | 102 |
 
 **v1 picks** (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.
 
 | Picks | Open | Won | Lost | Pulled | Open stake | Settled stake | Profit | Units | Return on settled stake |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 8 | 6 | 2 | 0 | 0 | $71.49 | $27.76 | +$36.24 | +3.62 | +130.5% |
+| 8 | 2 | 5 | 1 | 0 | $32.60 | $66.65 | +$72.35 | +7.23 | +108.6% |
 
 | Confidence | Game | Start (CT) | Pick | Price | Size | AI says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **MID** | Arizona State at UCF | Sat 4:30 PM | UCF -7.5 | 37c | 1.43u | 46% | 36% | open |  |  |
-| **MID** | Tennessee at Texas A&M | Sat 2:00 PM | Tennessee -3.5 | 39c | 1.46u | 51% | 38% | open |  |  |
-| **MID** | Tarleton State at West Florida | Sat 2:00 PM | West Florida +18.5 | 54c | 0.78u | 66% | 53% | open |  |  |
+| **MID** | Tennessee at Texas A&M | Sat 2:00 PM | Tennessee -3.5 | 39c | 1.46u | 51% | 38% | won | +$21.36 | -0c |
+| **MID** | Tarleton State at West Florida | Sat 2:00 PM | West Florida +18.5 | 54c | 0.78u | 66% | 53% | won | +$6.19 | -0c |
 | **MID** | Wake Forest at SMU | Sat 11:00 AM | Wake Forest to win | 49c | 1.42u | 59% | 48% | won | +$13.79 | -4c |
 | **MID** | Wake Forest at SMU | Sat 11:00 AM | Wake Forest -4.5 | 36c | 1.35u | 48% | 35% | won | +$22.45 | -4c |
 | **LOW** | Eastern Washington at Utah Tech | Sat 3:00 PM | Utah Tech to win | 35c | 1.83u | 41% | 34% | open |  |  |
-| **LOW** | Tennessee at Texas A&M | Sat 2:00 PM | Under 40.5 | 38c | 0.99u | 47% | 38% | open |  |  |
-| **LOW** | Tarleton State at West Florida | Sat 2:00 PM | West Florida to win | 15c | 0.65u | 22% | 14% | open |  |  |
+| **LOW** | Tennessee at Texas A&M | Sat 2:00 PM | Under 40.5 | 38c | 0.99u | 47% | 38% | won | +$15.08 | +2c |
+| **LOW** | Tarleton State at West Florida | Sat 2:00 PM | West Florida to win | 15c | 0.65u | 22% | 14% | lost | -$6.52 | -2c |
 
