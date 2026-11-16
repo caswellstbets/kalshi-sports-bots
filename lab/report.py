@@ -158,7 +158,7 @@ def build(root: str = ".") -> str:
           "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for m in ORDER:
         s = stats(data[m])
-        L.append(f"| **{TITLES[m]}** | {s['n']} | {s['won']} | {s['lost']} | {s['open']} | ${s['staked']:,.2f} | {money(s['pnl'])} | "
+        L.append(f"| **{TITLES[m]}** | {s['n']} | {s['won']} | {s['lost']} | {s['open']} | ${s['staked'] + s['open_stake']:,.2f} | {money(s['pnl'])} | "
                  f"{s['pnl'] / UNIT:+.2f} | {pct(s['roi'], True)} | {'n/a' if s['clv'] is None else f'{s['clv'] * 100:+.1f}c'} | "
                  f"{pct(s['clv_beat'], digits=0)} |")
     L += ["", "Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means "

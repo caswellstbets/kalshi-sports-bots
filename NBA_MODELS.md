@@ -1,22 +1,24 @@
 # NBA model comparison
 
-Updated Mon Nov 16 4:43 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Mon Nov 16 4:53 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+
+Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
 | Model | What drives it |
 | --- | --- |
 | **Current NBA bot (v2.3)** | stats forecast, blind Claude forecast, then held close to the price |
 | **Rotation** | player availability and player impact, numbers only |
-| **Price Pattern** | how Kalshi's own NBA prices have been wrong before |
+| **Injury News** | fresh injury-report changes the Kalshi price has not caught up with |
 | **Scout** | Claude's full read of the game, prices in view |
 
 ## Standings
 
 | Model | Picks | Won | Lost | Open | Staked | Profit | Units | Return | Closing-price edge | Beat the close |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Current NBA bot (v2.3)** | 1 | 0 | 0 | 0 | $6.96 | -$0.78 | -0.08 | -11.2% | n/a | n/a |
+| **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Price Pattern** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Scout** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
+| **Injury News** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
+| **Scout** | 2 | 0 | 0 | 2 | $9.55 | +$0.00 | +0.00 | n/a | n/a | n/a |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
 
@@ -26,40 +28,42 @@ Each model's home-win probability on every game it looked at, picks and passes a
 
 | Model | Games | Model | Kalshi when the model decided | Difference | 95% range | Kalshi at the close | Difference vs close |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Current NBA bot (v2.3) | 11 | 0.1743 | n/a | n/a |  | 0.1987 | -0.0244 |
+| Current NBA bot (v2.3) | 0 | | | | | | |
 | Rotation | 0 | | | | | | |
-| Price Pattern | 0 | | | | | | |
+| Injury News | 0 | | | | | | |
 | Scout | 0 | | | | | | |
 
 The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.
 
 ## Current NBA bot (v2.3)
 
-| Confidence | Picks | Won | Lost | Profit | Return |
-| --- | --- | --- | --- | --- | --- |
-| **HIGH** | 1 | 0 | 0 | -$0.78 | -11.2% |
-| **MID** | 0 | 0 | 0 | +$0.00 | n/a |
-| **LOW** | 0 | 0 | 0 | +$0.00 | n/a |
-
-| Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **HIGH** | Dallas Mavericks at Cleveland Cavaliers | Sat 6:30 PM | Cleveland Cavaliers +4.5 | 37c | 0.70u | 42% | 36% | pulled | -$0.78 |  |
-
-Why each pick was made:
-
-- **HIGH: Dallas Mavericks at Cleveland Cavaliers, Cleveland Cavaliers +4.5.** Even matchup. Cleveland is on a back-to-back and Mobley sat last night; Dallas is without Lively and lost by 39 on Thursday.
+No picks yet.
 
 ## Rotation
 
 No picks yet.
 
-## Price Pattern
+## Injury News
 
 No picks yet.
 
 ## Scout
 
-No picks yet.
+| Confidence | Picks | Won | Lost | Profit | Return |
+| --- | --- | --- | --- | --- | --- |
+| **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
+| **MID** | 0 | 0 | 0 | +$0.00 | n/a |
+| **LOW** | 2 | 0 | 0 | +$0.00 | n/a |
+
+| Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Portland Trail Blazers at Minnesota Timberwolves | Mon 7:00 PM | Minnesota Timberwolves -2.5 | 49c | 0.46u | 55% | 48% | open |  |  |
+| **LOW** | Philadelphia 76ers at Brooklyn Nets | Mon 6:30 PM | Brooklyn Nets to win | 34c | 0.50u | 40% | 34% | open |  |  |
+
+Why each pick was made:
+
+- **LOW: Philadelphia 76ers at Brooklyn Nets, Brooklyn Nets to win.** Philadelphia are 11-3 but only +2.2 points per game, so the record flatters them; tonight they are on the second night of a back-to-back without LeBron James and with Embiid questionable on a sore foot. Brooklyn at home should be closer to 40% than 34%. What the price misses: The price looks anchored on Philadelphia's 11-3 record rather than their +2.2 point differential, and Embiid sitting the second night of a back-to-back is a real chance.
+- **LOW: Portland Trail Blazers at Minnesota Timberwolves, Minnesota Timberwolves -2.5.** Minnesota have built a +11.5 point differential and the best defense here while Edwards played only 4 of 13 games. At home against Portland, who are without Morant and Sharpe, they should be about 4 to 5 point favourites, not 2.5. What the price misses: Edwards' surgery last week reads as fresh bad news, but Minnesota's numbers were made almost entirely without him, so the price discounts them twice.
 
 ## How the week will be judged
 
