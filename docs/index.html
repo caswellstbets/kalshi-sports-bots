@@ -6,8 +6,8 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>Kalshi sports paper-trading scorecard</h1>
-<p>Updated Sun Nov 15 9:08 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
-<p>Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 157 (each bot counts separately).</p>
+<p>Updated Sun Nov 15 10:08 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
+<p>Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 160 (each bot counts separately).</p>
 <p><strong>v2 picks</strong></p>
 <div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
 <tr><td>NBA</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>$0.00</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td><td>n/a</td></tr>
@@ -41,16 +41,16 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <p class='li'><strong>HIGH: Dallas at Cleveland, Cleveland +4.5.</strong> My forecast: home team -1.0, total 229.0. Market: home team -10.0, total 226.8155. Even matchup. Cleveland is on a back-to-back and Mobley sat last night; Dallas is without Lively and lost by 39 on Thursday. Why the price may be wrong: within a few points of the market on both margin and total</p>
 <p><strong>Forecast accuracy by game</strong> (average miss in points, lower is better; each row uses the same games for every column)</p>
 <div class='tw'><table><tr><th>Games</th><th>Count</th><th>Margin: stats</th><th>Margin: AI</th><th>Margin: market</th><th>Total: stats</th><th>Total: AI</th><th>Total: market</th></tr>
-<tr><td>All tracked games</td><td>12</td><td>11.7</td><td>9.8</td><td>12.9</td><td>14.8</td><td>12.3</td><td>17.5</td></tr>
+<tr><td>All tracked games</td><td>13</td><td>10.9</td><td>9.8</td><td>12.1</td><td>14.5</td><td>12.3</td><td>17.2</td></tr>
 <tr><td>Games with an AI forecast</td><td>10</td><td>9.8</td><td>9.8</td><td>11.3</td><td>11.6</td><td>12.3</td><td>14.1</td></tr>
 <tr><td>of which random control games</td><td>1</td><td>3.0</td><td>5.0</td><td>4.1</td><td>22.2</td><td>25.0</td><td>28.2</td></tr>
 </table></div>
 <p>Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.</p>
-<p><strong>Probability accuracy on all tracked contracts</strong>: 92 contracts from 12 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<p><strong>Probability accuracy on all tracked contracts</strong>: 99 contracts from 13 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
 <div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
-<tr><td>Kalshi closing price</td><td>0.2536</td><td>92</td></tr>
-<tr><td>Sportsbook line</td><td>0.2505</td><td>92</td></tr>
-<tr><td>Stats forecast alone</td><td>0.2099</td><td>92</td></tr>
+<tr><td>Kalshi closing price</td><td>0.2503</td><td>99</td></tr>
+<tr><td>Sportsbook line</td><td>0.2474</td><td>99</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2077</td><td>99</td></tr>
 <tr><td>Blind AI forecast</td><td>0.2096</td><td>77</td></tr>
 <tr><td>Bet probability (AI after market check)</td><td>0.2327</td><td>53</td></tr>
 </table></div>
@@ -80,21 +80,21 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <tr><td>of which random control games</td><td>2</td><td>13.4</td><td>12.2</td><td>9.8</td><td>10.0</td><td>6.5</td><td>6.7</td></tr>
 </table></div>
 <p>Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.</p>
-<p><strong>Probability accuracy on all tracked contracts</strong>: 77 contracts from 11 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<p><strong>Probability accuracy on all tracked contracts</strong>: 78 contracts from 12 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
 <div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
-<tr><td>Kalshi closing price</td><td>0.2325</td><td>77</td></tr>
-<tr><td>Sportsbook line</td><td>0.2334</td><td>77</td></tr>
-<tr><td>Stats forecast alone</td><td>0.2539</td><td>77</td></tr>
-<tr><td>Blind AI forecast</td><td>0.2542</td><td>77</td></tr>
-<tr><td>Bet probability (AI after market check)</td><td>0.2358</td><td>66</td></tr>
+<tr><td>Kalshi closing price</td><td>0.2325</td><td>78</td></tr>
+<tr><td>Sportsbook line</td><td>0.2333</td><td>78</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2542</td><td>78</td></tr>
+<tr><td>Blind AI forecast</td><td>0.2549</td><td>78</td></tr>
+<tr><td>Bet probability (AI after market check)</td><td>0.2358</td><td>67</td></tr>
 </table></div>
-<p><strong>Probability accuracy on contracts in games with an AI forecast</strong>: 77 contracts from 11 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<p><strong>Probability accuracy on contracts in games with an AI forecast</strong>: 78 contracts from 12 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
 <div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
-<tr><td>Kalshi closing price</td><td>0.2325</td><td>77</td></tr>
-<tr><td>Sportsbook line</td><td>0.2334</td><td>77</td></tr>
-<tr><td>Stats forecast alone</td><td>0.2539</td><td>77</td></tr>
-<tr><td>Blind AI forecast</td><td>0.2542</td><td>77</td></tr>
-<tr><td>Bet probability (AI after market check)</td><td>0.2358</td><td>66</td></tr>
+<tr><td>Kalshi closing price</td><td>0.2325</td><td>78</td></tr>
+<tr><td>Sportsbook line</td><td>0.2333</td><td>78</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2542</td><td>78</td></tr>
+<tr><td>Blind AI forecast</td><td>0.2549</td><td>78</td></tr>
+<tr><td>Bet probability (AI after market check)</td><td>0.2358</td><td>67</td></tr>
 </table></div>
 <h2>College football</h2>
 <p>Too early to say: 7 settled picks and 40 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
@@ -132,11 +132,11 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <tr><td>of which random control games</td><td>9</td><td>16.2</td><td>16.6</td><td>15.3</td><td>12.9</td><td>12.7</td><td>12.9</td></tr>
 </table></div>
 <p>Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.</p>
-<p><strong>Probability accuracy on all tracked contracts</strong>: 580 contracts from 116 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<p><strong>Probability accuracy on all tracked contracts</strong>: 581 contracts from 116 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
 <div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
-<tr><td>Kalshi closing price</td><td>0.2417</td><td>580</td></tr>
-<tr><td>Sportsbook line</td><td>0.2418</td><td>580</td></tr>
-<tr><td>Stats forecast alone</td><td>0.2412</td><td>580</td></tr>
+<tr><td>Kalshi closing price</td><td>0.2417</td><td>581</td></tr>
+<tr><td>Sportsbook line</td><td>0.2418</td><td>581</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2411</td><td>581</td></tr>
 <tr><td>Blind AI forecast</td><td>0.2348</td><td>211</td></tr>
 <tr><td>Bet probability (AI after market check)</td><td>0.2274</td><td>193</td></tr>
 </table></div>
