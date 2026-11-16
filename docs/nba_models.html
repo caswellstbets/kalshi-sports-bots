@@ -1,0 +1,57 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>NBA Model Comparison</title><style>:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--line:#e3e3e3;--alt:#f7f7f7}
+@media (prefers-color-scheme:dark){:root{--bg:#141414;--fg:#eaeaea;--mut:#a0a0a0;--line:#333;--alt:#1d1d1d}}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding-bottom:4px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88em;margin:.6em 0}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
+tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
+<h1>NBA model comparison</h1>
+<p>Updated Mon Nov 16 4:43 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
+<tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
+<tr><td><strong>Rotation</strong></td><td>player availability and player impact, numbers only</td></tr>
+<tr><td><strong>Price Pattern</strong></td><td>how Kalshi&#x27;s own NBA prices have been wrong before</td></tr>
+<tr><td><strong>Scout</strong></td><td>Claude&#x27;s full read of the game, prices in view</td></tr>
+</table></div>
+<h2>Standings</h2>
+<div class='tw'><table><tr><th>Model</th><th>Picks</th><th>Won</th><th>Lost</th><th>Open</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return</th><th>Closing-price edge</th><th>Beat the close</th></tr>
+<tr><td><strong>Current NBA bot (v2.3)</strong></td><td>1</td><td>0</td><td>0</td><td>0</td><td>$6.96</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>Rotation</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>Price Pattern</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>Scout</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+</table></div>
+<p>Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.</p>
+<h2>Forecast accuracy on every game</h2>
+<p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
+<div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
+<tr><td>Current NBA bot (v2.3)</td><td>11</td><td>0.1743</td><td>n/a</td><td>n/a</td><td></td><td>0.1987</td><td>-0.0244</td></tr>
+<tr><td>Rotation</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Price Pattern</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Scout</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<p>The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.</p>
+<h2>Current NBA bot (v2.3)</h2>
+<div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
+<tr><td><strong>HIGH</strong></td><td>1</td><td>0</td><td>0</td><td>-$0.78</td><td>-11.2%</td></tr>
+<tr><td><strong>MID</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
+<tr><td><strong>LOW</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
+</table></div>
+<div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td><strong>HIGH</strong></td><td>Dallas Mavericks at Cleveland Cavaliers</td><td>Sat 6:30 PM</td><td>Cleveland Cavaliers +4.5</td><td>37c</td><td>0.70u</td><td>42%</td><td>36%</td><td>pulled</td><td>-$0.78</td><td></td></tr>
+</table></div>
+<p>Why each pick was made:</p>
+<p class='li'><strong>HIGH: Dallas Mavericks at Cleveland Cavaliers, Cleveland Cavaliers +4.5.</strong> Even matchup. Cleveland is on a back-to-back and Mobley sat last night; Dallas is without Lively and lost by 39 on Thursday.</p>
+<h2>Rotation</h2>
+<p>No picks yet.</p>
+<h2>Price Pattern</h2>
+<p>No picks yet.</p>
+<h2>Scout</h2>
+<p>No picks yet.</p>
+<h2>How the week will be judged</h2>
+<p>Set before the first pick. One week is about 50 games, enough to rule out a model that is badly wrong and not enough to prove one is right.</p>
+<p>1. <strong>Forecast accuracy against Kalshi</strong> on every game the model looked at (table above). A model that cannot get below Kalshi&#x27;s own Brier score on the same games has no edge to bet, however its picks went.</p>
+<p>2. <strong>Closing-price edge</strong> on its picks. Positive on average means the market agreed with the pick after it was made.</p>
+<p>3. <strong>Profit and return</strong> on its picks, read with the record against the number it expected to win.</p>
+<p>4. <strong>Calibration by confidence</strong>: High picks should win more often than Mid, and Mid more than Low.</p>
+<p>A model is worth keeping past the week if it is ahead of Kalshi on point 1 or point 2 and not far behind on the other. A model behind on both is retired, whatever its profit.</p>
+</body></html>
