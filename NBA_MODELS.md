@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Mon Nov 16 8:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Mon Nov 16 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -18,7 +18,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Injury News** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Scout** | 2 | 0 | 0 | 2 | $9.55 | +$0.00 | +0.00 | n/a | n/a | n/a |
+| **Scout** | 2 | 1 | 1 | 0 | $9.55 | -$0.55 | -0.06 | -5.8% | -1.0c | 0% |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
 
@@ -28,10 +28,10 @@ Each model's home-win probability on every game it looked at, picks and passes a
 
 | Model | Games | Model | Kalshi when the model decided | Difference | 95% range | Kalshi at the close | Difference vs close |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Current NBA bot (v2.3) | 0 | | | | | | |
-| Rotation | 3 | 0.2472 | 0.2757 | -0.0285 | -0.0823 to -0.0004 | 0.2714 | -0.0242 |
+| Current NBA bot (v2.3) | 4 | 0.2812 | n/a | n/a |  | 0.2780 | +0.0032 |
+| Rotation | 7 | 0.2364 | 0.2571 | -0.0207 | -0.0452 to +0.0031 | 0.2572 | -0.0208 |
 | Injury News | 0 | | | | | | |
-| Scout | 3 | 0.2661 | 0.2753 | -0.0092 | -0.0227 to +0.0076 | 0.2714 | -0.0054 |
+| Scout | 7 | 0.2641 | 0.2569 | +0.0072 | -0.0214 to +0.0325 | 0.2572 | +0.0069 |
 
 The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.
 
@@ -49,16 +49,18 @@ No picks yet.
 
 ## Scout
 
+Expected to win 1.0 of 2 decided picks; won 1.
+
 | Confidence | Picks | Won | Lost | Profit | Return |
 | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
 | **MID** | 0 | 0 | 0 | +$0.00 | n/a |
-| **LOW** | 2 | 0 | 0 | +$0.00 | n/a |
+| **LOW** | 2 | 1 | 1 | -$0.55 | -5.8% |
 
 | Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | Portland Trail Blazers at Minnesota Timberwolves | Mon 7:00 PM | Minnesota Timberwolves -2.5 | 49c | 0.46u | 55% | 48% | open |  |  |
-| **LOW** | Philadelphia 76ers at Brooklyn Nets | Mon 6:30 PM | Brooklyn Nets to win | 34c | 0.50u | 40% | 34% | open |  |  |
+| **LOW** | Portland Trail Blazers at Minnesota Timberwolves | Mon 7:00 PM | Minnesota Timberwolves -2.5 | 49c | 0.46u | 55% | 48% | won | +$4.43 | -0c |
+| **LOW** | Philadelphia 76ers at Brooklyn Nets | Mon 6:30 PM | Brooklyn Nets to win | 34c | 0.50u | 40% | 34% | lost | -$4.98 | -2c |
 
 Why each pick was made:
 

@@ -6,7 +6,7 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>NBA model comparison</h1>
-<p>Updated Mon Nov 16 8:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Updated Mon Nov 16 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
 <p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
 <div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
@@ -19,16 +19,16 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
 <tr><td><strong>Rotation</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
 <tr><td><strong>Injury News</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
-<tr><td><strong>Scout</strong></td><td>2</td><td>0</td><td>0</td><td>2</td><td>$9.55</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>Scout</strong></td><td>2</td><td>1</td><td>1</td><td>0</td><td>$9.55</td><td>-$0.55</td><td>-0.06</td><td>-5.8%</td><td>-1.0c</td><td>0%</td></tr>
 </table></div>
 <p>Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.</p>
 <h2>Forecast accuracy on every game</h2>
 <p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
 <div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
-<tr><td>Current NBA bot (v2.3)</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Rotation</td><td>3</td><td>0.2472</td><td>0.2757</td><td>-0.0285</td><td>-0.0823 to -0.0004</td><td>0.2714</td><td>-0.0242</td></tr>
+<tr><td>Current NBA bot (v2.3)</td><td>4</td><td>0.2812</td><td>n/a</td><td>n/a</td><td></td><td>0.2780</td><td>+0.0032</td></tr>
+<tr><td>Rotation</td><td>7</td><td>0.2364</td><td>0.2571</td><td>-0.0207</td><td>-0.0452 to +0.0031</td><td>0.2572</td><td>-0.0208</td></tr>
 <tr><td>Injury News</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Scout</td><td>3</td><td>0.2661</td><td>0.2753</td><td>-0.0092</td><td>-0.0227 to +0.0076</td><td>0.2714</td><td>-0.0054</td></tr>
+<tr><td>Scout</td><td>7</td><td>0.2641</td><td>0.2569</td><td>+0.0072</td><td>-0.0214 to +0.0325</td><td>0.2572</td><td>+0.0069</td></tr>
 </table></div>
 <p>The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.</p>
 <h2>Current NBA bot (v2.3)</h2>
@@ -38,14 +38,15 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <h2>Injury News</h2>
 <p>No picks yet.</p>
 <h2>Scout</h2>
+<p>Expected to win 1.0 of 2 decided picks; won 1.</p>
 <div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
 <tr><td><strong>HIGH</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
 <tr><td><strong>MID</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
-<tr><td><strong>LOW</strong></td><td>2</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
+<tr><td><strong>LOW</strong></td><td>2</td><td>1</td><td>1</td><td>-$0.55</td><td>-5.8%</td></tr>
 </table></div>
 <div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
-<tr><td><strong>LOW</strong></td><td>Portland Trail Blazers at Minnesota Timberwolves</td><td>Mon 7:00 PM</td><td>Minnesota Timberwolves -2.5</td><td>49c</td><td>0.46u</td><td>55%</td><td>48%</td><td>open</td><td></td><td></td></tr>
-<tr><td><strong>LOW</strong></td><td>Philadelphia 76ers at Brooklyn Nets</td><td>Mon 6:30 PM</td><td>Brooklyn Nets to win</td><td>34c</td><td>0.50u</td><td>40%</td><td>34%</td><td>open</td><td></td><td></td></tr>
+<tr><td><strong>LOW</strong></td><td>Portland Trail Blazers at Minnesota Timberwolves</td><td>Mon 7:00 PM</td><td>Minnesota Timberwolves -2.5</td><td>49c</td><td>0.46u</td><td>55%</td><td>48%</td><td>won</td><td>+$4.43</td><td>-0c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Philadelphia 76ers at Brooklyn Nets</td><td>Mon 6:30 PM</td><td>Brooklyn Nets to win</td><td>34c</td><td>0.50u</td><td>40%</td><td>34%</td><td>lost</td><td>-$4.98</td><td>-2c</td></tr>
 </table></div>
 <p>Why each pick was made:</p>
 <p class='li'><strong>LOW: Philadelphia 76ers at Brooklyn Nets, Brooklyn Nets to win.</strong> Philadelphia are 11-3 but only +2.2 points per game, so the record flatters them; tonight they are on the second night of a back-to-back without LeBron James and with Embiid questionable on a sore foot. Brooklyn at home should be closer to 40% than 34%. What the price misses: The price looks anchored on Philadelphia&#x27;s 11-3 record rather than their +2.2 point differential, and Embiid sitting the second night of a back-to-back is a real chance.</p>
