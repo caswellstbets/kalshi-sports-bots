@@ -122,6 +122,16 @@ def upcoming(sport: str, days_ahead: int, groups: list[str] | None = None) -> li
                 continue
             for g in games:
                 seen[g["id"]] = g
+    if sport in ("cfb", "nfl"):
+        # ESPN's football scoreboard sometimes returns nothing for a dates= query;
+        # the default (current week) listing still has the games.
+        for grp in groups or [None]:
+            try:
+                games, _ = scoreboard(sport, **({"groups": grp} if grp else {}))
+            except RuntimeError:
+                continue
+            for g in games:
+                seen.setdefault(g["id"], g)
     return list(seen.values())
 
 
