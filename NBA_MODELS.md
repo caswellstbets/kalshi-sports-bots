@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Tue Nov 17 8:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Tue Nov 17 9:38 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -28,10 +28,10 @@ Each model's home-win probability on every game it looked at, picks and passes a
 
 | Model | Games | Model | Kalshi when the model decided | Difference | 95% range | Kalshi at the close | Difference vs close |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Current NBA bot (v2.3) | 7 | 0.3418 | n/a | n/a |  | 0.3148 | +0.0270 |
-| Rotation | 8 | 0.2645 | 0.3029 | -0.0385 | -0.0822 to -0.0028 | 0.3040 | -0.0396 |
+| Current NBA bot (v2.3) | 8 | 0.3239 | n/a | n/a |  | 0.2991 | +0.0247 |
+| Rotation | 11 | 0.2540 | 0.3063 | -0.0523 | -0.0924 to -0.0179 | 0.3078 | -0.0538 |
 | Injury News | 0 | | | | | | |
-| Scout | 8 | 0.3033 | 0.3028 | +0.0005 | -0.0259 to +0.0274 | 0.3040 | -0.0007 |
+| Scout | 11 | 0.3050 | 0.3062 | -0.0012 | -0.0207 to +0.0192 | 0.3078 | -0.0028 |
 
 The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.
 
