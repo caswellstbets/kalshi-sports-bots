@@ -69,7 +69,8 @@ def load_trades(root: str, model: str, since: str | None) -> list[dict]:
             out.append(t)
         return out
     st = ledger.settlements(root, model)
-    return [dict(t, settle=st.get(t["id"])) for t in ledger.trades(root, model)]
+    return [dict(t, settle=st.get(t["id"])) for t in ledger.trades(root, model)
+            if (st.get(t["id"]) or {}).get("outcome") != "withdrawn"]
 
 
 def stats(trades: list[dict]) -> dict:

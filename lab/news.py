@@ -69,6 +69,8 @@ def scan(root: str, games: list[dict], tr, impact: dict, inj: dict, now, decided
             continue
         p_prev = min(max(prev["p_home"], 0.02), 0.98)
         expected = N.cdf(N.inv_cdf(p_prev) + dm / sd)
+        if (expected - p_now) * dm <= 0:
+            continue  # the price already moved as far as the news is worth (or further): not this model's bet
         names = {pid: tr.name.get(pid, pid) for _, pid, _, _ in changes}
         home, away = slate.full_name(g["g"]["home"]), slate.full_name(g["g"]["away"])
         news = "; ".join(f"{names[pid]} ({home if t == h else away}) {o:.0%} to {n:.0%} likely to sit" for t, pid, o, n in changes)

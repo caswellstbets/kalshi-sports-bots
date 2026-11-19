@@ -61,6 +61,14 @@ numbers and lowers or refuses a tier the edge does not support.
 - Nothing here is tuned during the week. Model settings are in `lab/rotation_params.json` (fit on last season
   only), `lab/rotation_live.py` (Rotation trust 0.25) and the constants at the top of `lab/news.py`.
 
+## Changes during the week
+
+- **Thu Nov 19, Injury News:** the code would also bet when Kalshi had moved *further* than the news is
+  worth (betting the price overreacted), which is not the rule written above. Its first pick, Memphis
+  Grizzlies to win against the Golden State Warriors, was that case (news worth 1.1 points against
+  Memphis, price down 8 cents), so it was withdrawn before tip-off and the code now bets only on the side
+  the news favours, when the price has moved less than the news is worth. Withdrawn picks count nowhere.
+
 ## How the week is judged
 
 See the end of [NBA_MODELS.md](NBA_MODELS.md). In short: forecast accuracy against Kalshi on every game
