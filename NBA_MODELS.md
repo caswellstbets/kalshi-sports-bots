@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Thu Nov 19 3:40 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Thu Nov 19 4:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -18,7 +18,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Injury News** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Scout** | 3 | 2 | 1 | 0 | $14.12 | +$3.88 | +0.39 | +27.5% | +0.2c | 33% |
+| **Scout** | 4 | 2 | 1 | 1 | $18.87 | +$3.88 | +0.39 | +27.5% | +0.2c | 33% |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
 
@@ -55,16 +55,18 @@ Expected to win 1.5 of 3 decided picks; won 2.
 | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
 | **MID** | 0 | 0 | 0 | +$0.00 | n/a |
-| **LOW** | 3 | 2 | 1 | +$3.88 | +27.5% |
+| **LOW** | 4 | 2 | 1 | +$3.88 | +27.5% |
 
 | Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | LA Clippers at San Antonio Spurs | Thu 7:00 PM | LA Clippers +15.5 | 51c | 0.47u | 57% | 50% | open |  |  |
 | **LOW** | Washington Wizards at Toronto Raptors | Wed 6:30 PM | Washington Wizards +4.5 | 49c | 0.46u | 57% | 48% | won | +$4.43 | +2c |
 | **LOW** | Portland Trail Blazers at Minnesota Timberwolves | Mon 7:00 PM | Minnesota Timberwolves -2.5 | 49c | 0.46u | 55% | 48% | won | +$4.43 | -0c |
 | **LOW** | Philadelphia 76ers at Brooklyn Nets | Mon 6:30 PM | Brooklyn Nets to win | 34c | 0.50u | 40% | 34% | lost | -$4.98 | -2c |
 
 Why each pick was made:
 
+- **LOW: LA Clippers at San Antonio Spurs, LA Clippers +15.5.** San Antonio (net +11.2) are far better than the Clippers (net -5.7, 0-5 on the road), and on raw season numbers would be about 17-point favourites. Pulling the 15-game ratings partly toward average and taking off about 2.5 for Dylan Harper's absence leaves San Antonio by about 13, two to three points short of the 15.5 spread. What the price misses: Dylan Harper (31.7 minutes, 18.4 points, a starter in all 15 games) was ruled out for two to three weeks after Wednesday's game, yet San Antonio's price rose from 86c to 87.5c over the day, even after a home loss to Detroit.
 - **LOW: Washington Wizards at Toronto Raptors, Washington Wizards +4.5.** Last-ten form says Toronto by about 5 at home at full strength; take off about 2 for the back-to-back, about 3 for Scottie Barnes (out) and about 1 for RJ Barrett's hamstring, leaving Toronto by about 2. The 4.5-point spread and 64c price still look closer to a Toronto with Barnes. What the price misses: Toronto are on the second night of a back-to-back (known yesterday) and Scottie Barnes has since been ruled out with RJ Barrett questionable, yet the price only fell from 68c to 64c, about half of what Barnes alone is worth.
 - **LOW: Philadelphia 76ers at Brooklyn Nets, Brooklyn Nets to win.** Philadelphia are 11-3 but only +2.2 points per game, so the record flatters them; tonight they are on the second night of a back-to-back without LeBron James and with Embiid questionable on a sore foot. Brooklyn at home should be closer to 40% than 34%. What the price misses: The price looks anchored on Philadelphia's 11-3 record rather than their +2.2 point differential, and Embiid sitting the second night of a back-to-back is a real chance.
 - **LOW: Portland Trail Blazers at Minnesota Timberwolves, Minnesota Timberwolves -2.5.** Minnesota have built a +11.5 point differential and the best defense here while Edwards played only 4 of 13 games. At home against Portland, who are without Morant and Sharpe, they should be about 4 to 5 point favourites, not 2.5. What the price misses: Edwards' surgery last week reads as fresh bad news, but Minnesota's numbers were made almost entirely without him, so the price discounts them twice.
