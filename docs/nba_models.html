@@ -6,7 +6,7 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>NBA model comparison</h1>
-<p>Updated Thu Nov 19 8:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Updated Thu Nov 19 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
 <p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
 <div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
@@ -19,16 +19,16 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
 <tr><td><strong>Rotation</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
 <tr><td><strong>Injury News</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
-<tr><td><strong>Scout</strong></td><td>4</td><td>2</td><td>1</td><td>1</td><td>$18.87</td><td>+$3.88</td><td>+0.39</td><td>+27.5%</td><td>+0.2c</td><td>33%</td></tr>
+<tr><td><strong>Scout</strong></td><td>4</td><td>3</td><td>1</td><td>0</td><td>$18.87</td><td>+$8.13</td><td>+0.81</td><td>+43.1%</td><td>+0.0c</td><td>25%</td></tr>
 </table></div>
 <p>Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.</p>
 <h2>Forecast accuracy on every game</h2>
 <p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
 <div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
 <tr><td>Current NBA bot (v2.3)</td><td>19</td><td>0.3099</td><td>n/a</td><td>n/a</td><td></td><td>0.2991</td><td>+0.0108</td></tr>
-<tr><td>Rotation</td><td>25</td><td>0.2628</td><td>0.2874</td><td>-0.0246</td><td>-0.0497 to -0.0016</td><td>0.2906</td><td>-0.0278</td></tr>
-<tr><td>Injury News</td><td>1</td><td>0.4021</td><td>0.4096</td><td>-0.0075</td><td>-0.0075 to -0.0075</td><td>0.3782</td><td>+0.0239</td></tr>
-<tr><td>Scout</td><td>25</td><td>0.2803</td><td>0.2874</td><td>-0.0070</td><td>-0.0229 to +0.0085</td><td>0.2906</td><td>-0.0102</td></tr>
+<tr><td>Rotation</td><td>29</td><td>0.2443</td><td>0.2621</td><td>-0.0178</td><td>-0.0422 to +0.0050</td><td>0.2648</td><td>-0.0205</td></tr>
+<tr><td>Injury News</td><td>2</td><td>0.2417</td><td>0.2626</td><td>-0.0209</td><td>-0.0343 to -0.0075</td><td>0.2452</td><td>-0.0035</td></tr>
+<tr><td>Scout</td><td>29</td><td>0.2584</td><td>0.2620</td><td>-0.0036</td><td>-0.0180 to +0.0099</td><td>0.2648</td><td>-0.0064</td></tr>
 </table></div>
 <p>The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.</p>
 <h2>Current NBA bot (v2.3)</h2>
@@ -38,14 +38,14 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <h2>Injury News</h2>
 <p>No picks yet.</p>
 <h2>Scout</h2>
-<p>Expected to win 1.5 of 3 decided picks; won 2.</p>
+<p>Expected to win 2.1 of 4 decided picks; won 3.</p>
 <div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
 <tr><td><strong>HIGH</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
 <tr><td><strong>MID</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
-<tr><td><strong>LOW</strong></td><td>4</td><td>2</td><td>1</td><td>+$3.88</td><td>+27.5%</td></tr>
+<tr><td><strong>LOW</strong></td><td>4</td><td>3</td><td>1</td><td>+$8.13</td><td>+43.1%</td></tr>
 </table></div>
 <div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
-<tr><td><strong>LOW</strong></td><td>LA Clippers at San Antonio Spurs</td><td>Thu 7:00 PM</td><td>LA Clippers +15.5</td><td>51c</td><td>0.47u</td><td>57%</td><td>50%</td><td>open</td><td></td><td></td></tr>
+<tr><td><strong>LOW</strong></td><td>LA Clippers at San Antonio Spurs</td><td>Thu 7:00 PM</td><td>LA Clippers +15.5</td><td>51c</td><td>0.47u</td><td>57%</td><td>50%</td><td>won</td><td>+$4.25</td><td>-0c</td></tr>
 <tr><td><strong>LOW</strong></td><td>Washington Wizards at Toronto Raptors</td><td>Wed 6:30 PM</td><td>Washington Wizards +4.5</td><td>49c</td><td>0.46u</td><td>57%</td><td>48%</td><td>won</td><td>+$4.43</td><td>+2c</td></tr>
 <tr><td><strong>LOW</strong></td><td>Portland Trail Blazers at Minnesota Timberwolves</td><td>Mon 7:00 PM</td><td>Minnesota Timberwolves -2.5</td><td>49c</td><td>0.46u</td><td>55%</td><td>48%</td><td>won</td><td>+$4.43</td><td>-0c</td></tr>
 <tr><td><strong>LOW</strong></td><td>Philadelphia 76ers at Brooklyn Nets</td><td>Mon 6:30 PM</td><td>Brooklyn Nets to win</td><td>34c</td><td>0.50u</td><td>40%</td><td>34%</td><td>lost</td><td>-$4.98</td><td>-2c</td></tr>

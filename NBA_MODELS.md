@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Thu Nov 19 8:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Thu Nov 19 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -18,7 +18,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Injury News** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Scout** | 4 | 2 | 1 | 1 | $18.87 | +$3.88 | +0.39 | +27.5% | +0.2c | 33% |
+| **Scout** | 4 | 3 | 1 | 0 | $18.87 | +$8.13 | +0.81 | +43.1% | +0.0c | 25% |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
 
@@ -29,9 +29,9 @@ Each model's home-win probability on every game it looked at, picks and passes a
 | Model | Games | Model | Kalshi when the model decided | Difference | 95% range | Kalshi at the close | Difference vs close |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Current NBA bot (v2.3) | 19 | 0.3099 | n/a | n/a |  | 0.2991 | +0.0108 |
-| Rotation | 25 | 0.2628 | 0.2874 | -0.0246 | -0.0497 to -0.0016 | 0.2906 | -0.0278 |
-| Injury News | 1 | 0.4021 | 0.4096 | -0.0075 | -0.0075 to -0.0075 | 0.3782 | +0.0239 |
-| Scout | 25 | 0.2803 | 0.2874 | -0.0070 | -0.0229 to +0.0085 | 0.2906 | -0.0102 |
+| Rotation | 29 | 0.2443 | 0.2621 | -0.0178 | -0.0422 to +0.0050 | 0.2648 | -0.0205 |
+| Injury News | 2 | 0.2417 | 0.2626 | -0.0209 | -0.0343 to -0.0075 | 0.2452 | -0.0035 |
+| Scout | 29 | 0.2584 | 0.2620 | -0.0036 | -0.0180 to +0.0099 | 0.2648 | -0.0064 |
 
 The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.
 
@@ -49,17 +49,17 @@ No picks yet.
 
 ## Scout
 
-Expected to win 1.5 of 3 decided picks; won 2.
+Expected to win 2.1 of 4 decided picks; won 3.
 
 | Confidence | Picks | Won | Lost | Profit | Return |
 | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
 | **MID** | 0 | 0 | 0 | +$0.00 | n/a |
-| **LOW** | 4 | 2 | 1 | +$3.88 | +27.5% |
+| **LOW** | 4 | 3 | 1 | +$8.13 | +43.1% |
 
 | Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | LA Clippers at San Antonio Spurs | Thu 7:00 PM | LA Clippers +15.5 | 51c | 0.47u | 57% | 50% | open |  |  |
+| **LOW** | LA Clippers at San Antonio Spurs | Thu 7:00 PM | LA Clippers +15.5 | 51c | 0.47u | 57% | 50% | won | +$4.25 | -0c |
 | **LOW** | Washington Wizards at Toronto Raptors | Wed 6:30 PM | Washington Wizards +4.5 | 49c | 0.46u | 57% | 48% | won | +$4.43 | +2c |
 | **LOW** | Portland Trail Blazers at Minnesota Timberwolves | Mon 7:00 PM | Minnesota Timberwolves -2.5 | 49c | 0.46u | 55% | 48% | won | +$4.43 | -0c |
 | **LOW** | Philadelphia 76ers at Brooklyn Nets | Mon 6:30 PM | Brooklyn Nets to win | 34c | 0.50u | 40% | 34% | lost | -$4.98 | -2c |
