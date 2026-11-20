@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Thu Nov 19 8:10 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Thu Nov 19 9:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 345 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 348 (each bot counts separately).
 
 **v2 picks**
 
@@ -130,7 +130,7 @@ Games get an AI forecast because the stats and the market disagreed, so that gro
 
 ## College football
 
-Too early to say: 7 settled picks and 45 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 7 settled picks and 46 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -170,8 +170,8 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 120 | 12.2 | 13.7 | 12.1 | 12.7 | 13.6 | 12.8 |
-| Games with an AI forecast | 45 | 13.6 | 13.7 | 12.6 | 14.0 | 13.6 | 14.1 |
+| All tracked games | 121 | 12.3 | 13.9 | 12.2 | 12.6 | 13.3 | 12.7 |
+| Games with an AI forecast | 46 | 13.7 | 13.9 | 12.6 | 13.7 | 13.3 | 13.8 |
 |   of which random control games | 9 | 16.2 | 16.6 | 15.3 | 12.9 | 12.7 | 12.9 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
