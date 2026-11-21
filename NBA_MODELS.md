@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Sat Nov 21 4:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Sat Nov 21 5:38 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -17,7 +17,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Injury News** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
+| **Injury News** | 1 | 0 | 0 | 1 | $4.75 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Scout** | 4 | 3 | 1 | 0 | $18.87 | +$8.13 | +0.81 | +43.1% | +0.0c | 25% |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
@@ -45,7 +45,19 @@ No picks yet.
 
 ## Injury News
 
-No picks yet.
+| Confidence | Picks | Won | Lost | Profit | Return |
+| --- | --- | --- | --- | --- | --- |
+| **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
+| **MID** | 0 | 0 | 0 | +$0.00 | n/a |
+| **LOW** | 1 | 0 | 0 | +$0.00 | n/a |
+
+| Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Portland Trail Blazers at New York Knicks | Sat 6:30 PM | Portland Trail Blazers to win | 51c | 0.47u | 57% | 50% | open |  |  |
+
+Why each pick was made:
+
+- **LOW: Portland Trail Blazers at New York Knicks, Portland Trail Blazers to win.** News since 22:39 UTC: Karl-Anthony Towns (New York Knicks) 45% to 100% likely to sit. Worth -2.1 points to New York Knicks by the player ratings, so a 48% price should now be about 43%; Kalshi is at 49%.
 
 ## Scout
 
