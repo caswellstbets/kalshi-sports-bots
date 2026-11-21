@@ -6,7 +6,7 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>NBA model comparison</h1>
-<p>Updated Sat Nov 21 2:38 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Updated Sat Nov 21 3:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
 <p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
 <div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
@@ -25,7 +25,7 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <h2>Forecast accuracy on every game</h2>
 <p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
 <div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
-<tr><td>Current NBA bot (v2.3)</td><td>30</td><td>0.2546</td><td>n/a</td><td>n/a</td><td></td><td>0.2360</td><td>+0.0186</td></tr>
+<tr><td>Current NBA bot (v2.3)</td><td>31</td><td>0.2485</td><td>n/a</td><td>n/a</td><td></td><td>0.2295</td><td>+0.0189</td></tr>
 <tr><td>Rotation</td><td>39</td><td>0.2233</td><td>0.2346</td><td>-0.0112</td><td>-0.0293 to +0.0070</td><td>0.2374</td><td>-0.0140</td></tr>
 <tr><td>Injury News</td><td>2</td><td>0.2417</td><td>0.2626</td><td>-0.0209</td><td>-0.0343 to -0.0075</td><td>0.2452</td><td>-0.0035</td></tr>
 <tr><td>Scout</td><td>39</td><td>0.2372</td><td>0.2346</td><td>+0.0026</td><td>-0.0099 to +0.0132</td><td>0.2374</td><td>-0.0002</td></tr>
