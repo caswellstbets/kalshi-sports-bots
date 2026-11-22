@@ -1,12 +1,12 @@
 # New bots scorecard
 
-Updated Sun Nov 22 1:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sun Nov 22 2:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 7 | 5 | 0 | 2 | -$7.17 | -0.72 | -100.0% | +0.0c |
-| Full Scout | 1 | 0 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
-| Situational | 2 | 1 | 0 | 1 | -$2.03 | -0.20 | -100.0% | -0.5c |
+| Full Scout | 2 | 1 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
+| Situational | 3 | 2 | 0 | 1 | -$2.03 | -0.20 | -100.0% | -0.5c |
 | Line Movement | 4 | 1 | 2 | 1 | +$36.26 | +3.63 | +91.2% | -0.5c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
@@ -37,21 +37,25 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | open |  |
 | **LOW** | Utah at TCU | Sat 8:00 PM | College football | TCU +7.5 | 48c | 0.25u | +1.4 | lost | -$2.49 |
 
 Why each pick was made:
 
+- **LOW: Dallas at Utah, Utah +1.5.** Dallas on a back-to-back without Lively explains the move toward Utah; Utah without Markkanen and Jackson. Pick'em.. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **LOW: Utah at TCU, TCU +7.5.** Unbeaten Utah has playoff stakes; TCU at 5-5 needs a sixth win. The stats (6) and sportsbook (8.3) are both under Kalshi's 10.9. Lean TCU with the points.. Low: daily fill-in, edge of 1.4 pts (1 to 3), quarter unit.
 
 ## Situational
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | open |  |
 | **LOW** | Tampa Bay at Detroit | Sun 12:00 PM | NFL | Tampa Bay +3.5 | 50c | 0.21u | +1.1 | open |  |
 | **LOW** | Georgia at South Carolina | Sat 6:30 PM | College football | South Carolina +14.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 
 Why each pick was made:
 
+- **LOW: Dallas at Utah, Utah +1.5.** spots: Dallas played last night. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **LOW: Tampa Bay at Detroit, Tampa Bay +3.5.** spots: Tampa Bay is coming off a bye. Low: daily fill-in, edge of 1.1 pts (1 to 3), quarter unit.
 - **LOW: Georgia at South Carolina, South Carolina +14.5.** spots: lookahead:away. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 
