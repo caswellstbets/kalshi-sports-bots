@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Sun Nov 22 2:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Sun Nov 22 3:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -17,7 +17,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Injury News** | 2 | 0 | 1 | 1 | $9.22 | -$4.75 | -0.47 | -100.0% | -0.5c | 0% |
+| **Injury News** | 4 | 0 | 1 | 3 | $23.10 | -$4.75 | -0.47 | -100.0% | -0.5c | 0% |
 | **Scout** | 4 | 3 | 1 | 0 | $18.87 | +$8.13 | +0.81 | +43.1% | +0.0c | 25% |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
@@ -50,16 +50,20 @@ Expected to win 0.6 of 1 decided picks; won 0.
 | Confidence | Picks | Won | Lost | Profit | Return |
 | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
-| **MID** | 0 | 0 | 0 | +$0.00 | n/a |
-| **LOW** | 2 | 0 | 1 | -$4.75 | -100.0% |
+| **MID** | 1 | 0 | 0 | +$0.00 | n/a |
+| **LOW** | 3 | 0 | 1 | -$4.75 | -100.0% |
 
 | Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Boston Celtics at Golden State Warriors | Sun 7:30 PM | Boston Celtics to win | 75c | 0.46u | 80% | 74% | open |  |  |
 | **LOW** | Indiana Pacers at New York Knicks | Sun 7:00 PM | New York Knicks to win | 73c | 0.45u | 79% | 72% | open |  |  |
+| **MID** | Oklahoma City Thunder at Miami Heat | Sun 5:00 PM | Miami Heat to win | 70c | 0.93u | 77% | 70% | open |  |  |
 | **LOW** | Portland Trail Blazers at New York Knicks | Sat 6:30 PM | Portland Trail Blazers to win | 51c | 0.47u | 57% | 50% | lost | -$4.75 | -0c |
 
 Why each pick was made:
 
+- **MID: Oklahoma City Thunder at Miami Heat, Miami Heat to win.** News since 21:38 UTC: Shai Gilgeous-Alexander (Oklahoma City Thunder) 45% to 100% likely to sit. Worth +3.2 points to Miami Heat by the player ratings, so a 70% price should now be about 77%; Kalshi is at 70%.
+- **LOW: Boston Celtics at Golden State Warriors, Boston Celtics to win.** News since 20:39 UTC: Derrick White (Boston Celtics) 100% to 0% likely to sit; Jayson Tatum (Boston Celtics) 100% to 0% likely to sit; Paul George (Boston Celtics) 0% to 100% likely to sit. Worth -2.0 points to Golden State Warriors by the player ratings, so a 24% price should now be about 20%; Kalshi is at 26%.
 - **LOW: Indiana Pacers at New York Knicks, New York Knicks to win.** News since 17:39 UTC: Karl-Anthony Towns (New York Knicks) 100% to 45% likely to sit. Worth +1.7 points to New York Knicks by the player ratings, so a 76% price should now be about 79%; Kalshi is at 72%.
 - **LOW: Portland Trail Blazers at New York Knicks, Portland Trail Blazers to win.** News since 22:39 UTC: Karl-Anthony Towns (New York Knicks) 45% to 100% likely to sit. Worth -2.1 points to New York Knicks by the player ratings, so a 48% price should now be about 43%; Kalshi is at 49%.
 
