@@ -31,7 +31,7 @@ def build(root):
         pnl = sum(st[t["id"]]["pnl"] for t in tr if t["id"] in st)
         staked = sum(t["cost"] for t in tr if t["id"] in st)
         clv = [st[t["id"]]["clv"] for t in tr if t["id"] in st and st[t["id"]].get("clv") is not None]
-        lines.append(f"| {name} | {len(tr)} | {len(tr) - len(st)} | {won} | {lost} | {money(pnl)} | {pnl / 10:+.2f} | "
+        lines.append(f"| {name} | {len(tr)} | {sum(1 for t in tr if t["id"] not in st)} | {won} | {lost} | {money(pnl)} | {pnl / 10:+.2f} | "
                      f"{'n/a' if not staked else f'{pnl / staked * 100:+.1f}%'} | "
                      f"{'n/a' if not clv else f'{sum(clv) / len(clv) * 100:+.1f}c'} |")
         detail += ["", f"## {name}", ""]

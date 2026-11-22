@@ -7,7 +7,7 @@ Updated Sat Nov 21 9:24 PM CT. Paper trading only. Each bot has a $1,000 paper b
 | Consensus | 2 | 2 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | Full Scout | 1 | 1 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | Situational | 1 | 1 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
-| Line Movement | 3 | -1 | 0 | 1 | -$4.98 | -0.50 | -100.0% | -0.5c |
+| Line Movement | 3 | 2 | 0 | 1 | -$4.98 | -0.50 | -100.0% | -0.5c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
