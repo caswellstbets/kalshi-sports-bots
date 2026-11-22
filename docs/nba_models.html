@@ -6,7 +6,7 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>NBA model comparison</h1>
-<p>Updated Sun Nov 22 11:39 AM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Updated Sun Nov 22 12:38 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
 <p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
 <div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
@@ -18,7 +18,7 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <div class='tw'><table><tr><th>Model</th><th>Picks</th><th>Won</th><th>Lost</th><th>Open</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return</th><th>Closing-price edge</th><th>Beat the close</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
 <tr><td><strong>Rotation</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
-<tr><td><strong>Injury News</strong></td><td>1</td><td>0</td><td>1</td><td>0</td><td>$4.75</td><td>-$4.75</td><td>-0.47</td><td>-100.0%</td><td>-0.5c</td><td>0%</td></tr>
+<tr><td><strong>Injury News</strong></td><td>2</td><td>0</td><td>1</td><td>1</td><td>$9.22</td><td>-$4.75</td><td>-0.47</td><td>-100.0%</td><td>-0.5c</td><td>0%</td></tr>
 <tr><td><strong>Scout</strong></td><td>4</td><td>3</td><td>1</td><td>0</td><td>$18.87</td><td>+$8.13</td><td>+0.81</td><td>+43.1%</td><td>+0.0c</td><td>25%</td></tr>
 </table></div>
 <p>Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.</p>
@@ -40,12 +40,14 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
 <tr><td><strong>HIGH</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
 <tr><td><strong>MID</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
-<tr><td><strong>LOW</strong></td><td>1</td><td>0</td><td>1</td><td>-$4.75</td><td>-100.0%</td></tr>
+<tr><td><strong>LOW</strong></td><td>2</td><td>0</td><td>1</td><td>-$4.75</td><td>-100.0%</td></tr>
 </table></div>
 <div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td><strong>LOW</strong></td><td>Indiana Pacers at New York Knicks</td><td>Sun 7:00 PM</td><td>New York Knicks to win</td><td>73c</td><td>0.45u</td><td>79%</td><td>72%</td><td>open</td><td></td><td></td></tr>
 <tr><td><strong>LOW</strong></td><td>Portland Trail Blazers at New York Knicks</td><td>Sat 6:30 PM</td><td>Portland Trail Blazers to win</td><td>51c</td><td>0.47u</td><td>57%</td><td>50%</td><td>lost</td><td>-$4.75</td><td>-0c</td></tr>
 </table></div>
 <p>Why each pick was made:</p>
+<p class='li'><strong>LOW: Indiana Pacers at New York Knicks, New York Knicks to win.</strong> News since 17:39 UTC: Karl-Anthony Towns (New York Knicks) 100% to 45% likely to sit. Worth +1.7 points to New York Knicks by the player ratings, so a 76% price should now be about 79%; Kalshi is at 72%.</p>
 <p class='li'><strong>LOW: Portland Trail Blazers at New York Knicks, Portland Trail Blazers to win.</strong> News since 22:39 UTC: Karl-Anthony Towns (New York Knicks) 45% to 100% likely to sit. Worth -2.1 points to New York Knicks by the player ratings, so a 48% price should now be about 43%; Kalshi is at 49%.</p>
 <h2>Scout</h2>
 <p>Expected to win 2.1 of 4 decided picks; won 3.</p>
