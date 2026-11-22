@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Sun Nov 22 4:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sun Nov 22 5:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 8 | 4 | 0 | 4 | -$11.59 | -1.16 | -100.0% | -0.5c |
 | Full Scout | 3 | 2 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
 | Situational | 3 | 1 | 0 | 2 | -$4.10 | -0.41 | -100.0% | -0.5c |
-| Line Movement | 4 | 1 | 2 | 1 | +$36.26 | +3.63 | +91.2% | -0.5c |
+| Line Movement | 4 | 0 | 3 | 1 | +$41.28 | +4.13 | +92.3% | -0.8c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -67,7 +67,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **MID** | Detroit at Atlanta | Sun 2:30 PM | NBA | Atlanta +1.5 | 48c | 0.50u | +3.6 | open |  |
+| **MID** | Detroit at Atlanta | Sun 2:30 PM | NBA | Atlanta +1.5 | 48c | 0.50u | +3.6 | won | +$5.02 |
 | **HIGH** | Boston at Sacramento | Sat 9:00 PM | NBA | Sacramento +10.5 | 44c | 1.51u | +6.6 | won | +$17.91 |
 | **MID** | Memphis at Minnesota | Sat 7:00 PM | NBA | Memphis +5.5 | 48c | 0.50u | +4.8 | lost | -$4.98 |
 | **HIGH** | New Orleans at San Antonio | Sat 7:00 PM | NBA | San Antonio -20.5 | 44c | 1.97u | +9.2 | won | +$23.33 |
