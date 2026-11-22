@@ -1,12 +1,12 @@
 # New bots scorecard
 
-Updated Sun Nov 22 2:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sun Nov 22 3:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 7 | 5 | 0 | 2 | -$7.17 | -0.72 | -100.0% | +0.0c |
+| Consensus | 7 | 3 | 0 | 4 | -$11.59 | -1.16 | -100.0% | -0.5c |
 | Full Scout | 2 | 1 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
-| Situational | 3 | 2 | 0 | 1 | -$2.03 | -0.20 | -100.0% | -0.5c |
+| Situational | 3 | 1 | 0 | 2 | -$4.10 | -0.41 | -100.0% | -0.5c |
 | Line Movement | 4 | 1 | 2 | 1 | +$36.26 | +3.63 | +91.2% | -0.5c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
@@ -18,8 +18,8 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 | **MID** | Denver at Chicago | Sun 6:00 PM | NBA | Chicago +8.5 | 46c | 0.48u | +3.9 | open |  |
 | **MID** | Orlando at Washington | Sun 6:00 PM | NBA | Over 221.5 | 45c | 0.47u | +3.6 | open |  |
 | **MID** | Dallas at Utah | Sun 6:00 PM | NBA | Under 224.5 | 43c | 0.49u | +5.5 | open |  |
-| **LOW** | Arizona at Kansas City | Sun 12:00 PM | NFL | Arizona +14.5 | 49c | 0.20u | +2.9 | open |  |
-| **LOW** | Miami at Buffalo | Sun 12:00 PM | NFL | Miami +14.5 | 46c | 0.24u | +1.9 | open |  |
+| **LOW** | Arizona at Kansas City | Sun 12:00 PM | NFL | Arizona +14.5 | 49c | 0.20u | +2.9 | lost | -$2.03 |
+| **LOW** | Miami at Buffalo | Sun 12:00 PM | NFL | Miami +14.5 | 46c | 0.24u | +1.9 | lost | -$2.39 |
 | **MID** | Utah State at Oregon State | Sat 9:30 PM | College football | Under 49.5 | 46c | 0.48u | +3.4 | lost | -$4.78 |
 | **LOW** | Georgia at South Carolina | Sat 6:30 PM | College football | Over 52.5 | 46c | 0.24u | +2.3 | lost | -$2.39 |
 
@@ -50,7 +50,7 @@ Why each pick was made:
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | open |  |
-| **LOW** | Tampa Bay at Detroit | Sun 12:00 PM | NFL | Tampa Bay +3.5 | 50c | 0.21u | +1.1 | open |  |
+| **LOW** | Tampa Bay at Detroit | Sun 12:00 PM | NFL | Tampa Bay +3.5 | 50c | 0.21u | +1.1 | lost | -$2.07 |
 | **LOW** | Georgia at South Carolina | Sat 6:30 PM | College football | South Carolina +14.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 
 Why each pick was made:
