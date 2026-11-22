@@ -1,11 +1,11 @@
 # New bots scorecard
 
-Updated Sun Nov 22 3:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sun Nov 22 4:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 7 | 3 | 0 | 4 | -$11.59 | -1.16 | -100.0% | -0.5c |
-| Full Scout | 2 | 1 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
+| Consensus | 8 | 4 | 0 | 4 | -$11.59 | -1.16 | -100.0% | -0.5c |
+| Full Scout | 3 | 2 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
 | Situational | 3 | 1 | 0 | 2 | -$4.10 | -0.41 | -100.0% | -0.5c |
 | Line Movement | 4 | 1 | 2 | 1 | +$36.26 | +3.63 | +91.2% | -0.5c |
 
@@ -18,6 +18,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 | **MID** | Denver at Chicago | Sun 6:00 PM | NBA | Chicago +8.5 | 46c | 0.48u | +3.9 | open |  |
 | **MID** | Orlando at Washington | Sun 6:00 PM | NBA | Over 221.5 | 45c | 0.47u | +3.6 | open |  |
 | **MID** | Dallas at Utah | Sun 6:00 PM | NBA | Under 224.5 | 43c | 0.49u | +5.5 | open |  |
+| **MID** | Oklahoma City at Miami | Sun 5:00 PM | NBA | Over 228.5 | 45c | 0.47u | +4.5 | open |  |
 | **LOW** | Arizona at Kansas City | Sun 12:00 PM | NFL | Arizona +14.5 | 49c | 0.20u | +2.9 | lost | -$2.03 |
 | **LOW** | Miami at Buffalo | Sun 12:00 PM | NFL | Miami +14.5 | 46c | 0.24u | +1.9 | lost | -$2.39 |
 | **MID** | Utah State at Oregon State | Sat 9:30 PM | College football | Under 49.5 | 46c | 0.48u | +3.4 | lost | -$4.78 |
@@ -28,6 +29,7 @@ Why each pick was made:
 - **MID: Denver at Chicago, Chicago +8.5.** 3 signals agree (stats, book, read), 1 against (move). Mid: edge of 3.9 pts (3 to 6), fixed half unit.
 - **MID: Orlando at Washington, Over 221.5.** total: 2 signals agree (stats, read). Mid: edge of 3.6 pts (3 to 6), fixed half unit.
 - **MID: Dallas at Utah, Under 224.5.** 4 signals agree (stats, move, spots, read) total: 3 signals agree (stats, spots, read). Mid: edge of 5.5 pts (3 to 6), fixed half unit.
+- **MID: Oklahoma City at Miami, Over 228.5.** total: 2 signals agree (stats, read). Mid: edge of 4.5 pts (3 to 6), fixed half unit.
 - **LOW: Arizona at Kansas City, Arizona +14.5.** 3 signals agree (stats, book, read). Low: daily fill-in, edge of 2.8 pts (1 to 3), quarter unit.
 - **LOW: Miami at Buffalo, Miami +14.5.** 3 signals agree (stats, book, read), 1 against (spots). Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **MID: Utah State at Oregon State, Under 49.5.** total: 2 signals agree (stats, read). Mid: edge of 3.4 pts (3 to 6), fixed half unit.
@@ -38,11 +40,13 @@ Why each pick was made:
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | open |  |
+| **LOW** | Oklahoma City at Miami | Sun 5:00 PM | NBA | Over 228.5 | 45c | 0.23u | +1.2 | open |  |
 | **LOW** | Utah at TCU | Sat 8:00 PM | College football | TCU +7.5 | 48c | 0.25u | +1.4 | lost | -$2.49 |
 
 Why each pick was made:
 
 - **LOW: Dallas at Utah, Utah +1.5.** Dallas on a back-to-back without Lively explains the move toward Utah; Utah without Markkanen and Jackson. Pick'em.. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
+- **LOW: Oklahoma City at Miami, Over 228.5.** Oklahoma City is without Holmgren, Jalen Williams, Caruso and Wallace; Miami is healthy and rested. Miami favoured is fair.. Low: daily fill-in, edge of 1.2 pts (1 to 3), quarter unit.
 - **LOW: Utah at TCU, TCU +7.5.** Unbeaten Utah has playoff stakes; TCU at 5-5 needs a sixth win. The stats (6) and sportsbook (8.3) are both under Kalshi's 10.9. Lean TCU with the points.. Low: daily fill-in, edge of 1.4 pts (1 to 3), quarter unit.
 
 ## Situational
