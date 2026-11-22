@@ -1,10 +1,10 @@
 # New bots scorecard
 
-Updated Sun Nov 22 12:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sun Nov 22 1:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 6 | 4 | 0 | 2 | -$7.17 | -0.72 | -100.0% | +0.0c |
+| Consensus | 7 | 5 | 0 | 2 | -$7.17 | -0.72 | -100.0% | +0.0c |
 | Full Scout | 1 | 0 | 0 | 1 | -$2.49 | -0.25 | -100.0% | -0.5c |
 | Situational | 2 | 1 | 0 | 1 | -$2.03 | -0.20 | -100.0% | -0.5c |
 | Line Movement | 4 | 1 | 2 | 1 | +$36.26 | +3.63 | +91.2% | -0.5c |
@@ -17,6 +17,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **MID** | Denver at Chicago | Sun 6:00 PM | NBA | Chicago +8.5 | 46c | 0.48u | +3.9 | open |  |
 | **MID** | Orlando at Washington | Sun 6:00 PM | NBA | Over 221.5 | 45c | 0.47u | +3.6 | open |  |
+| **MID** | Dallas at Utah | Sun 6:00 PM | NBA | Under 224.5 | 43c | 0.49u | +5.5 | open |  |
 | **LOW** | Arizona at Kansas City | Sun 12:00 PM | NFL | Arizona +14.5 | 49c | 0.20u | +2.9 | open |  |
 | **LOW** | Miami at Buffalo | Sun 12:00 PM | NFL | Miami +14.5 | 46c | 0.24u | +1.9 | open |  |
 | **MID** | Utah State at Oregon State | Sat 9:30 PM | College football | Under 49.5 | 46c | 0.48u | +3.4 | lost | -$4.78 |
@@ -26,6 +27,7 @@ Why each pick was made:
 
 - **MID: Denver at Chicago, Chicago +8.5.** 3 signals agree (stats, book, read), 1 against (move). Mid: edge of 3.9 pts (3 to 6), fixed half unit.
 - **MID: Orlando at Washington, Over 221.5.** total: 2 signals agree (stats, read). Mid: edge of 3.6 pts (3 to 6), fixed half unit.
+- **MID: Dallas at Utah, Under 224.5.** 4 signals agree (stats, move, spots, read) total: 3 signals agree (stats, spots, read). Mid: edge of 5.5 pts (3 to 6), fixed half unit.
 - **LOW: Arizona at Kansas City, Arizona +14.5.** 3 signals agree (stats, book, read). Low: daily fill-in, edge of 2.8 pts (1 to 3), quarter unit.
 - **LOW: Miami at Buffalo, Miami +14.5.** 3 signals agree (stats, book, read), 1 against (spots). Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **MID: Utah State at Oregon State, Under 49.5.** total: 2 signals agree (stats, read). Mid: edge of 3.4 pts (3 to 6), fixed half unit.
