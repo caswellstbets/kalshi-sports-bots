@@ -117,11 +117,13 @@ def movement(c, read, sg):
     if mv is None or abs(mv) < MOVE_MIN:
         return out
     backers = [k for k in ("stats", "news", "read") if d[k] is not None and abs(d[k]) >= VOTE_MIN[k] and _sign(d[k]) == _sign(mv)]
+    if read and read.get("explains_move") == "yes":
+        backers.append("known news")
     if backers:
         out["margin"] = c["kalshi"]["margin"] + MOVE_FOLLOW * mv + 0.05 * (d["book"] or 0)
         out["why"].append(f"Kalshi moved {mv:+.1f} pts toward the home side since opening, backed by {', '.join(backers)}")
         out["agree"] = len(backers)
-    elif abs(mv) >= MOVE_FADE_MIN:
+    elif read and abs(mv) >= MOVE_FADE_MIN:  # only fade once Claude has checked the news
         out["margin"] = c["kalshi"]["margin"] + MOVE_FADE * mv
         out["why"].append(f"Kalshi moved {mv:+.1f} pts since opening with no stats, news or read behind it; fading part of it")
         out["agree"] = 0

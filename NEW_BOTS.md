@@ -30,7 +30,7 @@ All are measured in points of home margin (or total points) against Kalshi's pri
 | book | The sportsbook-implied margin from ESPN minus the Kalshi-implied margin |
 | move | How far the Kalshi-implied margin has moved since the market's first real two-sided quote (Kalshi's public price history) |
 | rest | Spots found automatically: bye weeks, NFL short weeks, NBA back-to-backs and long rests |
-| news | Points Claude assigns for injuries, QB changes and suspensions (from ESPN's injury report for NFL and NBA) |
+| news | Points Claude assigns for injury, QB or suspension news it thinks **Kalshi's price hasn't absorbed yet** (news already priced in counts zero). Comes from ESPN's injury report for NFL and NBA. Claude also records whether known news explains the price move since opening. |
 | spots | Situational tags Claude picks from a fixed list. **The code sets the point values, not Claude.** The tags are look-ahead, letdown, rivalry underdog, bowl or playoff push, nothing to play for, senior night, long travel, coach turmoil, wind, cold and pace clash. |
 | read | Claude's own expected margin and total, written in session with the price, stats and injuries in view |
 
@@ -47,9 +47,9 @@ Claude writes one read per game with `python3 -m quad.read`. It can't be replace
 3. **Situational.** Kalshi plus the situational and rest spots, plus half the news points. It only bets when
    the spots add up to at least 1 point and the stats or the news point the same way. Totals need at least
    1.5 points of weather or pace spots, with the stats agreeing.
-4. **Line Movement.** It looks at moves of 1.5 points or more since the market opened. If the stats, the news
-   or Claude's read back the move, it bets on half the move again (the market is still catching up). If a move
-   of 3 or more points has nothing behind it, it fades about a third of it. A fade is never rated High. Winner
+4. **Line Movement.** It looks at moves of 1.5 points or more since the market opened. If the stats, Claude's read, or known news (injuries, rest) back the
+   move, it bets on half the move again (the market is still catching up). If a move
+   of 3 or more points has nothing behind it, it fades about a third of it, but only after Claude has checked the news for that game. A fade is never rated High. Winner
    and spread markets only.
 
 ## From a number to a pick (`quad/run.py`)
@@ -96,3 +96,9 @@ closing-price edge over 25+ picks gets retired or reworked, and only with Livy's
     python3 run_quad.py            # again, to place picks from the new reads
 
 `data/quad/sheets.json` holds the sheet for every game still waiting for a read.
+
+## Change log
+
+- **Sat Nov 21, first hour.** Three Line Movement NBA fades were placed before Claude's reads existed, so
+  injury-driven moves looked unexplained. They were withdrawn before tip-off (a withdrawn pick never counts).
+  New rule: a fade needs a read, and a read records whether news explains the move.

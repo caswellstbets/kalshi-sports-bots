@@ -5,9 +5,11 @@
 
 --margin / --total  Claude's own expected HOME margin and total, written with the Kalshi price,
                     stats and injuries in view. Used by Full Scout and as one Consensus vote.
---news              HOME-margin points from injuries, suspensions, QB changes and other news the
-                    stats cannot see (negative helps the away team). Used by Consensus,
-                    Situational and Line Movement.
+--news              HOME-margin points of injury/suspension/QB news that Claude thinks the Kalshi
+                    price has NOT absorbed yet (negative helps the away team). News already priced
+                    in counts zero here. Used by Consensus and Situational.
+--explains-move     yes if known news (injuries, rest, lineup) explains the Kalshi price move since
+                    opening, no if it does not. Used by Line Movement.
 --spot TAG:SIDE     situational tags from the fixed list in SPOTS below; the point values are set
                     in code, not by the reader.
 A read is saved once and cannot be replaced; the first one counts."""
@@ -68,6 +70,7 @@ def main(argv=None) -> int:
     ap.add_argument("--total", type=float, required=True)
     ap.add_argument("--news", type=float, default=0.0)
     ap.add_argument("--spot", action="append", default=[])
+    ap.add_argument("--explains-move", choices=["yes", "no"], default="no")
     ap.add_argument("--summary", required=True)
     a = ap.parse_args(argv)
     sheets = read_json(os.path.join(DIR, "sheets.json"), {})
@@ -84,7 +87,7 @@ def main(argv=None) -> int:
         print("news points over 10 need a second look"); return 1
     append_jsonl(os.path.join(DIR, "reads.jsonl"), [{
         "sport": a.sport, "game_id": a.game_id, "game": sheets[key]["game"], "ts": iso(now_utc()), "model": MODEL,
-        "margin": a.margin, "total": a.total, "news": a.news, "spots": a.spot, "summary": a.summary,
+        "margin": a.margin, "total": a.total, "news": a.news, "explains_move": a.explains_move, "spots": a.spot, "summary": a.summary,
         "sheet": sheets[key]}])
     print("saved", sheets[key]["game"])
     return 0

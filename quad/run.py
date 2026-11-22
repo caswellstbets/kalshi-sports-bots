@@ -33,6 +33,12 @@ def bot_paths(bot):
     return {"trades": os.path.join(d, "trades.jsonl"), "settle": os.path.join(d, "settlements.jsonl"), "dir": d}
 
 
+def live_trades(bot):
+    """Trades minus withdrawn ones (a withdrawn pick never happened)."""
+    gone = {s["trade_id"] for s in read_jsonl(bot_paths(bot)["settle"]) if s["outcome"] == "withdrawn"}
+    return [t for t in read_jsonl(bot_paths(bot)["trades"]) if t["id"] not in gone]
+
+
 def settle(now, dry):
     quotes = read_json(os.path.join(DIR, "last_quotes.json"), {})
     n = 0
@@ -114,7 +120,7 @@ def run(root, dry=False, sports=("cfb", "nfl", "nba"), verbose=True):
     sheets, new = {}, {b: [] for b in BOTS}
     quotes = read_json(os.path.join(DIR, "last_quotes.json"), {})
     day = now.astimezone(CT).date()
-    trades = {b: read_jsonl(bot_paths(b)["trades"]) for b in BOTS}
+    trades = {b: live_trades(b) for b in BOTS}
     today = {b: sum(1 for t in trades[b] if parse_iso(t["ts"]).astimezone(CT).date() == day) for b in BOTS}
     held = {t["ticker"] for b in BOTS for t in trades[b]}
     for sport in sports:

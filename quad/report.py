@@ -24,8 +24,8 @@ def build(root):
              "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     detail = []
     for bot, name in BOTS.items():
-        tr = read_jsonl(os.path.join(DIR, bot, "trades.jsonl"))
         st = {s["trade_id"]: s for s in read_jsonl(os.path.join(DIR, bot, "settlements.jsonl"))}
+        tr = [t for t in read_jsonl(os.path.join(DIR, bot, "trades.jsonl")) if st.get(t["id"], {}).get("outcome") != "withdrawn"]
         won = sum(1 for t in tr if st.get(t["id"], {}).get("outcome") == "won")
         lost = sum(1 for t in tr if st.get(t["id"], {}).get("outcome") == "lost")
         pnl = sum(st[t["id"]]["pnl"] for t in tr if t["id"] in st)

@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Sat Nov 21 5:59 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sat Nov 21 6:01 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 2 | 2 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | Full Scout | 1 | 1 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 | Situational | 1 | 1 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
-| Line Movement | 0 | 0 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
+| Line Movement | 2 | -1 | 0 | 0 | +$0.00 | +0.00 | n/a | n/a |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -45,4 +45,12 @@ Why each pick was made:
 
 ## Line Movement
 
-No picks yet.
+| Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **HIGH** | Boston at Sacramento | Sat 9:00 PM | NBA | Sacramento +10.5 | 44c | 1.51u | +6.6 | open |  |
+| **MID** | Memphis at Minnesota | Sat 7:00 PM | NBA | Memphis +5.5 | 48c | 0.50u | +4.8 | open |  |
+
+Why each pick was made:
+
+- **HIGH: Boston at Sacramento, Sacramento +10.5.** Kalshi moved +6.2 pts toward the home side since opening, backed by read, known news. High: edge of 6.6 pts, 1/8 Kelly gives 1.53u (floor 1u, cap 2u).
+- **MID: Memphis at Minnesota, Memphis +5.5.** Kalshi moved -5.0 pts toward the home side since opening, backed by stats, read, known news. Mid: edge of 4.8 pts (3 to 6), fixed half unit.
