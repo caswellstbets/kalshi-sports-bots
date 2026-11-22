@@ -102,3 +102,6 @@ closing-price edge over 25+ picks gets retired or reworked, and only with Livy's
 - **Sat Nov 21, first hour.** Three Line Movement NBA fades were placed before Claude's reads existed, so
   injury-driven moves looked unexplained. They were withdrawn before tip-off (a withdrawn pick never counts).
   New rule: a fade needs a read, and a read records whether news explains the move.
+- **Sun Nov 22, 10 AM.** One Line Movement fade (Oklahoma City +3.5 at Miami) was withdrawn before tip-off. When I
+  read that game, Kalshi's price history wasn't available, so the read never judged the move. Oklahoma City's
+  injuries explain it. New rule: a fade needs a read that saw the move.

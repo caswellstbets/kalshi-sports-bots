@@ -3,3 +3,5 @@
 {"close_price":null,"clv":null,"note":"placed before Claude's read existed; the fade treated injury-driven moves as unexplained. Rule changed: fades need a read.","outcome":"withdrawn","payout":0,"pnl":0,"trade_id":"869be529c228","ts":"2026-11-22T00:01:17Z"}
 {"close_price":0.475,"clv":-0.005,"outcome":"lost","payout":0.0,"pnl":-4.98,"trade_id":"35a4adb63a7a","ts":"2026-11-22T03:23:54Z"}
 {"close_price":null,"clv":null,"outcome":"won","payout":43.0,"pnl":23.33,"trade_id":"ce855a866c8e","ts":"2026-11-22T04:24:04Z"}
+{"close_price":0.435,"clv":-0.005,"outcome":"won","payout":33.0,"pnl":17.91,"trade_id":"35f7b363b26e","ts":"2026-11-22T15:24:06Z"}
+{"close_price":null,"clv":null,"note":"the read's sheet showed no price move (price history missing then), so the read never judged whether news explained it; the move is clearly explained by Oklahoma City's injuries. Rule fixed.","outcome":"withdrawn","payout":0,"pnl":0,"trade_id":"bfc17b347178","ts":"2026-11-22T15:25:58Z"}
