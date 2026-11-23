@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Sun Nov 22 10:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Mon Nov 23 3:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 8 | 0 | 2 | 6 | -$10.65 | -1.06 | -34.7% | -0.5c |
+| Consensus | 10 | 2 | 2 | 6 | -$10.65 | -1.06 | -34.7% | -0.5c |
 | Full Scout | 3 | 0 | 1 | 2 | -$1.86 | -0.19 | -27.1% | -1.5c |
-| Situational | 3 | 0 | 0 | 3 | -$6.13 | -0.61 | -100.0% | -1.2c |
-| Line Movement | 4 | 0 | 3 | 1 | +$41.28 | +4.13 | +92.3% | -0.8c |
+| Situational | 4 | 1 | 0 | 3 | -$6.13 | -0.61 | -100.0% | -1.2c |
+| Line Movement | 6 | 2 | 3 | 1 | +$41.28 | +4.13 | +92.3% | -0.8c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -15,6 +15,8 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Cleveland at Chicago | Mon 7:00 PM | NBA | Chicago +8.5 | 50c | 0.21u | +2.3 | open |  |
+| **MID** | Memphis at Charlotte | Mon 6:00 PM | NBA | Memphis -3.5 | 47c | 0.49u | +3.9 | open |  |
 | **MID** | Denver at Chicago | Sun 6:00 PM | NBA | Chicago +8.5 | 46c | 0.48u | +3.9 | won | +$5.22 |
 | **MID** | Orlando at Washington | Sun 6:00 PM | NBA | Over 221.5 | 45c | 0.47u | +3.6 | lost | -$4.68 |
 | **MID** | Dallas at Utah | Sun 6:00 PM | NBA | Under 224.5 | 43c | 0.49u | +5.5 | lost | -$4.92 |
@@ -26,6 +28,8 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 Why each pick was made:
 
+- **LOW: Cleveland at Chicago, Chicago +8.5.** 4 signals agree (stats, book, move, read), 1 against (spots). Low: daily fill-in, edge of 2.3 pts (1 to 3), quarter unit.
+- **MID: Memphis at Charlotte, Memphis -3.5.** 3 signals agree (stats, move, read). Mid: edge of 3.9 pts (3 to 6), fixed half unit.
 - **MID: Denver at Chicago, Chicago +8.5.** 3 signals agree (stats, book, read), 1 against (move). Mid: edge of 3.9 pts (3 to 6), fixed half unit.
 - **MID: Orlando at Washington, Over 221.5.** total: 2 signals agree (stats, read). Mid: edge of 3.6 pts (3 to 6), fixed half unit.
 - **MID: Dallas at Utah, Under 224.5.** 4 signals agree (stats, move, spots, read) total: 3 signals agree (stats, spots, read). Mid: edge of 5.5 pts (3 to 6), fixed half unit.
@@ -53,12 +57,14 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 47c | 0.24u | +2.1 | open |  |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 | **LOW** | Tampa Bay at Detroit | Sun 12:00 PM | NFL | Tampa Bay +3.5 | 50c | 0.21u | +1.1 | lost | -$2.07 |
 | **LOW** | Georgia at South Carolina | Sat 6:30 PM | College football | South Carolina +14.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 
 Why each pick was made:
 
+- **LOW: Oklahoma City at Indiana, Under 223.5.** total spots: Indiana played last night; Oklahoma City played last night. Low: daily fill-in, edge of 2.1 pts (1 to 3), quarter unit.
 - **LOW: Dallas at Utah, Utah +1.5.** spots: Dallas played last night. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **LOW: Tampa Bay at Detroit, Tampa Bay +3.5.** spots: Tampa Bay is coming off a bye. Low: daily fill-in, edge of 1.1 pts (1 to 3), quarter unit.
 - **LOW: Georgia at South Carolina, South Carolina +14.5.** spots: lookahead:away. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
@@ -67,6 +73,8 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | Brooklyn at Minnesota | Mon 6:30 PM | NBA | Brooklyn +11.5 | 53c | 0.49u | +3.9 | open |  |
+| **MID** | Portland at Philadelphia | Mon 6:00 PM | NBA | Portland +1.5 | 47c | 0.49u | +3.2 | open |  |
 | **MID** | Detroit at Atlanta | Sun 2:30 PM | NBA | Atlanta +1.5 | 48c | 0.50u | +3.6 | won | +$5.02 |
 | **HIGH** | Boston at Sacramento | Sat 9:00 PM | NBA | Sacramento +10.5 | 44c | 1.51u | +6.6 | won | +$17.91 |
 | **MID** | Memphis at Minnesota | Sat 7:00 PM | NBA | Memphis +5.5 | 48c | 0.50u | +4.8 | lost | -$4.98 |
@@ -74,6 +82,8 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **MID: Brooklyn at Minnesota, Brooklyn +11.5.** Kalshi moved -4.2 pts toward the home side since opening, backed by known news. Mid: edge of 3.9 pts (3 to 6), fixed half unit.
+- **MID: Portland at Philadelphia, Portland +1.5.** Kalshi moved -4.0 pts toward the home side since opening, backed by stats. Mid: edge of 3.2 pts (3 to 6), fixed half unit.
 - **MID: Detroit at Atlanta, Atlanta +1.5.** Kalshi moved +4.3 pts toward the home side since opening, backed by known news. Mid: edge of 3.6 pts (3 to 6), fixed half unit.
 - **HIGH: Boston at Sacramento, Sacramento +10.5.** Kalshi moved +6.2 pts toward the home side since opening, backed by read, known news. High: edge of 6.6 pts, 1/8 Kelly gives 1.53u (floor 1u, cap 2u).
 - **MID: Memphis at Minnesota, Memphis +5.5.** Kalshi moved -5.0 pts toward the home side since opening, backed by stats, read, known news. Mid: edge of 4.8 pts (3 to 6), fixed half unit.
