@@ -1,6 +1,6 @@
 # New bots scorecard
 
-Updated Sun Nov 22 5:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Sun Nov 22 6:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
