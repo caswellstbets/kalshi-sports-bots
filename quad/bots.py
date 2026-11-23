@@ -121,12 +121,12 @@ def movement(c, read, sg):
         backers.append("known news")
     if backers:
         out["margin"] = c["kalshi"]["margin"] + MOVE_FOLLOW * mv + 0.05 * (d["book"] or 0)
-        out["why"].append(f"Kalshi moved {mv:+.1f} pts toward the home side since opening, backed by {', '.join(backers)}")
+        out["why"].append(f"Kalshi moved {abs(mv):.1f} pts toward {c['home'] if mv > 0 else c['away']} since opening, backed by {', '.join(backers)}")
         out["agree"] = len(backers)
     elif read and read.get('sheet', {}).get('kalshi_move_since_open') is not None and abs(mv) >= MOVE_FADE_MIN:
         # only fade once Claude has seen the move and checked the news for it
         out["margin"] = c["kalshi"]["margin"] + MOVE_FADE * mv
-        out["why"].append(f"Kalshi moved {mv:+.1f} pts since opening with no stats, news or read behind it; fading part of it")
+        out["why"].append(f"Kalshi moved {abs(mv):.1f} pts toward {c['home'] if mv > 0 else c['away']} since opening with no stats, news or read behind it; fading part of it")
         out["agree"] = 0
     return out
 
