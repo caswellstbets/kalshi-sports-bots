@@ -41,11 +41,20 @@ SPOTS = {
 }
 
 
+STALE_PTS = 3.0  # a read goes stale when Kalshi's margin moves this far after it was written
+
+
 def reads() -> dict[str, dict]:
+    """Latest read per game. A game gets a second read only after its first one went stale."""
     out = {}
     for r in read_jsonl(os.path.join(DIR, "reads.jsonl")):
-        out.setdefault(f"{r['sport']}:{r['game_id']}", r)
+        out[f"{r['sport']}:{r['game_id']}"] = r
     return out
+
+
+def is_stale(read: dict, kalshi_margin: float) -> bool:
+    km = ((read.get("sheet") or {}).get("home_margin") or {}).get("kalshi")
+    return km is not None and abs(kalshi_margin - km) >= STALE_PTS
 
 
 def spot_points(r: dict | None) -> tuple[float, float, list[str]]:
@@ -77,7 +86,7 @@ def main(argv=None) -> int:
     key = f"{a.sport}:{a.game_id}"
     if key not in sheets:
         print("no sheet waiting for that game; run `python3 run_quad.py` first"); return 1
-    if key in reads():
+    if key in reads() and not sheets[key].get("stale_read"):
         print("that game already has a read; it cannot be replaced"); return 1
     for s in a.spot:
         tag, _, side = s.partition(":")

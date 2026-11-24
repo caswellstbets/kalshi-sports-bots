@@ -105,3 +105,6 @@ closing-price edge over 25+ picks gets retired or reworked, and only with Livy's
 - **Sun Nov 22, 10 AM.** One Line Movement fade (Oklahoma City +3.5 at Miami) was withdrawn before tip-off. When I
   read that game, Kalshi's price history wasn't available, so the read never judged the move. Oklahoma City's
   injuries explain it. New rule: a fade needs a read that saw the move.
+- **Mon Nov 23, 7:24 PM.** One Full Scout pick (San Antonio -9.5 at Sacramento) was withdrawn before tip-off.
+  Wembanyama and Fox were listed questionable after my read, and Kalshi moved 4.5 points. New rule: a read goes
+  stale once Kalshi's margin moves 3+ points after it was written. The bots then ignore it until a fresh read is written.

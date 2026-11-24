@@ -17,7 +17,7 @@ from core import engine, kalshi, pricing
 from core.util import norm_cdf, norm_inv, append_jsonl, iso, now_utc, parse_iso, r4, read_json, read_jsonl, write_json
 from . import slate as slate_mod
 from .bots import BOTS, RULES, signals
-from .read import DIR, reads
+from .read import DIR, is_stale, reads
 
 CT = ZoneInfo("America/Chicago")
 BANKROLL, UNIT = 1000.0, 10.0
@@ -136,7 +136,10 @@ def run(root, dry=False, sports=("cfb", "nfl", "nba"), verbose=True):
         for c in games:
             k = f"{sport}:{c['game_id']}"
             read = rd.get(k)
-            if not read:
+            if read and is_stale(read, c["kalshi"]["margin"]):
+                read = None  # Kalshi moved a lot since the read: news it never saw. Needs a fresh read.
+                sheets[k] = {**slate_mod.sheet(c), "stale_read": True}
+            elif not read:
                 sheets[k] = slate_mod.sheet(c)
             sg = signals(c, read)
             for row in engine.price_markets(cfg, c["g"], c["kg"], c["home_code"], c["st"], c["book"], None, None):

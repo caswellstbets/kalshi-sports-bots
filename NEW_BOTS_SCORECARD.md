@@ -1,10 +1,10 @@
 # New bots scorecard
 
-Updated Mon Nov 23 7:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Mon Nov 23 7:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 12 | 4 | 2 | 6 | -$10.65 | -1.06 | -34.7% | -0.5c |
+| Consensus | 13 | 5 | 2 | 6 | -$10.65 | -1.06 | -34.7% | -0.5c |
 | Full Scout | 5 | 2 | 1 | 2 | -$1.86 | -0.19 | -27.1% | -1.5c |
 | Situational | 4 | 1 | 0 | 3 | -$6.13 | -0.61 | -100.0% | -1.2c |
 | Line Movement | 6 | 2 | 3 | 1 | +$41.28 | +4.13 | +92.3% | -0.8c |
@@ -15,6 +15,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.45u | +3.4 | open |  |
 | **MID** | LA Clippers at Houston | Mon 7:30 PM | NBA | Over 226.5 | 44c | 0.46u | +4.3 | open |  |
 | **LOW** | Cleveland at Chicago | Mon 7:00 PM | NBA | Chicago +8.5 | 50c | 0.21u | +2.3 | open |  |
 | **MID** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 44c | 0.46u | +5.5 | open |  |
@@ -30,6 +31,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 Why each pick was made:
 
+- **MID: San Antonio at Sacramento, Under 226.5.** total: 2 signals agree (stats, read). Mid: edge of 3.4 pts (3 to 6), fixed half unit.
 - **MID: LA Clippers at Houston, Over 226.5.** total: 2 signals agree (stats, read). Mid: edge of 4.3 pts (3 to 6), fixed half unit.
 - **LOW: Cleveland at Chicago, Chicago +8.5.** 4 signals agree (stats, book, move, read), 1 against (spots). Low: daily fill-in, edge of 2.3 pts (1 to 3), quarter unit.
 - **MID: Oklahoma City at Indiana, Under 223.5.** total: 3 signals agree (stats, spots, read). Mid: edge of 5.5 pts (3 to 6), fixed half unit.
@@ -47,7 +49,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **MID** | San Antonio at Sacramento | Mon 9:00 PM | NBA | San Antonio -9.5 | 46c | 0.48u | +4.3 | open |  |
+| **LOW** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.23u | +1.1 | open |  |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 225.5 | 48c | 0.25u | +1.6 | open |  |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 | **LOW** | Oklahoma City at Miami | Sun 5:00 PM | NBA | Over 228.5 | 45c | 0.23u | +1.2 | won | +$2.66 |
@@ -55,7 +57,7 @@ Why each pick was made:
 
 Why each pick was made:
 
-- **MID: San Antonio at Sacramento, San Antonio -9.5.** San Antonio 14-3 at a 2-14 Sacramento. About right.. Mid: edge of 4.3 pts (3 to 6), fixed half unit.
+- **LOW: San Antonio at Sacramento, Under 226.5.** Second read: Wembanyama (back) and Fox (shin) are both questionable, which explains the move from 14 to about 9. With their status unknown I stay at the price.. Low: daily fill-in, edge of 1.1 pts (1 to 3), quarter unit.
 - **LOW: Oklahoma City at Indiana, Under 225.5.** Both teams are on a back-to-back. Oklahoma City is missing Jalen Williams, Caruso and others; Indiana is without Haliburton, Nesmith and McConnell. Slightly under the price.. Low: daily fill-in, edge of 1.6 pts (1 to 3), quarter unit.
 - **LOW: Dallas at Utah, Utah +1.5.** Dallas on a back-to-back without Lively explains the move toward Utah; Utah without Markkanen and Jackson. Pick'em.. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **LOW: Oklahoma City at Miami, Over 228.5.** Oklahoma City is without Holmgren, Jalen Williams, Caruso and Wallace; Miami is healthy and rested. Miami favoured is fair.. Low: daily fill-in, edge of 1.2 pts (1 to 3), quarter unit.
