@@ -6,7 +6,7 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>NBA model comparison</h1>
-<p>Updated Mon Nov 23 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Updated Tue Nov 24 3:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
 <p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
 <div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
@@ -18,17 +18,17 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <div class='tw'><table><tr><th>Model</th><th>Picks</th><th>Won</th><th>Lost</th><th>Open</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return</th><th>Closing-price edge</th><th>Beat the close</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
 <tr><td><strong>Rotation</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
-<tr><td><strong>Injury News</strong></td><td>6</td><td>2</td><td>3</td><td>1</td><td>$47.43</td><td>-$23.57</td><td>-2.36</td><td>-55.4%</td><td>-3.2c</td><td>0%</td></tr>
+<tr><td><strong>Injury News</strong></td><td>6</td><td>2</td><td>4</td><td>0</td><td>$47.43</td><td>-$28.43</td><td>-2.84</td><td>-59.9%</td><td>-0.9c</td><td>17%</td></tr>
 <tr><td><strong>Scout</strong></td><td>4</td><td>3</td><td>1</td><td>0</td><td>$18.87</td><td>+$8.13</td><td>+0.81</td><td>+43.1%</td><td>+0.0c</td><td>25%</td></tr>
 </table></div>
 <p>Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.</p>
 <h2>Forecast accuracy on every game</h2>
 <p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
 <div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
-<tr><td>Current NBA bot (v2.3)</td><td>47</td><td>0.2480</td><td>n/a</td><td>n/a</td><td></td><td>0.2456</td><td>+0.0024</td></tr>
-<tr><td>Rotation</td><td>57</td><td>0.2389</td><td>0.2488</td><td>-0.0099</td><td>-0.0251 to +0.0048</td><td>0.2500</td><td>-0.0111</td></tr>
-<tr><td>Injury News</td><td>8</td><td>0.2688</td><td>0.2452</td><td>+0.0236</td><td>-0.0178 to +0.0717</td><td>0.2426</td><td>+0.0262</td></tr>
-<tr><td>Scout</td><td>57</td><td>0.2447</td><td>0.2486</td><td>-0.0040</td><td>-0.0154 to +0.0068</td><td>0.2500</td><td>-0.0054</td></tr>
+<tr><td>Current NBA bot (v2.3)</td><td>50</td><td>0.2423</td><td>n/a</td><td>n/a</td><td></td><td>0.2441</td><td>-0.0018</td></tr>
+<tr><td>Rotation</td><td>61</td><td>0.2273</td><td>0.2365</td><td>-0.0091</td><td>-0.0234 to +0.0052</td><td>0.2384</td><td>-0.0110</td></tr>
+<tr><td>Injury News</td><td>9</td><td>0.2446</td><td>0.2210</td><td>+0.0236</td><td>-0.0129 to +0.0662</td><td>0.2240</td><td>+0.0206</td></tr>
+<tr><td>Scout</td><td>61</td><td>0.2333</td><td>0.2363</td><td>-0.0030</td><td>-0.0134 to +0.0069</td><td>0.2384</td><td>-0.0051</td></tr>
 </table></div>
 <p>The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.</p>
 <h2>Current NBA bot (v2.3)</h2>
@@ -36,15 +36,15 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <h2>Rotation</h2>
 <p>No picks yet.</p>
 <h2>Injury News</h2>
-<p>Expected to win 3.7 of 5 decided picks; won 2.</p>
+<p>Expected to win 3.9 of 6 decided picks; won 2.</p>
 <div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
 <tr><td><strong>HIGH</strong></td><td>1</td><td>0</td><td>1</td><td>-$19.47</td><td>-100.0%</td></tr>
 <tr><td><strong>MID</strong></td><td>1</td><td>1</td><td>0</td><td>+$3.70</td><td>+39.8%</td></tr>
-<tr><td><strong>LOW</strong></td><td>4</td><td>1</td><td>2</td><td>-$7.80</td><td>-56.5%</td></tr>
+<tr><td><strong>LOW</strong></td><td>4</td><td>1</td><td>3</td><td>-$12.66</td><td>-67.8%</td></tr>
 </table></div>
 <div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
 <tr><td><strong>HIGH</strong></td><td>Oklahoma City Thunder at Indiana Pacers</td><td>Mon 6:30 PM</td><td>Oklahoma City Thunder to win</td><td>68c</td><td>1.95u</td><td>78%</td><td>68%</td><td>lost</td><td>-$19.47</td><td>-6c</td></tr>
-<tr><td><strong>LOW</strong></td><td>San Antonio Spurs at Sacramento Kings</td><td>Mon 9:00 PM</td><td>Sacramento Kings to win</td><td>17c</td><td>0.49u</td><td>23%</td><td>16%</td><td>open</td><td></td><td></td></tr>
+<tr><td><strong>LOW</strong></td><td>San Antonio Spurs at Sacramento Kings</td><td>Mon 9:00 PM</td><td>Sacramento Kings to win</td><td>17c</td><td>0.49u</td><td>23%</td><td>16%</td><td>lost</td><td>-$4.86</td><td>+10c</td></tr>
 <tr><td><strong>LOW</strong></td><td>Boston Celtics at Golden State Warriors</td><td>Sun 7:30 PM</td><td>Boston Celtics to win</td><td>75c</td><td>0.46u</td><td>80%</td><td>74%</td><td>lost</td><td>-$4.58</td><td>+0c</td></tr>
 <tr><td><strong>LOW</strong></td><td>Indiana Pacers at New York Knicks</td><td>Sun 7:00 PM</td><td>New York Knicks to win</td><td>73c</td><td>0.45u</td><td>79%</td><td>72%</td><td>won</td><td>+$1.53</td><td>-4c</td></tr>
 <tr><td><strong>MID</strong></td><td>Oklahoma City Thunder at Miami Heat</td><td>Sun 5:00 PM</td><td>Miami Heat to win</td><td>70c</td><td>0.93u</td><td>77%</td><td>70%</td><td>won</td><td>+$3.70</td><td>-6c</td></tr>

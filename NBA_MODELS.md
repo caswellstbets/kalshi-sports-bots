@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Mon Nov 23 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Tue Nov 24 3:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -17,7 +17,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Injury News** | 6 | 2 | 3 | 1 | $47.43 | -$23.57 | -2.36 | -55.4% | -3.2c | 0% |
+| **Injury News** | 6 | 2 | 4 | 0 | $47.43 | -$28.43 | -2.84 | -59.9% | -0.9c | 17% |
 | **Scout** | 4 | 3 | 1 | 0 | $18.87 | +$8.13 | +0.81 | +43.1% | +0.0c | 25% |
 
 Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.
@@ -28,10 +28,10 @@ Each model's home-win probability on every game it looked at, picks and passes a
 
 | Model | Games | Model | Kalshi when the model decided | Difference | 95% range | Kalshi at the close | Difference vs close |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Current NBA bot (v2.3) | 47 | 0.2480 | n/a | n/a |  | 0.2456 | +0.0024 |
-| Rotation | 57 | 0.2389 | 0.2488 | -0.0099 | -0.0251 to +0.0048 | 0.2500 | -0.0111 |
-| Injury News | 8 | 0.2688 | 0.2452 | +0.0236 | -0.0178 to +0.0717 | 0.2426 | +0.0262 |
-| Scout | 57 | 0.2447 | 0.2486 | -0.0040 | -0.0154 to +0.0068 | 0.2500 | -0.0054 |
+| Current NBA bot (v2.3) | 50 | 0.2423 | n/a | n/a |  | 0.2441 | -0.0018 |
+| Rotation | 61 | 0.2273 | 0.2365 | -0.0091 | -0.0234 to +0.0052 | 0.2384 | -0.0110 |
+| Injury News | 9 | 0.2446 | 0.2210 | +0.0236 | -0.0129 to +0.0662 | 0.2240 | +0.0206 |
+| Scout | 61 | 0.2333 | 0.2363 | -0.0030 | -0.0134 to +0.0069 | 0.2384 | -0.0051 |
 
 The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.
 
@@ -45,18 +45,18 @@ No picks yet.
 
 ## Injury News
 
-Expected to win 3.7 of 5 decided picks; won 2.
+Expected to win 3.9 of 6 decided picks; won 2.
 
 | Confidence | Picks | Won | Lost | Profit | Return |
 | --- | --- | --- | --- | --- | --- |
 | **HIGH** | 1 | 0 | 1 | -$19.47 | -100.0% |
 | **MID** | 1 | 1 | 0 | +$3.70 | +39.8% |
-| **LOW** | 4 | 1 | 2 | -$7.80 | -56.5% |
+| **LOW** | 4 | 1 | 3 | -$12.66 | -67.8% |
 
 | Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **HIGH** | Oklahoma City Thunder at Indiana Pacers | Mon 6:30 PM | Oklahoma City Thunder to win | 68c | 1.95u | 78% | 68% | lost | -$19.47 | -6c |
-| **LOW** | San Antonio Spurs at Sacramento Kings | Mon 9:00 PM | Sacramento Kings to win | 17c | 0.49u | 23% | 16% | open |  |  |
+| **LOW** | San Antonio Spurs at Sacramento Kings | Mon 9:00 PM | Sacramento Kings to win | 17c | 0.49u | 23% | 16% | lost | -$4.86 | +10c |
 | **LOW** | Boston Celtics at Golden State Warriors | Sun 7:30 PM | Boston Celtics to win | 75c | 0.46u | 80% | 74% | lost | -$4.58 | +0c |
 | **LOW** | Indiana Pacers at New York Knicks | Sun 7:00 PM | New York Knicks to win | 73c | 0.45u | 79% | 72% | won | +$1.53 | -4c |
 | **MID** | Oklahoma City Thunder at Miami Heat | Sun 5:00 PM | Miami Heat to win | 70c | 0.93u | 77% | 70% | won | +$3.70 | -6c |
