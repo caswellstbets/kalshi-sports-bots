@@ -6,8 +6,8 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>Kalshi sports paper-trading scorecard</h1>
-<p>Updated Mon Nov 23 11:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
-<p>Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 549 (each bot counts separately).</p>
+<p>Updated Tue Nov 24 3:10 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.</p>
+<p>Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 558 (each bot counts separately).</p>
 <p><strong>v2 picks</strong></p>
 <div class='tw'><table><tr><th>Bot</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th><th>Closing-price edge</th></tr>
 <tr><td>NBA</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>$0.00</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td><td>n/a</td></tr>
@@ -25,7 +25,7 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <p><strong>Confidence.</strong> HIGH: the edge holds up even after the forecast is pulled most of the way to the market price; sized by Kelly, up to 2 units. MID: I have a specific written reason the price may be wrong and my own forecast beats the price by 10 or more points; half a unit. LOW: the same, with a 7 to 10 point gap; a quarter unit. A game with no specific reason against the market gets no pick. There is no daily limit on picks.</p>
 <p>How to read this: profit over a handful of bets is mostly luck. The fairer tests are whether the AI forecast misses by less than the stats forecast and the market on the same games, and whether prices move toward the picks after they are made. The rules, and what would cause the AI to lose authority, are in the README.</p>
 <h2>NBA</h2>
-<p>Too early to say: 1 settled picks and 59 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
+<p>Too early to say: 1 settled picks and 61 graded games. The rules call for 60 graded AI-forecast games before any conclusion.</p>
 <p><strong>v2 picks</strong> (blind AI forecast, market check, code-chosen contract)</p>
 <div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Open stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
 <tr><td><strong>HIGH</strong></td><td>1</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>-$0.78</td><td>-0.08</td><td>-11.2%</td></tr>
@@ -41,26 +41,26 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <p class='li'><strong>HIGH: Dallas at Cleveland, Cleveland +4.5.</strong> My forecast: home team -1.0, total 229.0. Market: home team -10.0, total 226.8155. Even matchup. Cleveland is on a back-to-back and Mobley sat last night; Dallas is without Lively and lost by 39 on Thursday. Why the price may be wrong: within a few points of the market on both margin and total</p>
 <p><strong>Forecast accuracy by game</strong> (average miss in points, lower is better; each row uses the same games for every column)</p>
 <div class='tw'><table><tr><th>Games</th><th>Count</th><th>Margin: stats</th><th>Margin: AI</th><th>Margin: market</th><th>Total: stats</th><th>Total: AI</th><th>Total: market</th></tr>
-<tr><td>All tracked games</td><td>73</td><td>10.6</td><td>10.7</td><td>10.7</td><td>16.1</td><td>15.4</td><td>15.7</td></tr>
-<tr><td>Games with an AI forecast</td><td>59</td><td>11.1</td><td>10.7</td><td>11.0</td><td>15.5</td><td>15.4</td><td>15.1</td></tr>
-<tr><td>of which random control games</td><td>5</td><td>14.0</td><td>14.3</td><td>13.7</td><td>14.7</td><td>15.8</td><td>13.8</td></tr>
+<tr><td>All tracked games</td><td>75</td><td>10.5</td><td>10.6</td><td>10.5</td><td>16.1</td><td>15.4</td><td>15.7</td></tr>
+<tr><td>Games with an AI forecast</td><td>61</td><td>10.9</td><td>10.6</td><td>10.8</td><td>15.5</td><td>15.4</td><td>15.1</td></tr>
+<tr><td>of which random control games</td><td>6</td><td>12.1</td><td>12.7</td><td>12.7</td><td>13.6</td><td>14.8</td><td>12.6</td></tr>
 </table></div>
 <p>Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.</p>
-<p><strong>Probability accuracy on all tracked contracts</strong>: 506 contracts from 73 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<p><strong>Probability accuracy on all tracked contracts</strong>: 523 contracts from 75 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
 <div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
-<tr><td>Kalshi closing price</td><td>0.2462</td><td>506</td></tr>
-<tr><td>Sportsbook line</td><td>0.2441</td><td>506</td></tr>
-<tr><td>Stats forecast alone</td><td>0.2519</td><td>506</td></tr>
-<tr><td>Blind AI forecast</td><td>0.2481</td><td>412</td></tr>
-<tr><td>Bet probability (AI after market check)</td><td>0.2452</td><td>268</td></tr>
+<tr><td>Kalshi closing price</td><td>0.2466</td><td>523</td></tr>
+<tr><td>Sportsbook line</td><td>0.2445</td><td>523</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2517</td><td>523</td></tr>
+<tr><td>Blind AI forecast</td><td>0.2494</td><td>429</td></tr>
+<tr><td>Bet probability (AI after market check)</td><td>0.2467</td><td>278</td></tr>
 </table></div>
-<p><strong>Probability accuracy on contracts in games with an AI forecast</strong>: 412 contracts from 59 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
+<p><strong>Probability accuracy on contracts in games with an AI forecast</strong>: 429 contracts from 61 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.</p>
 <div class='tw'><table><tr><th>Forecast</th><th>Brier score</th><th>Contracts</th></tr>
-<tr><td>Kalshi closing price</td><td>0.2466</td><td>412</td></tr>
-<tr><td>Sportsbook line</td><td>0.2443</td><td>412</td></tr>
-<tr><td>Stats forecast alone</td><td>0.2544</td><td>412</td></tr>
-<tr><td>Blind AI forecast</td><td>0.2481</td><td>412</td></tr>
-<tr><td>Bet probability (AI after market check)</td><td>0.2452</td><td>268</td></tr>
+<tr><td>Kalshi closing price</td><td>0.2472</td><td>429</td></tr>
+<tr><td>Sportsbook line</td><td>0.2448</td><td>429</td></tr>
+<tr><td>Stats forecast alone</td><td>0.2541</td><td>429</td></tr>
+<tr><td>Blind AI forecast</td><td>0.2494</td><td>429</td></tr>
+<tr><td>Bet probability (AI after market check)</td><td>0.2467</td><td>278</td></tr>
 </table></div>
 <p><strong>v1 picks</strong> (earlier rules, kept for the record and not part of the v2 result). The first college picks on Nov 13 were placed minutes before two rule fixes, which is why some games hold two positions and one pick is under the old 6 point minimum.</p>
 <div class='tw'><table><tr><th>Picks</th><th>Open</th><th>Won</th><th>Lost</th><th>Pulled</th><th>Open stake</th><th>Settled stake</th><th>Profit</th><th>Units</th><th>Return on settled stake</th></tr>
