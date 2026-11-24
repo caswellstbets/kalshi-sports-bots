@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Tue Nov 24 4:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Tue Nov 24 5:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 14 | 1 | 4 | 9 | -$17.30 | -1.73 | -33.7% | -0.4c |
 | Full Scout | 5 | 0 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
 | Situational | 6 | 2 | 0 | 4 | -$8.57 | -0.86 | -100.0% | -1.8c |
-| Line Movement | 7 | 1 | 4 | 2 | +$41.47 | +4.15 | +76.0% | +0.5c |
+| Line Movement | 8 | 2 | 4 | 2 | +$41.47 | +4.15 | +76.0% | +0.5c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -89,6 +89,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Dallas at Denver | Tue 9:00 PM | NBA | Denver -9.5 | 46c | 0.24u | +1.9 | open |  |
 | **MID** | Boston at Washington | Tue 7:00 PM | NBA | Boston -11.5 | 48c | 0.50u | +5.7 | open |  |
 | **MID** | Brooklyn at Minnesota | Mon 6:30 PM | NBA | Brooklyn +11.5 | 53c | 0.49u | +3.9 | lost | -$4.93 |
 | **MID** | Portland at Philadelphia | Mon 6:00 PM | NBA | Portland +1.5 | 47c | 0.49u | +3.2 | won | +$5.12 |
@@ -99,6 +100,7 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **LOW: Dallas at Denver, Denver -9.5.** Kalshi moved 3.0 pts toward Denver since opening, backed by known news. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **MID: Boston at Washington, Boston -11.5.** Kalshi moved 5.9 pts toward Boston since opening, backed by known news. Mid: edge of 5.7 pts (3 to 6), fixed half unit.
 - **MID: Brooklyn at Minnesota, Brooklyn +11.5.** Kalshi moved -4.2 pts toward the home side since opening, backed by known news. Mid: edge of 3.9 pts (3 to 6), fixed half unit.
 - **MID: Portland at Philadelphia, Portland +1.5.** Kalshi moved -4.0 pts toward the home side since opening, backed by stats. Mid: edge of 3.2 pts (3 to 6), fixed half unit.
