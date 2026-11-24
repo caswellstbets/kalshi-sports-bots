@@ -6,3 +6,5 @@
 {"close_price":0.435,"clv":-0.005,"outcome":"won","payout":33.0,"pnl":17.91,"trade_id":"35f7b363b26e","ts":"2026-11-22T15:24:06Z"}
 {"close_price":null,"clv":null,"note":"the read's sheet showed no price move (price history missing then), so the read never judged whether news explained it; the move is clearly explained by Oklahoma City's injuries. Rule fixed.","outcome":"withdrawn","payout":0,"pnl":0,"trade_id":"bfc17b347178","ts":"2026-11-22T15:25:58Z"}
 {"close_price":0.465,"clv":-0.015,"outcome":"won","payout":10.0,"pnl":5.02,"trade_id":"24d4463229d5","ts":"2026-11-22T23:24:28Z"}
+{"close_price":0.515,"clv":0.045,"outcome":"won","payout":10.0,"pnl":5.12,"trade_id":"0cc503cd52e1","ts":"2026-11-24T03:24:10Z"}
+{"close_price":0.535,"clv":0.005,"outcome":"lost","payout":0.0,"pnl":-4.93,"trade_id":"a2c6c58f60e4","ts":"2026-11-24T03:24:10Z"}

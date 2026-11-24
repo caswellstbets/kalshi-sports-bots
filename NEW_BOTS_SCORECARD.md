@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Mon Nov 23 8:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Mon Nov 23 9:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 13 | 5 | 2 | 6 | -$10.65 | -1.06 | -34.7% | -0.5c |
-| Full Scout | 5 | 2 | 1 | 2 | -$1.86 | -0.19 | -27.1% | -1.5c |
-| Situational | 4 | 1 | 0 | 3 | -$6.13 | -0.61 | -100.0% | -1.2c |
-| Line Movement | 6 | 2 | 3 | 1 | +$41.28 | +4.13 | +92.3% | -0.8c |
+| Consensus | 13 | 3 | 3 | 7 | -$10.11 | -1.01 | -25.2% | -0.5c |
+| Full Scout | 5 | 1 | 1 | 3 | -$4.35 | -0.43 | -46.5% | -0.8c |
+| Situational | 4 | 0 | 0 | 4 | -$8.57 | -0.86 | -100.0% | -1.8c |
+| Line Movement | 6 | 0 | 4 | 2 | +$41.47 | +4.15 | +76.0% | +0.5c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -18,8 +18,8 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 | **MID** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.45u | +3.4 | open |  |
 | **MID** | LA Clippers at Houston | Mon 7:30 PM | NBA | Over 226.5 | 44c | 0.46u | +4.3 | open |  |
 | **LOW** | Cleveland at Chicago | Mon 7:00 PM | NBA | Chicago +8.5 | 50c | 0.21u | +2.3 | open |  |
-| **MID** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 44c | 0.46u | +5.5 | open |  |
-| **MID** | Memphis at Charlotte | Mon 6:00 PM | NBA | Memphis -3.5 | 47c | 0.49u | +3.9 | open |  |
+| **MID** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 44c | 0.46u | +5.5 | lost | -$4.58 |
+| **MID** | Memphis at Charlotte | Mon 6:00 PM | NBA | Memphis -3.5 | 47c | 0.49u | +3.9 | won | +$5.12 |
 | **MID** | Denver at Chicago | Sun 6:00 PM | NBA | Chicago +8.5 | 46c | 0.48u | +3.9 | won | +$5.22 |
 | **MID** | Orlando at Washington | Sun 6:00 PM | NBA | Over 221.5 | 45c | 0.47u | +3.6 | lost | -$4.68 |
 | **MID** | Dallas at Utah | Sun 6:00 PM | NBA | Under 224.5 | 43c | 0.49u | +5.5 | lost | -$4.92 |
@@ -50,7 +50,7 @@ Why each pick was made:
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **LOW** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.23u | +1.1 | open |  |
-| **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 225.5 | 48c | 0.25u | +1.6 | open |  |
+| **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 225.5 | 48c | 0.25u | +1.6 | lost | -$2.49 |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 | **LOW** | Oklahoma City at Miami | Sun 5:00 PM | NBA | Over 228.5 | 45c | 0.23u | +1.2 | won | +$2.66 |
 | **LOW** | Utah at TCU | Sat 8:00 PM | College football | TCU +7.5 | 48c | 0.25u | +1.4 | lost | -$2.49 |
@@ -67,7 +67,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 47c | 0.24u | +2.1 | open |  |
+| **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 47c | 0.24u | +2.1 | lost | -$2.44 |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 | **LOW** | Tampa Bay at Detroit | Sun 12:00 PM | NFL | Tampa Bay +3.5 | 50c | 0.21u | +1.1 | lost | -$2.07 |
 | **LOW** | Georgia at South Carolina | Sat 6:30 PM | College football | South Carolina +14.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
@@ -83,8 +83,8 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **MID** | Brooklyn at Minnesota | Mon 6:30 PM | NBA | Brooklyn +11.5 | 53c | 0.49u | +3.9 | open |  |
-| **MID** | Portland at Philadelphia | Mon 6:00 PM | NBA | Portland +1.5 | 47c | 0.49u | +3.2 | open |  |
+| **MID** | Brooklyn at Minnesota | Mon 6:30 PM | NBA | Brooklyn +11.5 | 53c | 0.49u | +3.9 | lost | -$4.93 |
+| **MID** | Portland at Philadelphia | Mon 6:00 PM | NBA | Portland +1.5 | 47c | 0.49u | +3.2 | won | +$5.12 |
 | **MID** | Detroit at Atlanta | Sun 2:30 PM | NBA | Atlanta +1.5 | 48c | 0.50u | +3.6 | won | +$5.02 |
 | **HIGH** | Boston at Sacramento | Sat 9:00 PM | NBA | Sacramento +10.5 | 44c | 1.51u | +6.6 | won | +$17.91 |
 | **MID** | Memphis at Minnesota | Sat 7:00 PM | NBA | Memphis +5.5 | 48c | 0.50u | +4.8 | lost | -$4.98 |
