@@ -3,3 +3,4 @@
 {"close_price":0.465,"clv":-0.025,"outcome":"lost","payout":0.0,"pnl":-2.03,"trade_id":"e33b7aa72fd6","ts":"2026-11-23T03:24:36Z"}
 {"close_price":null,"clv":null,"note":"read was stale: Wembanyama and Fox were listed questionable after it was written and Kalshi moved 4.5 pts. Rule added: a read goes stale when Kalshi moves 3+ pts after it.","outcome":"withdrawn","payout":0,"pnl":0,"trade_id":"2ead2b65994a","ts":"2026-11-24T01:24:59Z"}
 {"close_price":0.485,"clv":0.005,"outcome":"lost","payout":0.0,"pnl":-2.49,"trade_id":"c81a7c266af0","ts":"2026-11-24T03:24:10Z"}
+{"close_price":0.565,"clv":0.015,"outcome":"lost","payout":0.0,"pnl":-2.27,"trade_id":"8f3239d47734","ts":"2026-11-24T21:24:00Z"}
