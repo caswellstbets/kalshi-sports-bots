@@ -1,12 +1,12 @@
 # New bots scorecard
 
-Updated Tue Nov 24 8:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Tue Nov 24 9:23 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 14 | 0 | 4 | 10 | -$21.88 | -2.19 | -39.2% | -0.4c |
 | Full Scout | 5 | 0 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
-| Situational | 6 | 2 | 0 | 4 | -$8.57 | -0.86 | -100.0% | -1.8c |
+| Situational | 6 | 1 | 0 | 5 | -$10.64 | -1.06 | -100.0% | -1.5c |
 | Line Movement | 8 | 2 | 4 | 2 | +$41.47 | +4.15 | +76.0% | +0.5c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
@@ -70,7 +70,7 @@ Why each pick was made:
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **LOW** | Miami (OH) at Western Michigan | Tue 6:00 PM | College football | Miami (OH) +3.5 | 46c | 0.24u | +1.8 | open |  |
-| **LOW** | Kent State at Eastern Michigan | Tue 6:00 PM | College football | Eastern Michigan -6.5 | 50c | 0.21u | +1.5 | open |  |
+| **LOW** | Kent State at Eastern Michigan | Tue 6:00 PM | College football | Eastern Michigan -6.5 | 50c | 0.21u | +1.5 | lost | -$2.07 |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 47c | 0.24u | +2.1 | lost | -$2.44 |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
 | **LOW** | Tampa Bay at Detroit | Sun 12:00 PM | NFL | Tampa Bay +3.5 | 50c | 0.21u | +1.1 | lost | -$2.07 |
