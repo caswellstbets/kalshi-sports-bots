@@ -1,11 +1,11 @@
 # New bots scorecard
 
-Updated Wed Nov 25 3:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Wed Nov 25 4:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 14 | 0 | 4 | 10 | -$21.88 | -2.19 | -39.2% | -0.4c |
-| Full Scout | 5 | 0 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
+| Full Scout | 6 | 1 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
 | Situational | 6 | 0 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
 | Line Movement | 14 | 6 | 5 | 3 | +$44.10 | +4.41 | +71.2% | +0.1c |
 
@@ -51,6 +51,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Cleveland at New York Knicks | Wed 6:30 PM | NBA | Cleveland +3.5 | 48c | 0.25u | +2.6 | open |  |
 | **LOW** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.23u | +1.1 | lost | -$2.27 |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 225.5 | 48c | 0.25u | +1.6 | lost | -$2.49 |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
@@ -59,6 +60,7 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **LOW: Cleveland at New York Knicks, Cleveland +3.5.** Brunson downgraded to questionable plus Anunoby, Clarkson, McBride out explains move toward Cleveland; Mobley out for Cleveland. Near the price.. Low: daily fill-in, edge of 2.6 pts (1 to 3), quarter unit.
 - **LOW: San Antonio at Sacramento, Under 226.5.** Second read: Wembanyama (back) and Fox (shin) are both questionable, which explains the move from 14 to about 9. With their status unknown I stay at the price.. Low: daily fill-in, edge of 1.1 pts (1 to 3), quarter unit.
 - **LOW: Oklahoma City at Indiana, Under 225.5.** Both teams are on a back-to-back. Oklahoma City is missing Jalen Williams, Caruso and others; Indiana is without Haliburton, Nesmith and McConnell. Slightly under the price.. Low: daily fill-in, edge of 1.6 pts (1 to 3), quarter unit.
 - **LOW: Dallas at Utah, Utah +1.5.** Dallas on a back-to-back without Lively explains the move toward Utah; Utah without Markkanen and Jackson. Pick'em.. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
