@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Tue Nov 24 9:23 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Wed Nov 25 3:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 14 | 0 | 4 | 10 | -$21.88 | -2.19 | -39.2% | -0.4c |
 | Full Scout | 5 | 0 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
-| Situational | 6 | 1 | 0 | 5 | -$10.64 | -1.06 | -100.0% | -1.5c |
-| Line Movement | 8 | 2 | 4 | 2 | +$41.47 | +4.15 | +76.0% | +0.5c |
+| Situational | 6 | 0 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
+| Line Movement | 14 | 6 | 5 | 3 | +$44.10 | +4.41 | +71.2% | +0.1c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -69,7 +69,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | Miami (OH) at Western Michigan | Tue 6:00 PM | College football | Miami (OH) +3.5 | 46c | 0.24u | +1.8 | open |  |
+| **LOW** | Miami (OH) at Western Michigan | Tue 6:00 PM | College football | Miami (OH) +3.5 | 46c | 0.24u | +1.8 | won | +$2.61 |
 | **LOW** | Kent State at Eastern Michigan | Tue 6:00 PM | College football | Eastern Michigan -6.5 | 50c | 0.21u | +1.5 | lost | -$2.07 |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 47c | 0.24u | +2.1 | lost | -$2.44 |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
@@ -89,8 +89,14 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | Dallas at Denver | Tue 9:00 PM | NBA | Denver -9.5 | 46c | 0.24u | +1.9 | open |  |
-| **MID** | Boston at Washington | Tue 7:00 PM | NBA | Boston -11.5 | 48c | 0.50u | +5.7 | open |  |
+| **MID** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +6.5 | 45c | 0.47u | +5.8 | open |  |
+| **LOW** | Green Bay at Los Angeles Rams | Wed 7:00 PM | NFL | Green Bay +2.5 | 49c | 0.20u | +1.2 | open |  |
+| **MID** | Brooklyn at Milwaukee | Wed 7:00 PM | NBA | Milwaukee -2.5 | 48c | 0.50u | +3.6 | open |  |
+| **MID** | LA Clippers at Memphis | Wed 7:00 PM | NBA | LA Clippers +5.5 | 44c | 0.46u | +5.0 | open |  |
+| **MID** | Minnesota at Oklahoma City | Wed 6:30 PM | NBA | Minnesota to win | 46c | 0.48u | +3.2 | open |  |
+| **HIGH** | Miami at Philadelphia | Wed 4:00 PM | NBA | Miami -2.5 | 46c | 1.53u | +6.6 | open |  |
+| **LOW** | Dallas at Denver | Tue 9:00 PM | NBA | Denver -9.5 | 46c | 0.24u | +1.9 | lost | -$2.39 |
+| **MID** | Boston at Washington | Tue 7:00 PM | NBA | Boston -11.5 | 48c | 0.50u | +5.7 | won | +$5.02 |
 | **MID** | Brooklyn at Minnesota | Mon 6:30 PM | NBA | Brooklyn +11.5 | 53c | 0.49u | +3.9 | lost | -$4.93 |
 | **MID** | Portland at Philadelphia | Mon 6:00 PM | NBA | Portland +1.5 | 47c | 0.49u | +3.2 | won | +$5.12 |
 | **MID** | Detroit at Atlanta | Sun 2:30 PM | NBA | Atlanta +1.5 | 48c | 0.50u | +3.6 | won | +$5.02 |
@@ -100,6 +106,12 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **MID: Sacramento at Golden State, Sacramento +6.5.** Kalshi moved 5.8 pts toward Sacramento since opening, backed by known news. Mid: edge of 5.8 pts (3 to 6), fixed half unit.
+- **LOW: Green Bay at Los Angeles Rams, Green Bay +2.5.** Kalshi moved 2.3 pts toward Green Bay since opening, backed by known news. Low: daily fill-in, edge of 1.2 pts (1 to 3), quarter unit.
+- **MID: Brooklyn at Milwaukee, Milwaukee -2.5.** Kalshi moved 6.1 pts toward Brooklyn since opening with no stats, news or read behind it; fading part of it. Mid: edge of 3.6 pts (3 to 6), fixed half unit.
+- **MID: LA Clippers at Memphis, LA Clippers +5.5.** Kalshi moved 5.2 pts toward LA Clippers since opening, backed by known news. Mid: edge of 5.0 pts (3 to 6), fixed half unit.
+- **MID: Minnesota at Oklahoma City, Minnesota to win.** Kalshi moved 3.9 pts toward Minnesota since opening, backed by stats. Mid: edge of 3.2 pts (3 to 6), fixed half unit.
+- **HIGH: Miami at Philadelphia, Miami -2.5.** Kalshi moved 6.3 pts toward Miami since opening, backed by known news. High: edge of 6.6 pts, 1/8 Kelly gives 1.57u (floor 1u, cap 2u).
 - **LOW: Dallas at Denver, Denver -9.5.** Kalshi moved 3.0 pts toward Denver since opening, backed by known news. Low: daily fill-in, edge of 1.9 pts (1 to 3), quarter unit.
 - **MID: Boston at Washington, Boston -11.5.** Kalshi moved 5.9 pts toward Boston since opening, backed by known news. Mid: edge of 5.7 pts (3 to 6), fixed half unit.
 - **MID: Brooklyn at Minnesota, Brooklyn +11.5.** Kalshi moved -4.2 pts toward the home side since opening, backed by known news. Mid: edge of 3.9 pts (3 to 6), fixed half unit.
