@@ -1,10 +1,10 @@
 # New bots scorecard
 
-Updated Tue Nov 24 7:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Tue Nov 24 8:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 14 | 1 | 4 | 9 | -$17.30 | -1.73 | -33.7% | -0.4c |
+| Consensus | 14 | 0 | 4 | 10 | -$21.88 | -2.19 | -39.2% | -0.4c |
 | Full Scout | 5 | 0 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
 | Situational | 6 | 2 | 0 | 4 | -$8.57 | -0.86 | -100.0% | -1.8c |
 | Line Movement | 8 | 2 | 4 | 2 | +$41.47 | +4.15 | +76.0% | +0.5c |
@@ -15,7 +15,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **MID** | Detroit at Orlando | Tue 6:00 PM | NBA | Over 214.5 | 44c | 0.46u | +7.2 | open |  |
+| **MID** | Detroit at Orlando | Tue 6:00 PM | NBA | Over 214.5 | 44c | 0.46u | +7.2 | lost | -$4.58 |
 | **MID** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.45u | +3.4 | lost | -$4.54 |
 | **MID** | LA Clippers at Houston | Mon 7:30 PM | NBA | Over 226.5 | 44c | 0.46u | +4.3 | lost | -$4.58 |
 | **LOW** | Cleveland at Chicago | Mon 7:00 PM | NBA | Chicago +8.5 | 50c | 0.21u | +2.3 | won | +$1.93 |
