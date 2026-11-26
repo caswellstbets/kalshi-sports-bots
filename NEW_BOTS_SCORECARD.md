@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Wed Nov 25 9:23 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Thu Nov 26 3:27 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 16 | 1 | 4 | 11 | -$26.69 | -2.67 | -44.0% | -0.4c |
+| Consensus | 17 | 1 | 4 | 12 | -$29.13 | -2.91 | -46.1% | -0.5c |
 | Full Scout | 6 | 0 | 1 | 5 | -$9.11 | -0.91 | -64.6% | -0.3c |
-| Situational | 6 | 0 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
-| Line Movement | 14 | 3 | 6 | 5 | +$29.46 | +2.95 | +34.0% | -0.2c |
+| Situational | 7 | 1 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
+| Line Movement | 15 | 1 | 6 | 8 | +$17.77 | +1.78 | +18.1% | -0.6c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -15,7 +15,8 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +7.5 | 47c | 0.24u | +1.5 | open |  |
+| **LOW** | TCU at Texas Tech | Thu 7:00 PM | College football | TCU +13.5 | 48c | 0.25u | +1.2 | open |  |
+| **LOW** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +7.5 | 47c | 0.24u | +1.5 | lost | -$2.44 |
 | **MID** | Chicago at Charlotte | Wed 6:00 PM | NBA | Over 222.5 | 42c | 0.48u | +5.0 | lost | -$4.81 |
 | **MID** | Detroit at Orlando | Tue 6:00 PM | NBA | Over 214.5 | 44c | 0.46u | +7.2 | lost | -$4.58 |
 | **MID** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.45u | +3.4 | lost | -$4.54 |
@@ -34,6 +35,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 Why each pick was made:
 
+- **LOW: TCU at Texas Tech, TCU +13.5.** 4 signals agree (stats, book, spots, read), 1 against (move). Low: daily fill-in, edge of 1.2 pts (1 to 3), quarter unit.
 - **LOW: Sacramento at Golden State, Sacramento +7.5.** 3 signals agree (book, move, read). Low: daily fill-in, edge of 1.4 pts (1 to 3), quarter unit.
 - **MID: Chicago at Charlotte, Over 222.5.** total: 2 signals agree (stats, read). Mid: edge of 5.0 pts (3 to 6), fixed half unit.
 - **MID: Detroit at Orlando, Over 214.5.** total: 2 signals agree (stats, read). Mid: edge of 7.2 pts (3 to 6), fixed half unit.
@@ -75,6 +77,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | TCU at Texas Tech | Thu 7:00 PM | College football | TCU +13.5 | 48c | 0.25u | +1.8 | open |  |
 | **LOW** | Miami (OH) at Western Michigan | Tue 6:00 PM | College football | Miami (OH) +3.5 | 46c | 0.24u | +1.8 | won | +$2.61 |
 | **LOW** | Kent State at Eastern Michigan | Tue 6:00 PM | College football | Eastern Michigan -6.5 | 50c | 0.21u | +1.5 | lost | -$2.07 |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 223.5 | 47c | 0.24u | +2.1 | lost | -$2.44 |
@@ -84,6 +87,7 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **LOW: TCU at Texas Tech, TCU +13.5.** spots: bowl_push:away. Low: daily fill-in, edge of 1.8 pts (1 to 3), quarter unit.
 - **LOW: Miami (OH) at Western Michigan, Miami (OH) +3.5.** spots: bowl_push:away. Low: daily fill-in, edge of 1.8 pts (1 to 3), quarter unit.
 - **LOW: Kent State at Eastern Michigan, Eastern Michigan -6.5.** spots: nothing_to_play:away. Low: daily fill-in, edge of 1.5 pts (1 to 3), quarter unit.
 - **LOW: Oklahoma City at Indiana, Under 223.5.** total spots: Indiana played last night; Oklahoma City played last night. Low: daily fill-in, edge of 2.1 pts (1 to 3), quarter unit.
@@ -95,9 +99,10 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **MID** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +6.5 | 45c | 0.47u | +5.8 | open |  |
-| **LOW** | Green Bay at Los Angeles Rams | Wed 7:00 PM | NFL | Green Bay +2.5 | 49c | 0.20u | +1.2 | open |  |
-| **MID** | Brooklyn at Milwaukee | Wed 7:00 PM | NBA | Milwaukee -2.5 | 48c | 0.50u | +3.6 | open |  |
+| **LOW** | TCU at Texas Tech | Thu 7:00 PM | College football | TCU +13.5 | 48c | 0.25u | +2.1 | open |  |
+| **MID** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +6.5 | 45c | 0.47u | +5.8 | lost | -$4.68 |
+| **LOW** | Green Bay at Los Angeles Rams | Wed 7:00 PM | NFL | Green Bay +2.5 | 49c | 0.20u | +1.2 | lost | -$2.03 |
+| **MID** | Brooklyn at Milwaukee | Wed 7:00 PM | NBA | Milwaukee -2.5 | 48c | 0.50u | +3.6 | lost | -$4.98 |
 | **MID** | LA Clippers at Memphis | Wed 7:00 PM | NBA | LA Clippers +5.5 | 44c | 0.46u | +5.0 | lost | -$4.58 |
 | **MID** | Minnesota at Oklahoma City | Wed 6:30 PM | NBA | Minnesota to win | 46c | 0.48u | +3.2 | won | +$5.22 |
 | **HIGH** | Miami at Philadelphia | Wed 4:00 PM | NBA | Miami -2.5 | 46c | 1.53u | +6.6 | lost | -$15.28 |
@@ -112,6 +117,7 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **LOW: TCU at Texas Tech, TCU +13.5.** Kalshi moved 4.9 pts toward Texas Tech since opening with no stats, news or read behind it; fading part of it. Low: daily fill-in, edge of 2.1 pts (1 to 3), quarter unit.
 - **MID: Sacramento at Golden State, Sacramento +6.5.** Kalshi moved 5.8 pts toward Sacramento since opening, backed by known news. Mid: edge of 5.8 pts (3 to 6), fixed half unit.
 - **LOW: Green Bay at Los Angeles Rams, Green Bay +2.5.** Kalshi moved 2.3 pts toward Green Bay since opening, backed by known news. Low: daily fill-in, edge of 1.2 pts (1 to 3), quarter unit.
 - **MID: Brooklyn at Milwaukee, Milwaukee -2.5.** Kalshi moved 6.1 pts toward Brooklyn since opening with no stats, news or read behind it; fading part of it. Mid: edge of 3.6 pts (3 to 6), fixed half unit.
