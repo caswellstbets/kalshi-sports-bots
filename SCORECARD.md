@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Wed Nov 25 6:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Wed Nov 25 7:10 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 609 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 618 (each bot counts separately).
 
 **v2 picks**
 
@@ -53,19 +53,19 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 78 | 10.7 | 10.8 | 10.7 | 16.4 | 15.8 | 15.9 |
+| All tracked games | 79 | 10.6 | 10.8 | 10.7 | 16.5 | 15.8 | 16.0 |
 | Games with an AI forecast | 64 | 11.1 | 10.8 | 11.0 | 15.9 | 15.8 | 15.3 |
 |   of which random control games | 6 | 12.1 | 12.7 | 12.7 | 13.6 | 14.8 | 12.6 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
-**Probability accuracy on all tracked contracts**: 539 contracts from 78 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on all tracked contracts**: 543 contracts from 79 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2466 | 539 |
-| Sportsbook line | 0.2447 | 539 |
-| Stats forecast alone | 0.2516 | 539 |
+| Kalshi closing price | 0.2465 | 543 |
+| Sportsbook line | 0.2448 | 543 |
+| Stats forecast alone | 0.2514 | 543 |
 | Blind AI forecast | 0.2493 | 445 |
 | Bet probability (AI after market check) | 0.2466 | 289 |
 
