@@ -6,7 +6,7 @@ h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding
 th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
 tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
 <h1>NBA model comparison</h1>
-<p>Updated Wed Nov 25 8:38 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Updated Wed Nov 25 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
 <p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
 <div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
 <tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
@@ -25,10 +25,10 @@ tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style><
 <h2>Forecast accuracy on every game</h2>
 <p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
 <div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
-<tr><td>Current NBA bot (v2.3)</td><td>53</td><td>0.2408</td><td>n/a</td><td>n/a</td><td></td><td>0.2447</td><td>-0.0039</td></tr>
-<tr><td>Rotation</td><td>66</td><td>0.2294</td><td>0.2395</td><td>-0.0101</td><td>-0.0228 to +0.0031</td><td>0.2430</td><td>-0.0136</td></tr>
+<tr><td>Current NBA bot (v2.3)</td><td>55</td><td>0.2378</td><td>n/a</td><td>n/a</td><td></td><td>0.2453</td><td>-0.0075</td></tr>
+<tr><td>Rotation</td><td>70</td><td>0.2273</td><td>0.2373</td><td>-0.0100</td><td>-0.0230 to +0.0025</td><td>0.2406</td><td>-0.0132</td></tr>
 <tr><td>Injury News</td><td>10</td><td>0.2481</td><td>0.2244</td><td>+0.0237</td><td>-0.0100 to +0.0605</td><td>0.2271</td><td>+0.0210</td></tr>
-<tr><td>Scout</td><td>66</td><td>0.2349</td><td>0.2393</td><td>-0.0044</td><td>-0.0142 to +0.0048</td><td>0.2430</td><td>-0.0081</td></tr>
+<tr><td>Scout</td><td>70</td><td>0.2326</td><td>0.2371</td><td>-0.0045</td><td>-0.0138 to +0.0044</td><td>0.2406</td><td>-0.0079</td></tr>
 </table></div>
 <p>The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.</p>
 <h2>Current NBA bot (v2.3)</h2>
