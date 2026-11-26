@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Wed Nov 25 8:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Wed Nov 25 9:23 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 16 | 2 | 4 | 10 | -$21.88 | -2.19 | -39.2% | -0.4c |
-| Full Scout | 6 | 1 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
+| Consensus | 16 | 1 | 4 | 11 | -$26.69 | -2.67 | -44.0% | -0.4c |
+| Full Scout | 6 | 0 | 1 | 5 | -$9.11 | -0.91 | -64.6% | -0.3c |
 | Situational | 6 | 0 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
-| Line Movement | 14 | 5 | 5 | 4 | +$28.82 | +2.88 | +37.3% | +0.1c |
+| Line Movement | 14 | 3 | 6 | 5 | +$29.46 | +2.95 | +34.0% | -0.2c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -16,7 +16,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **LOW** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +7.5 | 47c | 0.24u | +1.5 | open |  |
-| **MID** | Chicago at Charlotte | Wed 6:00 PM | NBA | Over 222.5 | 42c | 0.48u | +5.0 | open |  |
+| **MID** | Chicago at Charlotte | Wed 6:00 PM | NBA | Over 222.5 | 42c | 0.48u | +5.0 | lost | -$4.81 |
 | **MID** | Detroit at Orlando | Tue 6:00 PM | NBA | Over 214.5 | 44c | 0.46u | +7.2 | lost | -$4.58 |
 | **MID** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.45u | +3.4 | lost | -$4.54 |
 | **MID** | LA Clippers at Houston | Mon 7:30 PM | NBA | Over 226.5 | 44c | 0.46u | +4.3 | lost | -$4.58 |
@@ -55,7 +55,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LOW** | Cleveland at New York Knicks | Wed 6:30 PM | NBA | Cleveland +3.5 | 48c | 0.25u | +2.6 | open |  |
+| **LOW** | Cleveland at New York Knicks | Wed 6:30 PM | NBA | Cleveland +3.5 | 48c | 0.25u | +2.6 | lost | -$2.49 |
 | **LOW** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.23u | +1.1 | lost | -$2.27 |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 225.5 | 48c | 0.25u | +1.6 | lost | -$2.49 |
 | **LOW** | Dallas at Utah | Sun 6:00 PM | NBA | Utah +1.5 | 49c | 0.20u | +1.9 | lost | -$2.03 |
@@ -98,8 +98,8 @@ Why each pick was made:
 | **MID** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +6.5 | 45c | 0.47u | +5.8 | open |  |
 | **LOW** | Green Bay at Los Angeles Rams | Wed 7:00 PM | NFL | Green Bay +2.5 | 49c | 0.20u | +1.2 | open |  |
 | **MID** | Brooklyn at Milwaukee | Wed 7:00 PM | NBA | Milwaukee -2.5 | 48c | 0.50u | +3.6 | open |  |
-| **MID** | LA Clippers at Memphis | Wed 7:00 PM | NBA | LA Clippers +5.5 | 44c | 0.46u | +5.0 | open |  |
-| **MID** | Minnesota at Oklahoma City | Wed 6:30 PM | NBA | Minnesota to win | 46c | 0.48u | +3.2 | open |  |
+| **MID** | LA Clippers at Memphis | Wed 7:00 PM | NBA | LA Clippers +5.5 | 44c | 0.46u | +5.0 | lost | -$4.58 |
+| **MID** | Minnesota at Oklahoma City | Wed 6:30 PM | NBA | Minnesota to win | 46c | 0.48u | +3.2 | won | +$5.22 |
 | **HIGH** | Miami at Philadelphia | Wed 4:00 PM | NBA | Miami -2.5 | 46c | 1.53u | +6.6 | lost | -$15.28 |
 | **LOW** | Dallas at Denver | Tue 9:00 PM | NBA | Denver -9.5 | 46c | 0.24u | +1.9 | lost | -$2.39 |
 | **MID** | Boston at Washington | Tue 7:00 PM | NBA | Boston -11.5 | 48c | 0.50u | +5.7 | won | +$5.02 |
