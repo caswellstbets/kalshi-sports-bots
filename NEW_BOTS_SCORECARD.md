@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Wed Nov 25 6:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Wed Nov 25 7:24 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 16 | 2 | 4 | 10 | -$21.88 | -2.19 | -39.2% | -0.4c |
 | Full Scout | 6 | 1 | 1 | 4 | -$6.62 | -0.66 | -57.0% | -0.3c |
 | Situational | 6 | 0 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
-| Line Movement | 14 | 6 | 5 | 3 | +$44.10 | +4.41 | +71.2% | +0.1c |
+| Line Movement | 14 | 5 | 5 | 4 | +$28.82 | +2.88 | +37.3% | +0.1c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -100,7 +100,7 @@ Why each pick was made:
 | **MID** | Brooklyn at Milwaukee | Wed 7:00 PM | NBA | Milwaukee -2.5 | 48c | 0.50u | +3.6 | open |  |
 | **MID** | LA Clippers at Memphis | Wed 7:00 PM | NBA | LA Clippers +5.5 | 44c | 0.46u | +5.0 | open |  |
 | **MID** | Minnesota at Oklahoma City | Wed 6:30 PM | NBA | Minnesota to win | 46c | 0.48u | +3.2 | open |  |
-| **HIGH** | Miami at Philadelphia | Wed 4:00 PM | NBA | Miami -2.5 | 46c | 1.53u | +6.6 | open |  |
+| **HIGH** | Miami at Philadelphia | Wed 4:00 PM | NBA | Miami -2.5 | 46c | 1.53u | +6.6 | lost | -$15.28 |
 | **LOW** | Dallas at Denver | Tue 9:00 PM | NBA | Denver -9.5 | 46c | 0.24u | +1.9 | lost | -$2.39 |
 | **MID** | Boston at Washington | Tue 7:00 PM | NBA | Boston -11.5 | 48c | 0.50u | +5.7 | won | +$5.02 |
 | **MID** | Brooklyn at Minnesota | Mon 6:30 PM | NBA | Brooklyn +11.5 | 53c | 0.49u | +3.9 | lost | -$4.93 |
