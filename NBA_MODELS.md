@@ -1,6 +1,6 @@
 # NBA model comparison
 
-Updated Fri Nov 27 3:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
+Updated Fri Nov 27 4:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.
 
 Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts only games from then on, so all four cover the same nights.
 
@@ -16,7 +16,7 @@ Comparison window started Mon Nov 16 4:51 PM CT. The current bot's row counts on
 | Model | Picks | Won | Lost | Open | Staked | Profit | Units | Return | Closing-price edge | Beat the close |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Current NBA bot (v2.3)** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
-| **Rotation** | 0 | 0 | 0 | 0 | $0.00 | +$0.00 | +0.00 | n/a | n/a | n/a |
+| **Rotation** | 1 | 0 | 0 | 1 | $4.76 | +$0.00 | +0.00 | n/a | n/a | n/a |
 | **Injury News** | 6 | 2 | 4 | 0 | $47.43 | -$28.43 | -2.84 | -59.9% | -0.9c | 17% |
 | **Scout** | 4 | 3 | 1 | 0 | $18.87 | +$8.13 | +0.81 | +43.1% | +0.0c | 25% |
 
@@ -41,7 +41,19 @@ No picks yet.
 
 ## Rotation
 
-No picks yet.
+| Confidence | Picks | Won | Lost | Profit | Return |
+| --- | --- | --- | --- | --- | --- |
+| **HIGH** | 0 | 0 | 0 | +$0.00 | n/a |
+| **MID** | 0 | 0 | 0 | +$0.00 | n/a |
+| **LOW** | 1 | 0 | 0 | +$0.00 | n/a |
+
+| Confidence | Matchup | Start (CT) | Pick | Price | Size | Model says | Market says | Result | Profit | Closing edge |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **LOW** | Memphis Grizzlies at Minnesota Timberwolves | Fri 7:30 PM | Minnesota Timberwolves -7.5 | 35c | 0.48u | 40% | 34% | open |  |  |
+
+Why each pick was made:
+
+- **LOW: Memphis Grizzlies at Minnesota Timberwolves, Minnesota Timberwolves -7.5.** Minnesota Timberwolves by 9.9, total 228.3. Player strength Minnesota Timberwolves +7.2 after injuries (lost to injury: Minnesota Timberwolves 0.6, Memphis Grizzlies 0.9). Out or doubtful: LaMelo Ball (Out, 45% likely out, usually 30 min); Isaiah Stewart (Day-To-Day, 45% likely out, usually 18 min); Zach Edey (Day-To-Day, 45% likely out, usually 19 min); Cameron Boozer (Out, 100% likely out, usually 22 min).
 
 ## Injury News
 
