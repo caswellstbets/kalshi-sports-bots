@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Thu Nov 26 8:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Thu Nov 26 9:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 17 | 1 | 4 | 12 | -$29.13 | -2.91 | -46.1% | -0.5c |
 | Full Scout | 6 | 0 | 1 | 5 | -$9.11 | -0.91 | -64.6% | -0.3c |
 | Situational | 7 | 1 | 1 | 5 | -$8.03 | -0.80 | -61.6% | -1.2c |
-| Line Movement | 15 | 1 | 6 | 8 | +$17.77 | +1.78 | +18.1% | -0.6c |
+| Line Movement | 16 | 2 | 6 | 8 | +$17.77 | +1.78 | +18.1% | -0.6c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -99,6 +99,7 @@ Why each pick was made:
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | Tulsa at UTSA | Fri 11:00 AM | College football | Tulsa -2.5 | 47c | 0.49u | +3.4 | open |  |
 | **LOW** | TCU at Texas Tech | Thu 7:00 PM | College football | TCU +13.5 | 48c | 0.25u | +2.1 | open |  |
 | **MID** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +6.5 | 45c | 0.47u | +5.8 | lost | -$4.68 |
 | **LOW** | Green Bay at Los Angeles Rams | Wed 7:00 PM | NFL | Green Bay +2.5 | 49c | 0.20u | +1.2 | lost | -$2.03 |
@@ -117,6 +118,7 @@ Why each pick was made:
 
 Why each pick was made:
 
+- **MID: Tulsa at UTSA, Tulsa -2.5.** Kalshi moved 4.4 pts toward Tulsa since opening, backed by stats. Mid: edge of 3.4 pts (3 to 6), fixed half unit.
 - **LOW: TCU at Texas Tech, TCU +13.5.** Kalshi moved 4.9 pts toward Texas Tech since opening with no stats, news or read behind it; fading part of it. Low: daily fill-in, edge of 2.1 pts (1 to 3), quarter unit.
 - **MID: Sacramento at Golden State, Sacramento +6.5.** Kalshi moved 5.8 pts toward Sacramento since opening, backed by known news. Mid: edge of 5.8 pts (3 to 6), fixed half unit.
 - **LOW: Green Bay at Los Angeles Rams, Green Bay +2.5.** Kalshi moved 2.3 pts toward Green Bay since opening, backed by known news. Low: daily fill-in, edge of 1.2 pts (1 to 3), quarter unit.
