@@ -1,8 +1,8 @@
 # Kalshi sports paper-trading scorecard
 
-Updated Fri Nov 27 4:10 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
+Updated Fri Nov 27 5:09 PM CT. Paper trading only: no real orders are placed and no real money is at risk. Each bot starts with a $1,000 paper bankroll and 1 unit is $10.
 
-Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 707 (each bot counts separately).
+Test started Fri Nov 13 11:19 PM CT. v2 rules started Sat Nov 14. Bot runs so far: 710 (each bot counts separately).
 
 **v2 picks**
 
@@ -91,7 +91,7 @@ Games get an AI forecast because the stats and the market disagreed, so that gro
 
 ## NFL
 
-Too early to say: 0 settled picks and 30 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 0 settled picks and 31 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -102,35 +102,35 @@ No picks yet.
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 30 | 9.8 | 9.8 | 8.6 | 11.6 | 11.5 | 10.9 |
-| Games with an AI forecast | 30 | 9.8 | 9.8 | 8.6 | 11.6 | 11.5 | 10.9 |
+| All tracked games | 31 | 10.2 | 10.3 | 9.2 | 11.6 | 11.5 | 10.6 |
+| Games with an AI forecast | 31 | 10.2 | 10.3 | 9.2 | 11.6 | 11.5 | 10.6 |
 |   of which random control games | 4 | 9.2 | 8.5 | 6.7 | 9.7 | 8.5 | 10.5 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
 
-**Probability accuracy on all tracked contracts**: 223 contracts from 30 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on all tracked contracts**: 230 contracts from 31 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2341 | 223 |
-| Sportsbook line | 0.2369 | 223 |
-| Stats forecast alone | 0.2536 | 223 |
-| Blind AI forecast | 0.2520 | 223 |
+| Kalshi closing price | 0.2353 | 230 |
+| Sportsbook line | 0.2378 | 230 |
+| Stats forecast alone | 0.2535 | 230 |
+| Blind AI forecast | 0.2526 | 230 |
 | Bet probability (AI after market check) | 0.2379 | 186 |
 
-**Probability accuracy on contracts in games with an AI forecast**: 223 contracts from 30 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
+**Probability accuracy on contracts in games with an AI forecast**: 230 contracts from 31 games (Brier score, lower is better, 0.25 is a coin flip). Several contracts come from the same game, so treat the game count as the sample size.
 
 | Forecast | Brier score | Contracts |
 | --- | --- | --- |
-| Kalshi closing price | 0.2341 | 223 |
-| Sportsbook line | 0.2369 | 223 |
-| Stats forecast alone | 0.2536 | 223 |
-| Blind AI forecast | 0.2520 | 223 |
+| Kalshi closing price | 0.2353 | 230 |
+| Sportsbook line | 0.2378 | 230 |
+| Stats forecast alone | 0.2535 | 230 |
+| Blind AI forecast | 0.2526 | 230 |
 | Bet probability (AI after market check) | 0.2379 | 186 |
 
 ## College football
 
-Too early to say: 7 settled picks and 142 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
+Too early to say: 7 settled picks and 143 graded games. The rules call for 60 graded AI-forecast games before any conclusion.
 
 **v2 picks** (blind AI forecast, market check, code-chosen contract)
 
@@ -170,8 +170,8 @@ Why each pick was made:
 
 | Games | Count | Margin: stats | Margin: AI | Margin: market | Total: stats | Total: AI | Total: market |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| All tracked games | 248 | 12.4 | 12.8 | 12.0 | 12.7 | 13.0 | 12.6 |
-| Games with an AI forecast | 141 | 12.8 | 12.8 | 12.0 | 13.1 | 13.0 | 13.2 |
+| All tracked games | 249 | 12.3 | 12.7 | 12.0 | 12.7 | 13.0 | 12.6 |
+| Games with an AI forecast | 142 | 12.7 | 12.7 | 11.9 | 13.2 | 13.0 | 13.2 |
 |   of which random control games | 21 | 11.2 | 11.3 | 10.6 | 15.8 | 15.5 | 16.5 |
 
 Games get an AI forecast because the stats and the market disagreed, so that group is not a random sample. The control row is.
