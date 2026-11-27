@@ -131,6 +131,9 @@ def injuries() -> dict[str, list[dict]]:
 
 def p_out(status: str, note: str) -> float:
     n = note.lower()
+    # "was previously questionable" / "after being listed as questionable" describe the old status, not tonight's
+    n = re.sub(r"\b(was |had been )?(previously|initially|originally) (listed as )?(questionable|doubtful|probable)\b", "", n)
+    n = re.sub(r"\bafter (being|initially being) (listed )?(as )?(questionable|doubtful|probable)\b", "", n)
     if status in ("out", "suspension") or re.search(r"\b(ruled out|will not play|won't play|is out|will miss|out for|sidelined|not play)\b", n):
         if not re.search(r"\b(questionable|probable|game-time|expected to play|will play|cleared)\b", n):
             return 1.0

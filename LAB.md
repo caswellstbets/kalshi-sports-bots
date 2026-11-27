@@ -68,6 +68,12 @@ numbers and lowers or refuses a tier the edge does not support.
   Grizzlies to win against the Golden State Warriors, was that case (news worth 1.1 points against
   Memphis, price down 8 cents), so it was withdrawn before tip-off and the code now bets only on the side
   the news favours, when the price has moved less than the news is worth. Withdrawn picks count nowhere.
+- **Fri Nov 27, injury reader (Rotation and Injury News):** a player ruled out whose note also said he was
+  "previously questionable" was counted as only 45% likely to miss. Rotation's first pick, Minnesota
+  Timberwolves -7.5 against the Memphis Grizzlies, rested on that (LaMelo Ball, ruled out). With the note
+  read correctly its edge is 2.4 points, under the 3-point minimum, so it was withdrawn before tip-off. The
+  reader now ignores words that describe an earlier status. Rotation's recorded forecast for that game is
+  left as it was made.
 
 ## How the week is judged
 
