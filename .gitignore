@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 *.tmp
 .pytest_cache/
+data/research/kalshi_nba_market_list.json

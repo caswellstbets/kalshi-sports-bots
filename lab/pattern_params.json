@@ -1,0 +1,10 @@
+{
+ "intercept": -0.010760180315347565,
+ "coef": {
+  "x": 0.7555187863205609,
+  "move_open": 0.07066908490334185,
+  "move_24": 0.3298105142385275,
+  "fav": -0.0188858847965433
+ },
+ "fit_on": "416 games, 2025-26 regular season, Kalshi home price about 3h before the start"
+}

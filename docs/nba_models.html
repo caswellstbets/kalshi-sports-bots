@@ -1,0 +1,85 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>NBA Model Comparison</title><style>:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--line:#e3e3e3;--alt:#f7f7f7}
+@media (prefers-color-scheme:dark){:root{--bg:#141414;--fg:#eaeaea;--mut:#a0a0a0;--line:#333;--alt:#1d1d1d}}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,sans-serif;max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:1.5em}h2{margin-top:2em;border-bottom:1px solid var(--line);padding-bottom:4px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.88em;margin:.6em 0}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600}
+tr:nth-child(even) td{background:var(--alt)}.li{margin:.3em 0 .3em 1em}</style></head><body>
+<h1>NBA model comparison</h1>
+<p>Updated Fri Nov 27 9:39 PM CT. Paper trading only: no real orders, no real money. Every model trades the same Kalshi NBA markets with its own $1,000 paper bankroll (1 unit = $10), one position per game at most.</p>
+<p>Comparison window started Mon Nov 16 4:51 PM CT. The current bot&#x27;s row counts only games from then on, so all four cover the same nights.</p>
+<div class='tw'><table><tr><th>Model</th><th>What drives it</th></tr>
+<tr><td><strong>Current NBA bot (v2.3)</strong></td><td>stats forecast, blind Claude forecast, then held close to the price</td></tr>
+<tr><td><strong>Rotation</strong></td><td>player availability and player impact, numbers only</td></tr>
+<tr><td><strong>Injury News</strong></td><td>fresh injury-report changes the Kalshi price has not caught up with</td></tr>
+<tr><td><strong>Scout</strong></td><td>Claude&#x27;s full read of the game, prices in view</td></tr>
+</table></div>
+<h2>Standings</h2>
+<div class='tw'><table><tr><th>Model</th><th>Picks</th><th>Won</th><th>Lost</th><th>Open</th><th>Staked</th><th>Profit</th><th>Units</th><th>Return</th><th>Closing-price edge</th><th>Beat the close</th></tr>
+<tr><td><strong>Current NBA bot (v2.3)</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>Rotation</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>$0.00</td><td>+$0.00</td><td>+0.00</td><td>n/a</td><td>n/a</td><td>n/a</td></tr>
+<tr><td><strong>Injury News</strong></td><td>6</td><td>2</td><td>4</td><td>0</td><td>$47.43</td><td>-$28.43</td><td>-2.84</td><td>-59.9%</td><td>-0.9c</td><td>17%</td></tr>
+<tr><td><strong>Scout</strong></td><td>4</td><td>3</td><td>1</td><td>0</td><td>$18.87</td><td>+$8.13</td><td>+0.81</td><td>+43.1%</td><td>+0.0c</td><td>25%</td></tr>
+</table></div>
+<p>Closing-price edge: the Kalshi price at the last hourly run before tip-off minus the price paid. Positive means the market moved toward the pick after it was made, the earliest sign of a real edge. Profit over one week is mostly luck.</p>
+<h2>Forecast accuracy on every game</h2>
+<p>Each model&#x27;s home-win probability on every game it looked at, picks and passes alike, against what happened. Brier score: lower is better, 0.25 is a coin flip. The difference column is the model minus Kalshi on the same games; below zero means the model beat the market. The range is a 95% bootstrap over games.</p>
+<div class='tw'><table><tr><th>Model</th><th>Games</th><th>Model</th><th>Kalshi when the model decided</th><th>Difference</th><th>95% range</th><th>Kalshi at the close</th><th>Difference vs close</th></tr>
+<tr><td>Current NBA bot (v2.3)</td><td>64</td><td>0.2329</td><td>n/a</td><td>n/a</td><td></td><td>0.2369</td><td>-0.0040</td></tr>
+<tr><td>Rotation</td><td>78</td><td>0.2276</td><td>0.2343</td><td>-0.0067</td><td>-0.0189 to +0.0061</td><td>0.2373</td><td>-0.0097</td></tr>
+<tr><td>Injury News</td><td>11</td><td>0.2620</td><td>0.2367</td><td>+0.0253</td><td>-0.0051 to +0.0607</td><td>0.2387</td><td>+0.0234</td></tr>
+<tr><td>Scout</td><td>78</td><td>0.2305</td><td>0.2342</td><td>-0.0037</td><td>-0.0120 to +0.0049</td><td>0.2373</td><td>-0.0067</td></tr>
+</table></div>
+<p>The current bot only writes a forecast for the games it picks for a deep read, so its row covers fewer games.</p>
+<h2>Current NBA bot (v2.3)</h2>
+<p>No picks yet.</p>
+<h2>Rotation</h2>
+<p>No picks yet.</p>
+<h2>Injury News</h2>
+<p>Expected to win 3.9 of 6 decided picks; won 2.</p>
+<div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
+<tr><td><strong>HIGH</strong></td><td>1</td><td>0</td><td>1</td><td>-$19.47</td><td>-100.0%</td></tr>
+<tr><td><strong>MID</strong></td><td>1</td><td>1</td><td>0</td><td>+$3.70</td><td>+39.8%</td></tr>
+<tr><td><strong>LOW</strong></td><td>4</td><td>1</td><td>3</td><td>-$12.66</td><td>-67.8%</td></tr>
+</table></div>
+<div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td><strong>HIGH</strong></td><td>Oklahoma City Thunder at Indiana Pacers</td><td>Mon 6:30 PM</td><td>Oklahoma City Thunder to win</td><td>68c</td><td>1.95u</td><td>78%</td><td>68%</td><td>lost</td><td>-$19.47</td><td>-6c</td></tr>
+<tr><td><strong>LOW</strong></td><td>San Antonio Spurs at Sacramento Kings</td><td>Mon 9:00 PM</td><td>Sacramento Kings to win</td><td>17c</td><td>0.49u</td><td>23%</td><td>16%</td><td>lost</td><td>-$4.86</td><td>+10c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Boston Celtics at Golden State Warriors</td><td>Sun 7:30 PM</td><td>Boston Celtics to win</td><td>75c</td><td>0.46u</td><td>80%</td><td>74%</td><td>lost</td><td>-$4.58</td><td>+0c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Indiana Pacers at New York Knicks</td><td>Sun 7:00 PM</td><td>New York Knicks to win</td><td>73c</td><td>0.45u</td><td>79%</td><td>72%</td><td>won</td><td>+$1.53</td><td>-4c</td></tr>
+<tr><td><strong>MID</strong></td><td>Oklahoma City Thunder at Miami Heat</td><td>Sun 5:00 PM</td><td>Miami Heat to win</td><td>70c</td><td>0.93u</td><td>77%</td><td>70%</td><td>won</td><td>+$3.70</td><td>-6c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Portland Trail Blazers at New York Knicks</td><td>Sat 6:30 PM</td><td>Portland Trail Blazers to win</td><td>51c</td><td>0.47u</td><td>57%</td><td>50%</td><td>lost</td><td>-$4.75</td><td>-0c</td></tr>
+</table></div>
+<p>Why each pick was made:</p>
+<p class='li'><strong>HIGH: Oklahoma City Thunder at Indiana Pacers, Oklahoma City Thunder to win.</strong> News since 03:38 UTC: Aaron Nesmith (Indiana Pacers) 0% to 100% likely to sit; Pascal Siakam (Indiana Pacers) 0% to 45% likely to sit; Shai Gilgeous-Alexander (Oklahoma City Thunder) 100% to 0% likely to sit. Worth -5.9 points to Indiana Pacers by the player ratings, so a 36% price should now be about 22%; Kalshi is at 33%.</p>
+<p class='li'><strong>LOW: San Antonio Spurs at Sacramento Kings, Sacramento Kings to win.</strong> News since 03:38 UTC: Victor Wembanyama (San Antonio Spurs) 0% to 45% likely to sit. Worth +1.8 points to Sacramento Kings by the player ratings, so a 19% price should now be about 23%; Kalshi is at 17%.</p>
+<p class='li'><strong>MID: Oklahoma City Thunder at Miami Heat, Miami Heat to win.</strong> News since 21:38 UTC: Shai Gilgeous-Alexander (Oklahoma City Thunder) 45% to 100% likely to sit. Worth +3.2 points to Miami Heat by the player ratings, so a 70% price should now be about 77%; Kalshi is at 70%.</p>
+<p class='li'><strong>LOW: Boston Celtics at Golden State Warriors, Boston Celtics to win.</strong> News since 20:39 UTC: Derrick White (Boston Celtics) 100% to 0% likely to sit; Jayson Tatum (Boston Celtics) 100% to 0% likely to sit; Paul George (Boston Celtics) 0% to 100% likely to sit. Worth -2.0 points to Golden State Warriors by the player ratings, so a 24% price should now be about 20%; Kalshi is at 26%.</p>
+<p class='li'><strong>LOW: Indiana Pacers at New York Knicks, New York Knicks to win.</strong> News since 17:39 UTC: Karl-Anthony Towns (New York Knicks) 100% to 45% likely to sit. Worth +1.7 points to New York Knicks by the player ratings, so a 76% price should now be about 79%; Kalshi is at 72%.</p>
+<p class='li'><strong>LOW: Portland Trail Blazers at New York Knicks, Portland Trail Blazers to win.</strong> News since 22:39 UTC: Karl-Anthony Towns (New York Knicks) 45% to 100% likely to sit. Worth -2.1 points to New York Knicks by the player ratings, so a 48% price should now be about 43%; Kalshi is at 49%.</p>
+<h2>Scout</h2>
+<p>Expected to win 2.1 of 4 decided picks; won 3.</p>
+<div class='tw'><table><tr><th>Confidence</th><th>Picks</th><th>Won</th><th>Lost</th><th>Profit</th><th>Return</th></tr>
+<tr><td><strong>HIGH</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
+<tr><td><strong>MID</strong></td><td>0</td><td>0</td><td>0</td><td>+$0.00</td><td>n/a</td></tr>
+<tr><td><strong>LOW</strong></td><td>4</td><td>3</td><td>1</td><td>+$8.13</td><td>+43.1%</td></tr>
+</table></div>
+<div class='tw'><table><tr><th>Confidence</th><th>Matchup</th><th>Start (CT)</th><th>Pick</th><th>Price</th><th>Size</th><th>Model says</th><th>Market says</th><th>Result</th><th>Profit</th><th>Closing edge</th></tr>
+<tr><td><strong>LOW</strong></td><td>LA Clippers at San Antonio Spurs</td><td>Thu 7:00 PM</td><td>LA Clippers +15.5</td><td>51c</td><td>0.47u</td><td>57%</td><td>50%</td><td>won</td><td>+$4.25</td><td>-0c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Washington Wizards at Toronto Raptors</td><td>Wed 6:30 PM</td><td>Washington Wizards +4.5</td><td>49c</td><td>0.46u</td><td>57%</td><td>48%</td><td>won</td><td>+$4.43</td><td>+2c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Portland Trail Blazers at Minnesota Timberwolves</td><td>Mon 7:00 PM</td><td>Minnesota Timberwolves -2.5</td><td>49c</td><td>0.46u</td><td>55%</td><td>48%</td><td>won</td><td>+$4.43</td><td>-0c</td></tr>
+<tr><td><strong>LOW</strong></td><td>Philadelphia 76ers at Brooklyn Nets</td><td>Mon 6:30 PM</td><td>Brooklyn Nets to win</td><td>34c</td><td>0.50u</td><td>40%</td><td>34%</td><td>lost</td><td>-$4.98</td><td>-2c</td></tr>
+</table></div>
+<p>Why each pick was made:</p>
+<p class='li'><strong>LOW: LA Clippers at San Antonio Spurs, LA Clippers +15.5.</strong> San Antonio (net +11.2) are far better than the Clippers (net -5.7, 0-5 on the road), and on raw season numbers would be about 17-point favourites. Pulling the 15-game ratings partly toward average and taking off about 2.5 for Dylan Harper&#x27;s absence leaves San Antonio by about 13, two to three points short of the 15.5 spread. What the price misses: Dylan Harper (31.7 minutes, 18.4 points, a starter in all 15 games) was ruled out for two to three weeks after Wednesday&#x27;s game, yet San Antonio&#x27;s price rose from 86c to 87.5c over the day, even after a home loss to Detroit.</p>
+<p class='li'><strong>LOW: Washington Wizards at Toronto Raptors, Washington Wizards +4.5.</strong> Last-ten form says Toronto by about 5 at home at full strength; take off about 2 for the back-to-back, about 3 for Scottie Barnes (out) and about 1 for RJ Barrett&#x27;s hamstring, leaving Toronto by about 2. The 4.5-point spread and 64c price still look closer to a Toronto with Barnes. What the price misses: Toronto are on the second night of a back-to-back (known yesterday) and Scottie Barnes has since been ruled out with RJ Barrett questionable, yet the price only fell from 68c to 64c, about half of what Barnes alone is worth.</p>
+<p class='li'><strong>LOW: Philadelphia 76ers at Brooklyn Nets, Brooklyn Nets to win.</strong> Philadelphia are 11-3 but only +2.2 points per game, so the record flatters them; tonight they are on the second night of a back-to-back without LeBron James and with Embiid questionable on a sore foot. Brooklyn at home should be closer to 40% than 34%. What the price misses: The price looks anchored on Philadelphia&#x27;s 11-3 record rather than their +2.2 point differential, and Embiid sitting the second night of a back-to-back is a real chance.</p>
+<p class='li'><strong>LOW: Portland Trail Blazers at Minnesota Timberwolves, Minnesota Timberwolves -2.5.</strong> Minnesota have built a +11.5 point differential and the best defense here while Edwards played only 4 of 13 games. At home against Portland, who are without Morant and Sharpe, they should be about 4 to 5 point favourites, not 2.5. What the price misses: Edwards&#x27; surgery last week reads as fresh bad news, but Minnesota&#x27;s numbers were made almost entirely without him, so the price discounts them twice.</p>
+<h2>How the week will be judged</h2>
+<p>Set before the first pick. One week is about 50 games, enough to rule out a model that is badly wrong and not enough to prove one is right.</p>
+<p>1. <strong>Forecast accuracy against Kalshi</strong> on every game the model looked at (table above). A model that cannot get below Kalshi&#x27;s own Brier score on the same games has no edge to bet, however its picks went.</p>
+<p>2. <strong>Closing-price edge</strong> on its picks. Positive on average means the market agreed with the pick after it was made.</p>
+<p>3. <strong>Profit and return</strong> on its picks, read with the record against the number it expected to win.</p>
+<p>4. <strong>Calibration by confidence</strong>: High picks should win more often than Mid, and Mid more than Low.</p>
+<p>A model is worth keeping past the week if it is ahead of Kalshi on point 1 or point 2 and not far behind on the other. A model behind on both is retired, whatever its profit.</p>
+</body></html>
