@@ -1,11 +1,11 @@
 # New bots scorecard
 
-Updated Fri Nov 27 5:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Fri Nov 27 6:27 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Consensus | 22 | 4 | 4 | 14 | -$34.11 | -3.41 | -50.1% | -0.4c |
-| Full Scout | 7 | 1 | 1 | 5 | -$9.11 | -0.91 | -64.6% | -0.3c |
+| Full Scout | 8 | 2 | 1 | 5 | -$9.11 | -0.91 | -64.6% | -0.3c |
 | Situational | 9 | 1 | 1 | 7 | -$13.01 | -1.30 | -72.2% | -0.9c |
 | Line Movement | 20 | 4 | 6 | 10 | +$10.40 | +1.04 | +9.8% | -0.4c |
 
@@ -68,6 +68,7 @@ Why each pick was made:
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **LOW** | Golden State at Portland | Fri 8:30 PM | NBA | Over 217.5 | 48c | 0.25u | +1.8 | open |  |
+| **LOW** | Dallas at Phoenix | Fri 8:00 PM | NBA | Dallas +3.5 | 48c | 0.25u | +1.7 | open |  |
 | **LOW** | Cleveland at New York Knicks | Wed 6:30 PM | NBA | Cleveland +3.5 | 48c | 0.25u | +2.6 | lost | -$2.49 |
 | **LOW** | San Antonio at Sacramento | Mon 9:00 PM | NBA | Under 226.5 | 55c | 0.23u | +1.1 | lost | -$2.27 |
 | **LOW** | Oklahoma City at Indiana | Mon 6:30 PM | NBA | Under 225.5 | 48c | 0.25u | +1.6 | lost | -$2.49 |
@@ -78,6 +79,7 @@ Why each pick was made:
 Why each pick was made:
 
 - **LOW: Golden State at Portland, Over 217.5.** Curry still out for Golden State explains the move toward Portland. Near the price.. Low: daily fill-in, edge of 1.8 pts (1 to 3), quarter unit.
+- **LOW: Dallas at Phoenix, Dallas +3.5.** Dallas without Lively; Phoenix without Mark Williams. At the price.. Low: daily fill-in, edge of 1.6 pts (1 to 3), quarter unit.
 - **LOW: Cleveland at New York Knicks, Cleveland +3.5.** Brunson downgraded to questionable plus Anunoby, Clarkson, McBride out explains move toward Cleveland; Mobley out for Cleveland. Near the price.. Low: daily fill-in, edge of 2.6 pts (1 to 3), quarter unit.
 - **LOW: San Antonio at Sacramento, Under 226.5.** Second read: Wembanyama (back) and Fox (shin) are both questionable, which explains the move from 14 to about 9. With their status unknown I stay at the price.. Low: daily fill-in, edge of 1.1 pts (1 to 3), quarter unit.
 - **LOW: Oklahoma City at Indiana, Under 225.5.** Both teams are on a back-to-back. Oklahoma City is missing Jalen Williams, Caruso and others; Indiana is without Haliburton, Nesmith and McConnell. Slightly under the price.. Low: daily fill-in, edge of 1.6 pts (1 to 3), quarter unit.
