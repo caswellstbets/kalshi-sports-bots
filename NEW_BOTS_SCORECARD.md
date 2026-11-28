@@ -1,13 +1,13 @@
 # New bots scorecard
 
-Updated Fri Nov 27 8:25 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
+Updated Fri Nov 27 9:26 PM CT. Paper trading only. Each bot has a $1,000 paper bankroll; 1 unit = $10. How each bot works: [NEW_BOTS.md](NEW_BOTS.md).
 
 | Bot | Picks | Open | Won | Lost | Profit | Units | Return on settled stake | Avg closing-price edge |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Consensus | 22 | 4 | 4 | 14 | -$34.11 | -3.41 | -50.1% | -0.4c |
+| Consensus | 23 | 5 | 4 | 14 | -$34.11 | -3.41 | -50.1% | -0.4c |
 | Full Scout | 8 | 2 | 1 | 5 | -$9.11 | -0.91 | -64.6% | -0.3c |
 | Situational | 9 | 1 | 1 | 7 | -$13.01 | -1.30 | -72.2% | -0.9c |
-| Line Movement | 20 | 4 | 6 | 10 | +$10.40 | +1.04 | +9.8% | -0.4c |
+| Line Movement | 20 | 3 | 6 | 11 | +$5.72 | +0.57 | +5.2% | -0.7c |
 
 Profit over a few dozen picks is mostly luck. The fairer early test is the closing-price edge: whether Kalshi's price moved toward each pick before the game started.
 
@@ -15,6 +15,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 | Confidence | Game | Start (CT) | Sport | Pick | Price | Size | Edge | Result | Profit |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **MID** | Notre Dame at Syracuse | Sat 11:00 AM | College football | Syracuse +23.5 | 45c | 0.47u | +5.6 | open |  |
 | **MID** | Denver at Utah | Fri 8:30 PM | NBA | Utah +8.5 | 44c | 0.46u | +3.4 | open |  |
 | **MID** | Golden State at Portland | Fri 8:30 PM | NBA | Over 219.5 | 44c | 0.46u | +5.1 | open |  |
 | **MID** | Memphis at Minnesota | Fri 7:30 PM | NBA | Over 221.5 | 47c | 0.49u | +3.5 | open |  |
@@ -40,6 +41,7 @@ Profit over a few dozen picks is mostly luck. The fairer early test is the closi
 
 Why each pick was made:
 
+- **MID: Notre Dame at Syracuse, Syracuse +23.5.** 4 signals agree (stats, book, spots, read). Mid: edge of 5.6 pts (3 to 6), fixed half unit.
 - **MID: Denver at Utah, Utah +8.5.** 3 signals agree (stats, book, spots), 1 against (move). Mid: edge of 3.4 pts (3 to 6), fixed half unit.
 - **MID: Golden State at Portland, Over 219.5.** total: 2 signals agree (stats, read). Mid: edge of 5.1 pts (3 to 6), fixed half unit.
 - **MID: Memphis at Minnesota, Over 221.5.** total: 2 signals agree (stats, read). Mid: edge of 3.4 pts (3 to 6), fixed half unit.
@@ -120,7 +122,7 @@ Why each pick was made:
 | **MID** | Golden State at Portland | Fri 8:30 PM | NBA | Portland -10.5 | 47c | 0.49u | +4.9 | open |  |
 | **MID** | Denver at Utah | Fri 8:30 PM | NBA | Denver -12.5 | 42c | 0.48u | +3.4 | open |  |
 | **MID** | Atlanta at Boston | Fri 7:00 PM | NBA | Boston -9.5 | 46c | 0.48u | +5.5 | open |  |
-| **MID** | Philadelphia at Indiana | Fri 6:30 PM | NBA | Indiana +1.5 | 45c | 0.47u | +4.2 | open |  |
+| **MID** | Philadelphia at Indiana | Fri 6:30 PM | NBA | Indiana +1.5 | 45c | 0.47u | +4.2 | lost | -$4.68 |
 | **MID** | Tulsa at UTSA | Fri 11:00 AM | College football | Tulsa -2.5 | 47c | 0.49u | +3.4 | lost | -$4.88 |
 | **LOW** | TCU at Texas Tech | Thu 7:00 PM | College football | TCU +13.5 | 48c | 0.25u | +2.1 | lost | -$2.49 |
 | **MID** | Sacramento at Golden State | Wed 9:00 PM | NBA | Sacramento +6.5 | 45c | 0.47u | +5.8 | lost | -$4.68 |
